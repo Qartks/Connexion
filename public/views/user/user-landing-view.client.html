@@ -1,0 +1,47 @@
+<md-toolbar align="center">
+        <h1>Connexion</h1>
+    </md-toolbar>
+    <md-subheader align="center">A social web app to connect like minded people</md-subheader>
+    <br>
+
+    <input ng-model="searchText" type="text" placeholder="Search Me">
+    <md-switch ng-model="model.message" ng-change="model.switchChange()">
+        Hide Closed : {{ model.open }}
+    </md-switch>
+<md-content layout-xs="column" layout="column">
+    <span class="badge">{{(model.data | filter:{postName:searchText}).length}}</span>
+    <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="d in model.data | filter:{postName:searchText}">
+        <md-card class="md-whiteframe-5dp card" ng-show="model.showOpenCheck(d)">
+
+            <!--<div layout="column" ng-repeat="img in d.pictures">-->
+                <!--<img ng-src="{{d.pictures[0].url}}" alt="Image" class="img-fluid">-->
+            <!--</div>-->
+
+            
+            <iframe frameborder="0" style="border:0"
+                    src="{{model.googleapiurl(d)}}"
+                    allowfullscreen></iframe>
+            
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{d.postName}}
+                        <span class="md-subhead">{{d.organizer}}</span>
+                        <a href="#" class="md-subhead">{{d.address}}</a>
+                    </span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <div>{{d.description}}</div><br>
+                <md-divider></md-divider>
+            </md-card-content>
+
+            <md-card-actions layout="row" layout-align="end center">
+                <span ng-show="model.going"> You are Going !</span>
+                <md-button>Like!</md-button>
+                <md-button ng-click="model.imGoing(d)">Going <span class="badge">{{d.noOfPeopleGoing}}</span></md-button>
+                <md-button>Dismiss</md-button>
+            </md-card-actions>
+
+        </md-card>
+    </div>
+</md-content>

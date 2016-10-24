@@ -1,19 +1,15 @@
-(function () {
-    angular.module('Connecxion',['ngMaterial'])
-        .controller('myController', ['$http', '$sce', appController]);
-    
-    
-    
-    function appController($http, $sce) {
+(function(){
+    angular
+        .module("Connecxion")
+        .controller("LandingPageController", LandingPageController);
+    function LandingPageController($http, $sce) {
+        console.log("Hello World");
         var self = this;
-
         self.data = [];
-
-        $http.get('connexion-dummy.json').success(function (data) {
+        $http.get('./assests/connexion-dummy.json').success(function (data) {
             self.data = data;
             self.data = self.data.slice(0, 5);
         });
-
         self.imGoing = imGoing;
         self.showOpenCheck  = showOpenCheck;
         self.switchChange = switchChange;
@@ -32,6 +28,7 @@
             d.noOfPeopleGoing++;
         }
         function googleapiurl(d) {
+            var apiKey = "AIzaSyD7GyAN5-7piBEWir3uOPQyxdNTDrjguS8";
             var url = "https://www.google.com/maps/embed/v1/place?key="+ apiKey + "&q=";
             // var location = d.latitude + "," + d.longitude;
             // var location = d.address;
@@ -41,4 +38,4 @@
             return $sce.trustAsResourceUrl(url);
         }
     }
-})();
+})();    
