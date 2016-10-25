@@ -1,47 +1,99 @@
-<md-toolbar align="center">
-        <h1>Connexion</h1>
+<div layout="column">
+    <md-toolbar class="tool-bar-sticky-header" ng-show="!model.showSearch">
+        <div layout="row">
+            <md-button hide-gt-sm ng-click="model.toogle()">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </md-button>
+            <div flex="15">
+                <h1>Connexion</h1>
+            </div>
+            <span flex="65"></span>
+
+            <md-button aria-label="Search"  ng-click="model.showSearch = !model.showSearch" class="toolbar-options">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </md-button>
+
+
+            <md-button class="toolbar-options">
+                Sign in
+            </md-button>
+
+
+            <md-button class="toolbar-options">
+                Sign up
+            </md-button>
+
+        </div>
     </md-toolbar>
-    <md-subheader align="center">A social web app to connect like minded people</md-subheader>
-    <br>
 
-    <input ng-model="searchText" type="text" placeholder="Search Me">
-    <md-switch ng-model="model.message" ng-change="model.switchChange()">
-        Hide Closed : {{ model.open }}
-    </md-switch>
-<md-content layout-xs="column" layout="column">
-    <span class="badge">{{(model.data | filter:{postName:searchText}).length}}</span>
-    <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="d in model.data | filter:{postName:searchText}">
-        <md-card class="md-whiteframe-5dp card" ng-show="model.showOpenCheck(d)">
+    <md-toolbar class="tool-bar-sticky-header" ng-show="model.showSearch">
+        <div layout="row">
+            <md-button ng-click="model.showSearch = !model.showSearch" aria-label="Back">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </md-button>
 
-            <!--<div layout="column" ng-repeat="img in d.pictures">-->
-                <!--<img ng-src="{{d.pictures[0].url}}" alt="Image" class="img-fluid">-->
-            <!--</div>-->
 
-            
-            <iframe frameborder="0" style="border:0"
-                    src="{{model.googleapiurl(d)}}"
-                    allowfullscreen></iframe>
-            
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">{{d.postName}}
-                        <span class="md-subhead">{{d.organizer}}</span>
-                        <a href="#" class="md-subhead">{{d.address}}</a>
-                    </span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content>
-                <div>{{d.description}}</div><br>
-                <md-divider></md-divider>
-            </md-card-content>
+            <md-input-container  flex>
+                <label>&nbsp;</label>
+                <input ng-model="search.who">
+            </md-input-container>
 
-            <md-card-actions layout="row" layout-align="end center">
-                <span ng-show="model.going"> You are Going !</span>
-                <md-button>Like!</md-button>
-                <md-button ng-click="model.imGoing(d)">Going <span class="badge">{{d.noOfPeopleGoing}}</span></md-button>
-                <md-button>Dismiss</md-button>
-            </md-card-actions>
+            <md-button aria-label="Search"  ng-click="model.showSearch = !model.showSearch" class="toolbar-options">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </md-button>
 
-        </md-card>
-    </div>
-</md-content>
+            </div>
+    </md-toolbar>
+    <md-sidenav  md-component-id="right" md-component-id="right" class="md-whiteframe-4dp" >
+        <md-list>
+            <md-list-item>
+                <md-button>
+                    Sign up
+                </md-button>
+            </md-list-item>
+            <md-list-item>
+                <md-button>
+                    Sign In
+                </md-button>
+            </md-list-item>
+            <md-list-item>
+                <md-button ng-click="model.showSearch = !model.showSearch">
+                    Search
+                </md-button>
+            </md-list-item>
+        </md-list>
+    </md-sidenav>
+
+    <!--<md-switch ng-model="model.message" ng-change="model.switchChange()">-->
+        <!--Hide Closed : {{ model.open }}-->
+    <!--</md-switch>-->
+    <md-content layout-xs="column" layout="column">
+        <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="d in model.data | filter:{postName:searchText}">
+            <md-card class="md-whiteframe-5dp card" ng-show="model.showOpenCheck(d)">
+                <iframe frameborder="0" style="border:0"
+                        src="{{model.googleapiurl(d)}}"
+                        allowfullscreen>
+                </iframe>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{d.postName}}
+                            <span class="md-subhead">{{d.organizer}}</span>
+                            <a href="#" class="md-subhead">{{d.address}}</a>
+                        </span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>{{d.description}}</p><br>
+                    <md-divider></md-divider>
+                </md-card-content>
+
+                <md-card-actions layout="row" layout-align="end center">
+                    <span ng-show="model.going"> You are Going !</span>
+                    <md-button>Like!</md-button>
+                    <md-button ng-click="model.imGoing(d)">Going <span class="badge">{{d.noOfPeopleGoing}}</span></md-button>
+                    <md-button>Dismiss</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </md-content>
+

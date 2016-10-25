@@ -2,29 +2,36 @@
     angular
         .module("Connecxion")
         .controller("LandingPageController", LandingPageController);
-    function LandingPageController($http, $sce) {
-        console.log("Hello World");
-        var self = this;
-        self.data = [];
+    function LandingPageController($http, $sce,$mdSidenav) {
+        var vm = this;
+        vm.data = [];
         $http.get('./assests/connexion-dummy.json').success(function (data) {
-            self.data = data;
-            self.data = self.data.slice(0, 5);
+            vm.data = data;
+            vm.data = vm.data.slice(0, 5);
         });
-        self.imGoing = imGoing;
-        self.showOpenCheck  = showOpenCheck;
-        self.switchChange = switchChange;
-        self.googleapiurl = googleapiurl;
-        self.going = false;
-        self.open = true;
-
+        vm.imGoing = imGoing;
+        vm.showOpenCheck  = showOpenCheck;
+        vm.switchChange = switchChange;
+        vm.googleapiurl = googleapiurl;
+        vm.going = false;
+        vm.open = true;
+        vm.sideMenu = false;
+        vm.toogle = buildToggler('right');
+        function buildToggler(navID) {
+            return function() {
+                // Component lookup should always be available since we are not using `ng-if`
+                $mdSidenav(navID)
+                    .toggle()
+            }
+        }
         function switchChange() {
-            self.open = !self.open;
+            vm.open = !vm.open;
         }
         function showOpenCheck(d) {
-            return d.isOpen || self.open;
+            return d.isOpen || vm.open;
         }
         function imGoing(d) {
-            self.going = true;
+            vm.going = true;
             d.noOfPeopleGoing++;
         }
         function googleapiurl(d) {

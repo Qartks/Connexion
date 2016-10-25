@@ -1,7 +1,43 @@
-/** {*/
-    /*background-image: url("../img/usandthem.jpg")*/
-/*}*/
+/*********************/
+/*General Settings*/
+/*********************/
+*{
+    padding: 0;
+}
+body {
+    min-height:100%;
+    font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300!important;
+    line-height: 140%;
+}
+h1 {
+    display: inline-block;
+    font-size: 100%;
+}
+p {
+    font-size: 70%;
+}
+/*********************/
+/*Tool bar/
+/*********************/
+.tool-bar-sticky-header{
+    box-shadow: 0 1px 6px rgba(0,0,0,.3)!important;
+    display: inline-block;
+    /*padding-left: 10px!important;*/
+    padding-right: 0px!important;
+    color:#fff!important;
+    width: 100%;
+}
+@media screen and (max-width: 600px) {
+    .toolbar-options {
+        display: none !important;
+    }
+}
 
+/*********************/
+/*Landing Page*/
+/*********************/
 md-card {
     margin: auto;
 }
@@ -12,4 +48,13 @@ md-card {
     margin-right: 15%;
     margin-bottom: 40px;
     background-color: aquamarine;
+}
+.title {
+    display: inline-block;
+    font-size: 170%;
+    height: 100%;
+    padding-top: 25px;
+    padding-right:5px;
+    font-weight: bold!important;
+    border-right: 1px solid #ccc;
 }
