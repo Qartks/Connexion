@@ -18,27 +18,85 @@ h1 {
 p {
     font-size: 70%;
 }
+.fa{
+    color:#00dddd;
+    font-size: 150%;
+}
+.fa-white{
+    color: white!important;
+}
 /*********************/
 /*Tool bar/
 /*********************/
 .tool-bar-sticky-header{
+    position: fixed;
     box-shadow: 0 1px 6px rgba(0,0,0,.3)!important;
     display: inline-block;
-    /*padding-left: 10px!important;*/
-    padding-right: 0px!important;
-    color:#fff!important;
+    background: #ffffff!important;
+    padding: 0px!important;
+    margin: 0!important;
+    color:#111!important;
     width: 100%;
+
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 960px) {
     .toolbar-options {
         display: none !important;
     }
+}
+.title {
+    display: inline-block;
+    text-transform: none!important;
+    font-size: 120%!important;
+    font-weight: bold!important;
+    width: auto!important;
+}
+.title:hover{
+    background-color: white!important;
+}
+.title span{
+    padding-left: 10%;
+}
+.btn-toolbar:not([disabled]) {
+    border-left: 1px solid #ccc;
+    padding: 0;
+    margin: 0;
+}
+.btn-toolbar:not([disabled]):hover  {
+    background-color: rgba(0, 241, 241, 0.23) !important;
+    background-color: white;
+    transition: background-color 0.3s;
+}
+.fix-box-height {
+    height: inherit!important;
+    padding: 0!important;
+    margin: 0!important;
+}
+.md-toolbar-tools{
+    margin: 0!important;
+    padding: 0!important;
+}
+/*********************/
+/*Landing Page*/
+/*********************/
+.side-nav-list-style{
+    margin-top: 15%!important;
+    font-size: 80%!important;
+    position: fixed;
+
+}
+.side-nav-list-style md-list-item{
+    text-transform: uppercase;
+}
+.side-nav-list-style md-list-item:hover,
+.side-nav-list-style md-list-item:active{
+    background-color: rgba(0, 241, 241, 0.23) !important;
 }
 
 /*********************/
 /*Landing Page*/
 /*********************/
-md-card {
+.md-card {
     margin: auto;
 }
 
@@ -48,13 +106,4 @@ md-card {
     margin-right: 15%;
     margin-bottom: 40px;
     background-color: aquamarine;
-}
-.title {
-    display: inline-block;
-    font-size: 170%;
-    height: 100%;
-    padding-top: 25px;
-    padding-right:5px;
-    font-weight: bold!important;
-    border-right: 1px solid #ccc;
 }
