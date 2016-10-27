@@ -1,100 +1,83 @@
-<md-sidenav  md-component-id="right" md-component-id="right" class="md-whiteframe-4dp" >
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <md-button ng-click="model.toogle()">
-                <i class="fa fa-times fa-white" aria-hidden="true" ></i>
-            </md-button>
-            <div flex>
+<div layout="row"  flex>
+    <md-sidenav md-component-id="left" class="side-nav" md-component-id="left"
+                class="md-whiteframe-4dp" >
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <md-button ng-click="model.toogle()">
+                    <i class="fa fa-times fa-white" aria-hidden="true" ></i>
+                </md-button>
+                <div flex></div>
             </div>
-        </div>
-    </md-toolbar>
-    <md-list class="side-nav-list-style">
-        <md-list-item>
-            Sign up
-        </md-list-item>
-        <md-list-item>
-            Sign In
-        </md-list-item>
-        <div layout="row">
-            <md-input-container md-theme="input" flex>
-                <label>&nbsp;</label>
-                <input ng-model="search.who">
-            </md-input-container>
-            <md-button aria-label="Search">
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </md-button>
-        </div>
-    </md-list>
-</md-sidenav>
-<md-toolbar class="tool-bar-sticky-header" ng-show="!model.showSearch">
-    <div class="md-toolbar-tools" >
-        <md-button hide-gt-sm ng-click="model.toogle()" class="fix-box-height">
-            <i class="fa fa-bars" aria-hidden="true"></i>
-        </md-button>
-        <md-button class="title fix-box-height">
-            Connexion
-        </md-button>
-        <div ng-click="model.showSearch = !model.showSearch" flex="75" class="fix-box-height toolbar-options"></div>
-        <md-button aria-label="Search"  ng-click="model.showSearch = !model.showSearch"
-                   class="fix-box-height toolbar-options">
-            <i class="fa fa-search" aria-hidden="true"></i>
-        </md-button>
-        <md-button class="toolbar-options btn-toolbar fix-box-height">
-            Sign in
-        </md-button>
-        <md-button class="toolbar-options btn-toolbar fix-box-height" ng-click="model.showAdd($event)">
-            Sign up
-        </md-button>
+        </md-toolbar>
+        <md-list>
+            <md-list-item>
+                Sign up
+            </md-list-item>
+            <md-list-item>
+                Sign In
+            </md-list-item>
+        </md-list>
+    </md-sidenav>
 
+    <div layout="column" flex>
+        <md-toolbar class="tool-bar-color" ng-show="!model.showSearch">
+            <div class="md-toolbar-tools">
+                <md-button hide-gt-sm ng-click="model.toogle()" class="fix-box-height">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </md-button>
+                <md-button class="fix-box-height title"> Connexion</md-button>
+                <div class="toolbar-options fix-box-height"  flex></div>
+                <md-button aria-label="Search" class="toolbar-options" style="height: inherit!important;padding: 0;margin: 0;" ng-click="model.showSearch = !model.showSearch">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </md-button>
+                <md-button class="toolbar-options fix-box-height btn-toolbar">Sign In</md-button>
+                <md-button class="toolbar-options fix-box-height btn-toolbar">Sign Up</md-button>
+            </div>
+        </md-toolbar>
+        <md-toolbar class="tool-bar-color md-hue-1" ng-show="model.showSearch">
+            <div class="md-toolbar-tools">
+                <md-button ng-click="model.showSearch = !model.showSearch" aria-label="Back">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </md-button>
+                <md-input-container md-theme="input"  flex>
+                    <label>&nbsp;</label>
+                    <input ng-model="search.who">
+                </md-input-container>
+
+                <md-button aria-label="Search"  ng-click="model.showSearch = !model.showSearch" >
+                    <i class="fa fa-search " aria-hidden="true"></i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-content id="content" flex>
+            <div class="large-box" layout-gt-xs="column" layout-xs="column" >
+                <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="d in model.data | filter:{postName:searchText}">
+                    <md-card class="md-whiteframe-5dp card" ng-show="model.showOpenCheck(d)">
+                        <iframe frameborder="0" style="border:0"
+                                src="{{model.googleapiurl(d)}}"
+                                allowfullscreen>
+                        </iframe>
+                        <md-card-title>
+                            <md-card-title-text>
+                            <span class="md-headline">{{d.postName}}
+                                <span class="md-subhead">{{d.organizer}}</span>
+                                <a href="#" class="md-subhead">{{d.address}}</a>
+                            </span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <p>{{d.description}}</p><br>
+                            <md-divider></md-divider>
+                        </md-card-content>
+
+                        <md-card-actions layout="row" layout-align="end center">
+                            <span ng-show="model.going"> You are Going !</span>
+                            <md-button>Like!</md-button>
+                            <md-button ng-click="model.imGoing(d)">Going <span class="badge">{{d.noOfPeopleGoing}}</span></md-button>
+                            <md-button>Dismiss</md-button>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+        </md-content>
     </div>
-</md-toolbar>
-
-<md-toolbar class="tool-bar-sticky-header md-hue-1" ng-show="model.showSearch">
-    <div class="md-toolbar-tools">
-        <md-button ng-click="model.showSearch = !model.showSearch" aria-label="Back" class="fix-box-height">
-            <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        </md-button>
-        <md-input-container md-theme="input"  flex>
-            <label>&nbsp;</label>
-            <input ng-model="search.who">
-        </md-input-container>
-
-        <md-button aria-label="Search"  ng-click="model.showSearch = !model.showSearch" class="fix-box-height">
-            <i class="fa fa-search " aria-hidden="true"></i>
-        </md-button>
-    </div>
-</md-toolbar>
-<div layout="column">
-
-    <!--<md-switch ng-model="model.message" ng-change="model.switchChange()">-->
-        <!--Hide Closed : {{ model.open }}-->
-    <!--</md-switch>-->
-    <md-content layout="column">
-        <div flex-xs flex-gt-xs="50" layout="column" ng-repeat="d in model.data | filter:{postName:searchText}">
-            <md-card class="md-whiteframe-5dp card" ng-show="model.showOpenCheck(d)">
-                <iframe frameborder="0" style="border:0"
-                        src="{{model.googleapiurl(d)}}"
-                        allowfullscreen>
-                </iframe>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{d.postName}}
-                            <span class="md-subhead">{{d.organizer}}</span>
-                            <a href="#" class="md-subhead">{{d.address}}</a>
-                        </span>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-content>
-                    <p>{{d.description}}</p><br>
-                    <md-divider></md-divider>
-                </md-card-content>
-
-                <md-card-actions layout="row" layout-align="end center">
-                    <span ng-show="model.going"> You are Going !</span>
-                    <md-button>Like!</md-button>
-                    <md-button ng-click="model.imGoing(d)">Going <span class="badge">{{d.noOfPeopleGoing}}</span></md-button>
-                    <md-button>Dismiss</md-button>
-                </md-card-actions>
-            </md-card>
-        </div>
-    </md-content>
+</div>

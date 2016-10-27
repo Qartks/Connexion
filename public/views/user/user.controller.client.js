@@ -17,7 +17,7 @@
         vm.going = false;
         vm.open = true;
         vm.sideMenu = false;
-        vm.toogle = buildToggler('right');
+        vm.toogle = buildToggler('left');
         function buildToggler(navID) {
             return function() {
                 // Component lookup should always be available since we are not using `ng-if`
