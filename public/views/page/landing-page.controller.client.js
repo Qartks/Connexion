@@ -4,7 +4,7 @@
         .controller("LandingPageController", LandingPageController);
 
     function LandingPageController() {
-
+        console.log("Hi");
     }
 
 })();
