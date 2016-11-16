@@ -1,9 +1,10 @@
 (function(){
     angular
-        .module("Connecxion")
-        .controller("LandingPageController", LandingPageController)
+        .module("Connexion")
+        .controller("UserLandingController", UserLandingController)
         .controller("DialogController",DialogController);
-    function LandingPageController($http, $sce,$mdSidenav,$mdDialog) {
+
+    function UserLandingController($http, $sce,$mdSidenav,$mdDialog) {
         var vm = this;
         vm.data = [];
         $http.get('./assests/connexion-dummy.json').success(function (data) {

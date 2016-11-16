@@ -11,5 +11,5 @@ app.use(express.static(__dirname + '/public'));
 
 app.listen(port,function(){
     console.log("Running Server on port 3000");
-})
+});
 

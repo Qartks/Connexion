@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/Qartks89/Connexion#readme",
   "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "mongoose": "^4.6.5"
