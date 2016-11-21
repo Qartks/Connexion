@@ -22,7 +22,9 @@
     "angular-animate": "^1.5.8",
     "angular-aria": "^1.5.8",
     "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
     "express": "^4.14.0",
+    "mdi": "^1.7.22",
     "mongoose": "^4.6.5"
   }
 }

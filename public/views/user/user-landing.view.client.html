@@ -1,129 +1,136 @@
 <md-toolbar class= "md-whiteframe-9dp navbar-fixed-top">
     <div class="md-toolbar-tools">
-        <span flex=""></span>
-        <h1>
+        <!--<span flex=""></span>-->
+        <i class="material-icons">menu</i>
+        <h1 class="main-header">
             Connexion
         </h1>
         <span flex=""></span>
         <i class="tool-bar-icons material-icons">search</i>
         <i class="tool-bar-icons material-icons">account_circle</i>
         <i class="tool-bar-icons material-icons">more_vert</i>
+
+
     </div>
 </md-toolbar>
 
 
 <div class="container">
     <div class="content-wrapper">
-        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 left-column">
-            <div class="event green md-whiteframe-5dp" ng-repeat="d in model.data | filter:{postName:searchText}" ng-show="model.showOpenCheck(d)">
+
+
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 right-column ">
+
+            <div class="event green md-whiteframe-5dp" ng-repeat="d in model.data | filter:{postName:searchText}">
                 <div class="container-fluid padding-15">
-                    <img ng-src="{{d.pictures[0]}}" alt="">
-                    <hr>
+                    <img class="img-responsive" ng-src="http://lorempixel.com/800/600/" alt="">
                     <h2>{{d.postName}}</h2>
                     <span class="md-subhead">{{d.organizer}}</span>
                     <a href="#" class="md-subhead">{{d.address}}</a>
                     <hr>
                     <p>{{d.description}}</p>
                 </div>
-
             </div>
 
         </div>
 
-        <div class="hidden-xs hidden-sm col-md-4 col-lg-4 right-column">
+        <div class="hidden-xs hidden-sm col-md-4 col-lg-4 left-column">
 
-            <div class="col-xs-12">
-                <div class="md-whiteframe-5dp green">
+            <div class="stick">
 
-                    <div class="card-header">
-                        <h2>Popular <small>What you would like</small> </h2>
-                    </div>
+                <div class="col-xs-12">
+                    <div class="md-whiteframe-5dp green">
 
-                    <div class="list-group no-bg">
+                        <div class="card-header">
+                            <h2>Popular <small>What you would like</small> </h2>
+                        </div>
 
-                        <a href="" class="list-group-item no-bg">
+                        <div class="list-group no-bg">
+
+                            <a href="" class="list-group-item no-bg">
                             <span class="pull-right">
                               <i class="material-icons">trending_up</i>
                             </span>
-                            #TheWalkingDead
-                        </a>
-                        <a href="" class="list-group-item no-bg">
+                                #TheWalkingDead
+                            </a>
+                            <a href="" class="list-group-item no-bg">
                             <span class="pull-right">
                               <i class="material-icons">trending_flat</i>
                             </span>
-                            #Survivor
-                        </a>
-                        <a href="" class="list-group-item no-bg">
+                                #Survivor
+                            </a>
+                            <a href="" class="list-group-item no-bg">
                             <span class="pull-right">
                               <i class="material-icons">trending_down</i>
                             </span>
-                            #Whitehouse
-                        </a>
-                    </div>
+                                #Whitehouse
+                            </a>
+                        </div>
 
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-xs-12">
-                <div class="md-whiteframe-5dp green">
+                <div class="col-xs-12">
+                    <div class="md-whiteframe-5dp green">
 
-                    <div class="card-header">
-                        <h2>Top Search <small>Something really cool</small> </h2>
-                    </div>
+                        <div class="card-header">
+                            <h2>Top Search <small>Something really cool</small> </h2>
+                        </div>
 
-                    <div class="list-group no-bg">
-                        <a href="" class="list-group-item no-bg">
+                        <div class="list-group no-bg">
+                            <a href="" class="list-group-item no-bg">
                             <span class="pull-right">
                               1
                             </span>
-                            #Story
-                        </a>
-                        <a href="" class="list-group-item no-bg">
+                                #Story
+                            </a>
+                            <a href="" class="list-group-item no-bg">
                             <span class="pull-right">
                               2
                             </span>
-                            #Nature
-                        </a>
-                        <a href="" class="list-group-item no-bg">
+                                #Nature
+                            </a>
+                            <a href="" class="list-group-item no-bg">
                             <span class="pull-right">
                               3
                             </span>
-                            #Sleeping
-                        </a>
+                                #Sleeping
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-xs-12">
-                <div class="md-whiteframe-5dp green">
+                <div class="col-xs-12">
+                    <div class="md-whiteframe-5dp green">
 
-                    <div class="card-header">
-                        <h2>Top Search <small>Something really cool</small> </h2>
-                    </div>
+                        <div class="card-header">
+                            <h2>Top Search <small>Something really cool</small> </h2>
+                        </div>
 
-                    <div class="list-group no-bg">
-                        <a href="" class="list-group-item no-bg">
+                        <div class="list-group no-bg">
+                            <a href="" class="list-group-item no-bg">
                             <span class="pull-right">
                               1
                             </span>
-                            #Story
-                        </a>
-                        <a href="" class="list-group-item no-bg">
+                                #Story
+                            </a>
+                            <a href="" class="list-group-item no-bg">
                             <span class="pull-right">
                               2
                             </span>
-                            #Nature
-                        </a>
-                        <a href="" class="list-group-item no-bg">
+                                #Nature
+                            </a>
+                            <a href="" class="list-group-item no-bg">
                             <span class="pull-right">
                               3
                             </span>
-                            #Sleeping
-                        </a>
+                                #Sleeping
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
 
         </div>
     </div>

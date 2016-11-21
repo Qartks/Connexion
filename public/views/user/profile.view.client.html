@@ -1,10 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <md-header>User Profile</md-header>
-</body>
-</html>
+<md-toolbar class= "md-whiteframe-9dp navbar-fixed-top">
+    <div class="md-toolbar-tools">
+        <!--<span flex=""></span>-->
+        <i class="material-icons">menu</i>
+        <h1 class="main-header">
+            Connexion
+        </h1>
+        <span flex=""></span>
+        <i class="tool-bar-icons material-icons">search</i>
+        <i class="tool-bar-icons material-icons">account_circle</i>
+        <i class="tool-bar-icons material-icons">more_vert</i>
+    </div>
+</md-toolbar>
+
+
+<div class="contianer">
+
+    <div class="content-wrapper">
+
+        <div class="col-sm-12 col-md-4 left-column">
+            <div class="container-fluid">
+                <div class="">
+                    <div class="panel text-center ">
+                        <a href="" class="inline">
+                            <img ng-src="http://lorempixel.com/200/200/" class="img-circle">
+                        </a>
+                        <div>
+                            <h3 class="">Vineeth R.</h3>
+                        </div>
+                        <a class="btn no-border">Edit</a>
+                        <p>
+                            I am Building something.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-8 right-column">
+            <div class="container-fluid">
+                <section layout="row" layout-sm="row" layout-align="center center" layout-wrap>
+                    <md-button class="md-raised" flex>Button</md-button>
+                    <md-button class="md-raised md-primary" flex>Primary</md-button>
+                    <md-button class="md-raised md-primary" flex>Disabled</md-button>
+                    <md-button class="md-raised md-warn" flex>Warn</md-button>
+                </section>
+                <textarea class="form-control no-border" rows="3" placeholder="Write something..."></textarea>
+                <div class="">
+                    <button class="btn  pull-right no-border">Post</button>
+                    <ul class="nav nav-pills nav-sm">
+                        <li><a href=""><i class="fa fa-camera"></i></a></li>
+                        <li><a href=""><i class="fa fa-video-camera"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
