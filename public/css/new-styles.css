@@ -179,10 +179,15 @@ h1.main-header {
 .profile-panel {
     color: aliceblue;
     background:url("http://lorempixel.com/90/90/") center center;
-    background-size:cover
+    background-size:cover;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .event-list {
-    height: 400px;
+    height: 720px;
     overflow-y: scroll;
+}
+
+.stats-panel {
+    margin-top: 20px;
 }

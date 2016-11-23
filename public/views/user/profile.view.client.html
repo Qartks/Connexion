@@ -17,8 +17,9 @@
     <div class="content-wrapper">
         <div class="left-column">
             <div class="col-sm-12 col-md-4">
+                <div> <h2 class="margin-0">Profile</h2> </div>
                 <div class="panel">
-                    <div class="text-center profile-panel" style="background-color: rgba(0, 0, 0, 0.5);">
+                    <div class="text-center profile-panel">
                         <a href="" class="inline">
                             <img ng-src="http://lorempixel.com/90/90/" class="img-circle padding-15">
                         </a>
@@ -53,12 +54,42 @@
                     <md-button class="md-raised md-primary" ><span> + </span>Friend</md-button>
                     <md-button class="md-raised md-warn" >Block</md-button>
                 </section>
+
+                <div class="panel stats-panel">
+                    <table class="table table-striped m-b-none">
+                        <thead>
+                        <tr>
+                            <th>Stats</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Events hosted</td>
+                            <td class="text-success">
+                                <i class="fa fa-level-up"></i> 40%
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Popularity</td>
+                            <td class="text-warning">
+                                <i class="fa fa-level-down"></i> 5%
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Customer increase</td>
+                            <td class="text-danger">
+                                <i class="fa fa-level-down"></i> 20%
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div class="col-sm-12 col-md-8">
-                <h2> User events : </h2>
+                <div> <h2 class="margin-0">User events</h2> </div>
                 <div class="event-list">
-                    <div class="event green md-whiteframe-5dp" ng-repeat="d in model.data | filter:{postName:searchText}">
+                    <div class="event md-whiteframe-5dp" ng-repeat="d in model.data | filter:{postName:searchText}" ng-class="model.isthispostmine(d)">
                         <div class="container-fluid">
                             <h2>{{d.postName}}</h2>
                             <span class="md-subhead">{{d.organizer}}</span>
@@ -68,8 +99,10 @@
                         </div>
                     </div>
                 </div>
-
             </div>
+
+            <!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-15"></div>-->
+
         </div>
     </div>
 </div>
