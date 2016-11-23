@@ -17,12 +17,10 @@
 
 <div class="container">
     <div class="content-wrapper">
-
-
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 right-column ">
 
             <div class="event green md-whiteframe-5dp" ng-repeat="d in model.data | filter:{postName:searchText}">
-                <div class="container-fluid padding-15">
+                <div class="container-fluid">
                     <img class="img-responsive" ng-src="http://lorempixel.com/800/600/" alt="">
                     <h2>{{d.postName}}</h2>
                     <span class="md-subhead">{{d.organizer}}</span>
@@ -134,5 +132,4 @@
 
         </div>
     </div>
-
 </div>

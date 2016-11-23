@@ -61,10 +61,41 @@ html, body {
     background: #f2f2f2;
 }
 
+.list-group {
+    border-radius: 0px;
+}
+
+.list-group-item {
+    border: none;
+    border-radius: 0px;
+}
+
+
+.list-group-item:first-child {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.list-group-item:last-child {
+    margin-bottom: 0;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.list-group-item:hover {
+    background: #1b9c80;
+}
+
+h2 small {
+    font-size: 15px;
+}
+
+
+
 .content-wrapper {
     height: 100%;
-    padding-top: 8%;
-    padding-bottom: 8%;
+    padding-top: 10%;
+    padding-bottom: 10%;
 }
 
 .right-column {
@@ -91,40 +122,12 @@ html, body {
     background: transparent;
 }
 
-.list-group {
-    border-radius: 0px;
-}
-
-.list-group-item {
-    border: none;
-    border-radius: 0px;
-}
-
 .green {
     background: #1be2a1;
 }
 
 .blue {
     background: #43b4bb;
-}
-
-.list-group-item:first-child {
-     border-top-left-radius: 0px;
-     border-top-right-radius: 0px;
-}
-
-.list-group-item:last-child {
-    margin-bottom: 0;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-}
-
-.list-group-item:hover {
-    background: #1b9c80;
-}
-
-h2 small {
-    font-size: 15px;
 }
 
 .card-header {
@@ -148,15 +151,38 @@ h2 small {
 }
 
 h1.main-header {
-    font-size: 40px;
+    font-size: 35px;
     margin-left: 10px;
 }
 
 .stick {
     position: fixed;
+    width: 320px;
 }
 
 .no-border {
     border: 0px;
     border-radius: 0px;
+}
+
+.margin-0 {
+    margin: 0px;
+}
+
+.profile-links {
+    color: fuchsia;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.profile-panel {
+    color: aliceblue;
+    background:url("http://lorempixel.com/90/90/") center center;
+    background-size:cover
+}
+
+.event-list {
+    height: 400px;
+    overflow-y: scroll;
 }

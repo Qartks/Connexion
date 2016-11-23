@@ -13,48 +13,63 @@
 </md-toolbar>
 
 
-<div class="contianer">
-
+<div class="container">
     <div class="content-wrapper">
-
-        <div class="col-sm-12 col-md-4 left-column">
-            <div class="container-fluid">
-                <div class="">
-                    <div class="panel text-center ">
+        <div class="left-column">
+            <div class="col-sm-12 col-md-4">
+                <div class="panel">
+                    <div class="text-center profile-panel" style="background-color: rgba(0, 0, 0, 0.5);">
                         <a href="" class="inline">
-                            <img ng-src="http://lorempixel.com/200/200/" class="img-circle">
+                            <img ng-src="http://lorempixel.com/90/90/" class="img-circle padding-15">
                         </a>
                         <div>
                             <h3 class="">Vineeth R.</h3>
                         </div>
-                        <a class="btn no-border">Edit</a>
                         <p>
                             I am Building something.
                         </p>
                     </div>
+                    <hr class="margin-0">
+                    <div class="padding-15">
+                        <div>
+                            <p> Hello My name is Vineeth. I like playing games and drinking</p>
+                        </div>
+                        <hr class="margin-0">
+                        <div style="margin-top: 5px">
+                            <p><strong>About</strong></p>
+                            <p>Lorem ipsum dolor sit amet, consecteter adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. </p>
+                        </div>
+                        <div layout="row" layout-align="center center" layout-wrap>
+                            <div flex></div>
+                            <a class="profile-links"> <i class="fa fa-facebook"></i> </a>
+                            <a class="profile-links"> <i class="fa fa-twitter"></i> </a>
+                            <a class="profile-links"> <i class="fa fa-linkedin"></i> </a>
+                            <div flex></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="col-sm-12 col-md-8 right-column">
-            <div class="container-fluid">
-                <section layout="row" layout-sm="row" layout-align="center center" layout-wrap>
-                    <md-button class="md-raised" flex>Button</md-button>
-                    <md-button class="md-raised md-primary" flex>Primary</md-button>
-                    <md-button class="md-raised md-primary" flex>Disabled</md-button>
-                    <md-button class="md-raised md-warn" flex>Warn</md-button>
+                <section layout="row" layout-sm="row" layout-align="center">
+                    <md-button class="md-raised md-primary" ><span> + </span>Friend</md-button>
+                    <md-button class="md-raised md-warn" >Block</md-button>
                 </section>
-                <textarea class="form-control no-border" rows="3" placeholder="Write something..."></textarea>
-                <div class="">
-                    <button class="btn  pull-right no-border">Post</button>
-                    <ul class="nav nav-pills nav-sm">
-                        <li><a href=""><i class="fa fa-camera"></i></a></li>
-                        <li><a href=""><i class="fa fa-video-camera"></i></a></li>
-                    </ul>
+            </div>
+
+            <div class="col-sm-12 col-md-8">
+                <h2> User events : </h2>
+                <div class="event-list">
+                    <div class="event green md-whiteframe-5dp" ng-repeat="d in model.data | filter:{postName:searchText}">
+                        <div class="container-fluid">
+                            <h2>{{d.postName}}</h2>
+                            <span class="md-subhead">{{d.organizer}}</span>
+                            <a href="#" class="md-subhead">{{d.address}}</a>
+                            <hr>
+                            <p>{{d.description}}</p>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
-
     </div>
-
 </div>
