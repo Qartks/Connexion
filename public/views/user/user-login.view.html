@@ -1,0 +1,24 @@
+<md-card flex-gt-xs="50" flex-xs="75" class="center-box">
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">Login</span>
+        </md-card-title-text>
+    </md-card-title>
+    <md-divider></md-divider>
+    <md-card-content>
+        <form  layout-gt-xs="column" layout-xs="column">
+            <md-input-container>
+                <label>User Name</label>
+                <input ng-model="model.user.title">
+            </md-input-container>
+            <md-input-container>
+                <label>Password</label>
+                <input ng-model="model.user.password">
+            </md-input-container>
+            <md-card-actions layout="column" layout-align="start">
+                <md-button class="md-default md-raised">Login</md-button>
+                <md-button class="md-accent md-raised">Register</md-button>
+            </md-card-actions>
+        </form>
+    </md-card-content>
+</md-card>
