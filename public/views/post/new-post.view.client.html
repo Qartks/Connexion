@@ -1,10 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <md-header>New Post</md-header>
-</body>
-</html>
+<md-toolbar class= "md-whiteframe-9dp navbar-fixed-top" style="color:#fff">
+    <div class="md-toolbar-tools">
+        <i class="material-icons">menu</i>
+        <h1 class="main-header">
+            Connexion
+        </h1>
+        <span flex=""></span>
+        <i class="tool-bar-icons material-icons">search</i>
+        <i class="tool-bar-icons material-icons">account_circle</i>
+        <i class="tool-bar-icons material-icons">more_vert</i>
+    </div>
+</md-toolbar>
+<div class="container">
+    <div class="content-wrapper">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 right-column ">
+
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">New Post</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content layout="column">
+                    <md-input-container>
+                        <label>Title</label>
+                        <input ng-model="model.post.title">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Contact Person</label>
+                        <input ng-model="model.post.contactPerson">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Email</label>
+                        <input ng-model="model.post.email">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Phone</label>
+                        <input ng-model="model.post.phone">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Address</label>
+                        <input ng-model="model.post.address">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Description</label>
+                        <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+                    </md-input-container>
+                    <div layout-gt-xs="row">
+                        <md-input-container class="md-block" flex-gt-sm="">
+                            <label>Tags</label>
+                            <md-select ng-model="model.tags">
+                                <md-option>
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <label>Event date</label>
+                            <md-datepicker ng-model="user.submissionDate"></md-datepicker>
+                        </md-input-container>
+                    </div>
+                </md-card-content>
+                <md-card-actions layout="column" layout-align="start">
+                    <md-button class="md-accent md-raised">Post</md-button>
+                    <md-button class="md-warn md-raised">Cancle</md-button>
+                </md-card-actions>
+            </md-card>
+
+        </div>
+        <div class="hidden-xs hidden-sm col-md-4 col-lg-4 left-column">
+            <div class="stick">
+                <div class="col-xs-12">
+                    <div class="md-whiteframe-5dp green">
+
+                        <div class="card-header">
+                            <h2>Flicker Support <small>Lets search</small> </h2>
+                        </div>
+                        <div class="list-group no-bg">
+                            <md-input-container>
+                                <label>Title</label>
+                                <input ng-model="model.flicker">
+                            </md-input-container>
+
+                            <img ng-src="http://lorempixel.com/800/600/" style="width: 100%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
