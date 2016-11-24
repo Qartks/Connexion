@@ -52,6 +52,15 @@
 /*}*/
 
 /*********************/
+/* Login and register */
+/*********************/
+.center-box {
+    margin:5% auto;
+}
+.center-box md-card-title-text {
+    text-align: center;
+}
+/*********************/
 /* General Settings  */
 /*********************/
 
@@ -89,8 +98,6 @@ html, body {
 h2 small {
     font-size: 15px;
 }
-
-
 
 .content-wrapper {
     height: 100%;
