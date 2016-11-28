@@ -198,3 +198,30 @@ h1.main-header {
 .stats-panel {
     margin-top: 20px;
 }
+
+.white {
+    background: white;
+    color: black;
+}
+
+#searchBox {
+    color: #434343;
+    font-size: 20px;
+    margin-left: 16px;
+    padding: 8px 0;
+
+    background-color:rgba(0, 0, 0, 0);
+    border: none;
+    outline:none;
+    transition:height 1s;
+    -webkit-transition:height 1s;
+    width: 95%;
+}
+
+#post_results, #user_results {
+    min-height: 200px;
+}
+
+.menu-icons {
+    margin-top: 6px;
+}

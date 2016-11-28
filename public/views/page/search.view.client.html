@@ -1,13 +1,45 @@
-<md-toolbar class= "md-whiteframe-9dp navbar-fixed-top">
-    <div class="md-toolbar-tools">
+<div class= "md-whiteframe-9dp navbar-fixed-top">
+    <div class="md-toolbar-tools white">
+        <i class="material-icons">arrow_back</i>
+        <input ng-model="model.searchText" id="searchBox" placeholder="Search...this searches user-names, post-names and post-tags" aria-label="Search">
         <!--<span flex=""></span>-->
-        <i class="material-icons">menu</i>
-        <h1 class="main-header">
-            Connexion
-        </h1>
-        <span flex=""></span>
-        <i class="tool-bar-icons material-icons">search</i>
-        <i class="tool-bar-icons material-icons">account_circle</i>
-        <i class="tool-bar-icons material-icons">more_vert</i>
+        <!--<span flex=""></span>-->
     </div>
-</md-toolbar>
+</div>
+
+<div class="container">
+    <div class="content-wrapper">
+        <div class="left-column">
+            <div id="user_results" class="container-fluid">
+                <strong>Users</strong>
+                <hr style="border-color: #434343">
+                <div ng-repeat="d in model.data | filter:{organizer:searchText} track by $index " class="col-sm-4 col-md-3 col-lg-3">
+                    <div class="thumbnail padding-15 md-whiteframe-2dp">
+                        <img class="img-responsive img-circle" ng-src="http://lorempixel.com/100/100/" alt="...">
+                        <div class="caption text-center">
+                            <h4> {{ d.organizer }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="post_results" class="container-fluid">
+                <strong>Posts</strong>
+                <hr style="border-color: #434343">
+                <div ng-repeat="d in model.data2 | searchpost:model.searchText track by $index" class="col-sm-4 col-md-3 col-lg-3">
+                    <div class="thumbnail padding-15 md-whiteframe-2dp">
+                        <img class="img-responsive" ng-src="http://lorempixel.com/400/200/" alt="...">
+                        <div class="caption text-center">
+                            <h4> {{ d.postName }}</h4>
+                            <div class="inline">
+                                <div ng-repeat="tag in d.tags track by $index" class="badge">
+                                    {{tag}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

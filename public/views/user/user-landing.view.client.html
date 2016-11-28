@@ -6,9 +6,9 @@
             Connexion
         </h1>
         <span flex=""></span>
-        <i class="tool-bar-icons material-icons">search</i>
-        <i class="tool-bar-icons material-icons">account_circle</i>
-        <i class="tool-bar-icons material-icons">more_vert</i>
+        <a class="menu-icons" href="#/user/:userId/search"><i class="tool-bar-icons material-icons">search</i></a>
+        <a class="menu-icons" href="#/user/:userId/profile"><i class="tool-bar-icons material-icons">account_circle</i></a>
+        <a class="menu-icons" href="#"><i class="tool-bar-icons material-icons">more_vert</i></a>
 
 
     </div>
@@ -21,7 +21,7 @@
 
             <div class="event green md-whiteframe-5dp" ng-repeat="d in model.data | filter:{postName:searchText}">
                 <div class="container-fluid">
-                    <img class="img-responsive" ng-src="http://lorempixel.com/800/600/" alt="">
+                    <img class="img-responsive padding-15" ng-src="http://lorempixel.com/800/600/" alt="">
                     <h2>{{d.postName}}</h2>
                     <span class="md-subhead">{{d.organizer}}</span>
                     <a href="#" class="md-subhead">{{d.address}}</a>

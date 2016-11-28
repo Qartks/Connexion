@@ -6,16 +6,16 @@
     function Config($routeProvider) {
         $routeProvider
             .when("/",{
-                templateUrl:"./views/user/user-landing.view.client.html",
-                controller :"UserLandingController",
+                templateUrl:"./views/page/landing-page.view.client.html",
+                controller :"LandingPageController",
                 controllerAs :"model"
             })
-            .when("/user/login",{
+            .when("/login",{
                 templateUrl:"./views/user/user-login.view.html",
                 controller :"UserLoginController",
                 controllerAs :"model"
             })
-            .when("/user/register",{
+            .when("/register",{
                 templateUrl:"./views/user/user-register.view.html",
                 controller :"UserRegisterController",
                 controllerAs :"model"
