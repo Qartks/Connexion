@@ -13,7 +13,7 @@
             <div id="user_results" class="container-fluid">
                 <strong>Users</strong>
                 <hr style="border-color: #434343">
-                <div ng-repeat="d in model.data | filter:{organizer:searchText} track by $index " class="col-sm-4 col-md-3 col-lg-3">
+                <div ng-repeat="d in model.data | filter:{organizer:model.searchText} track by $index " class="col-sm-4 col-md-3 col-lg-3">
                     <div class="thumbnail padding-15 md-whiteframe-2dp">
                         <img class="img-responsive img-circle" ng-src="http://lorempixel.com/100/100/" alt="...">
                         <div class="caption text-center">

@@ -14,7 +14,7 @@
         vm.googleapiurl = googleapiurl;
 
         function googleapiurl(d) {
-            var apiKey = "AIzaSyD7GyAN5-7piBEWir3uOPQyxdNTDrjguS8";
+            var apiKey = process.env.GMAP_API_KEY;
             var url = "https://www.google.com/maps/embed/v1/place?key="+ apiKey + "&q=";
             // var location = d.latitude + "," + d.longitude;
             // var location = d.address;
