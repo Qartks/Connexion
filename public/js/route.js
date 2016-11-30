@@ -25,10 +25,13 @@
                 controller :"SearchController",
                 controllerAs :"model"
             })
-            .when("/user/:userId",{
+            .when("/user",{
                 templateUrl:"./views/user/user-landing.view.client.html",
                 controller :"UserLandingController",
-                controllerAs :"model"
+                controllerAs :"model",
+                resolve : {
+                    loggedin: checkLoggedIn
+                }
             })
             .when("/user/:userId/profile",{
                 templateUrl:"./views/user/profile.view.client.html",
@@ -49,4 +52,22 @@
                 redirectTo: "/"
             });
     }
+
+    var checkLoggedIn = function ($q, $http, $location, $rootScope) {
+        var deferred = $q.defer();
+        var url = "/api/loggedin";
+        $http.get(url)
+            .success(function (user) {
+                $rootScope.error = null;
+                if (user !== '0') {
+                    $rootScope.currentUser = user;
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                    $rootScope.error = "You need to log in."
+                    $location.url("/login");
+                }
+            });
+        return deferred.promise;
+    };
 })();

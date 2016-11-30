@@ -7,10 +7,20 @@
     function UserService($http) {
 
         return {
+            login: login,
+            register: register,
             addUser: addUser,
             deleteUser: deleteUser,
             findUserByCredentials: findUserByCredentials
         };
+        
+        function register(user) {
+            return $http.post("/api/register", user);
+        }
+
+        function login(user) {
+            return $http.post("/api/login", user);
+        }
 
         function addUser(user) {
             var url = "/api/user";

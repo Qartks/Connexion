@@ -27,7 +27,11 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "express-session": "^1.14.2",
-    "mdi": "^1.7.22",
-    "mongoose": "^4.6.5"
+    "install": "^0.8.2",
+    "mongoose": "^4.6.5",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.4"
   }
 }

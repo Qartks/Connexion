@@ -22,12 +22,13 @@
                 return;
             }
 
-            UserService.findUserByCredentials(user.username, user.password)
+            // UserService.findUserByCredentials(user.username, user.password)
+            UserService.login(user)
                 .success(function (user) {
                     if(user === "0") {
                         vm.error = "No Such user";
                     } else {
-                        $location.url("/user/" + user._id);
+                        $location.url("/user");
                     }
                 })
                 .error(function (err) {

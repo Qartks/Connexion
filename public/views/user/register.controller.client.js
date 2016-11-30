@@ -4,7 +4,7 @@
         .controller("UserRegisterController", UserRegisterController);
 
 
-    function UserRegisterController($location, UserService) {
+    function UserRegisterController($rootScope, $location, UserService) {
         var vm = this;
         vm.error = "";
         vm.user = {};
@@ -17,25 +17,29 @@
         }
         
         function registerUser(user) {
+
             if (user.username && user.password) {
                 if (user.password === user.passwordVerify) {
-                    UserService.addUser(user)
-                        .success(function (user) {
-                            if(user == "0") {
-                                vm.error = "Unable to Register : Duplicate User";
-                            } else {
-                                $location.url("/user/" + user._id);
-                            }
-                        })
-                        .error(function (err) {
-                            console.log(err);
-                        });
+                    UserService
+                        .register(user)
+                        .then(
+                            function(response) {
+                                if (response.data == "0") {
+                                    vm.error = "Username already exists";
+                                    vm.user = {};
+                                } else {
+                                    var user = response.data;
+                                    $rootScope.currentUser = user;
+                                    $location.url("/user");
+                                }
+                            });
                 } else {
                     vm.error = "Make sure passwords match";
                 }
             } else {
                 vm.error = "Please enter values for all fields";
             }
+
         }
     }
 })();
