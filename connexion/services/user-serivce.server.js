@@ -9,9 +9,15 @@ module.exports = function (app, model) {
     var FacebookStrategy = require('passport-facebook').Strategy;
 
 
-    app.get("/api/user", findUser);
-    app.post("/api/user", createUser);
-    app.delete("/api/user", deleteUser);
+    // Twitter Login
+    var TwitterStrategy = require('passport-twitter').Strategy;
+    var twitterConfig = {
+        consumerKey: "AxbikkK8La8R62TTS98agCKf3",
+        consumerSecret: "GXV8dUUI2SOvjotNIuchAjvaMBRcWVXAwh626NeCQIXyFB7ac8",
+        callbackURL: "http://www.example.com/auth/twitter/callback"
+    };
+    passport.use(new TwitterStrategy(twitterConfig, twitterStrategy));
+
 
     app.use(session({
         secret: "This is a secret lol",
@@ -26,6 +32,14 @@ module.exports = function (app, model) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
+
+
+    //CRUD Operations
+    app.get("/api/user", findUser);
+    app.post("/api/user", createUser);
+    app.delete("/api/user", deleteUser);
+
+    // Login Operations
     app.post("/api/login", passport.authenticate('local'), login);
     app.post("/api/logout", logout);
     app.get("/api/loggedin", loggedin);
@@ -62,6 +76,10 @@ module.exports = function (app, model) {
                     return done(err);
                 }
             });
+    }
+
+    function twitterStrategy(token, tokenSecret, profile, done) {
+        console.log(profile);
     }
 
     function serializeUser(user, done) {
