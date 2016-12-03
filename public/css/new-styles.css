@@ -54,6 +54,10 @@
 /*********************/
 /* Login and register */
 /*********************/
+
+*{
+    font-size: 20px;
+}
 .center-box {
     margin:5% auto;
 }
@@ -199,17 +203,17 @@ h1.main-header {
     margin-top: 20px;
 }
 
+
 .white {
     background: white;
     color: black;
 }
 
-#searchBox {
+.searchBox {
     color: #434343;
-    font-size: 20px;
     margin-left: 16px;
     padding: 8px 0;
-
+    font-size: 80%;
     background-color:rgba(0, 0, 0, 0);
     border: none;
     outline:none;
@@ -234,4 +238,8 @@ h1.main-header {
 .tweet-panel {
     overflow-y: scroll;
     height: 350px;
+}
+.map{
+    height: 100%;
+    margin: 0;
 }
