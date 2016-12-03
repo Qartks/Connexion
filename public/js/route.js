@@ -43,14 +43,14 @@
                 controller :"EditPostController",
                 controllerAs :"model"
             })
-            .when("/user/details",{                 //TODO set this right
-                templateUrl:"./views/post/details-post.view.client.html",
-                controller :"DetailsPostController",
-                controllerAs :"model"
-            })
             .when("/user/:userId/post",{
                 templateUrl:"./views/post/new-post.view.client.html",
                 controller :"NewPostController",
+                controllerAs :"model"
+            })
+            .when("/user/:userId/post/:postId",{
+                templateUrl:"./views/post/details-post.view.client.html",
+                controller :"DetailsPostController",
                 controllerAs :"model"
             })
             .otherwise({
