@@ -243,3 +243,9 @@ h1.main-header {
     height: 100%;
     margin: 0;
 }
+.custom-image {
+    width: 100%;
+}
+.new-post-card label{
+    font-size: 80% !important;
+}
