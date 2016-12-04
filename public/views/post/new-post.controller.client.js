@@ -2,14 +2,15 @@
     angular
         .module("Connexion")
         .controller("NewPostController", NewPostController)
-    function NewPostController($routeParams,$location,$sce,FlickerService) {
+    function NewPostController($routeParams,$location,$sce,FlickerService,PostService) {
         var vm = this;
         vm.searchPhotos = searchPhotos;
         vm.selectPhoto = selectPhoto;
         function init() {
-            vm.photos = vm.searchPhotos("Nature");
+            vm.photos = null;
         }
         init()
+        // Functions for Flicker support
         function searchPhotos(searchTerm) {
             vm.photos = null;
             FlickerService
