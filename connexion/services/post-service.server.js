@@ -3,7 +3,7 @@
  */
 module.exports = function (app, models) {
     app.post("/api/user/:userId/post",createPost);
-    app.get("/api/user/:userId/post/:postId",getPostById);
+    app.get("/api/post/:postId",getPostById);
     app.get("/api/user/:userId/post/",getPostByUserId);
     app.delete("/api/user/:userId/post/:postId",deletePostById);
     app.put("/api/user/:userId/post/:postId",updatePost);
