@@ -20,7 +20,7 @@
                 controller :"UserRegisterController",
                 controllerAs :"model"
             })
-            .when("/user/:userId/search",{
+            .when("/user/search",{
                 templateUrl:"./views/page/search.view.client.html",
                 controller :"SearchController",
                 controllerAs :"model"
@@ -33,7 +33,7 @@
                     loggedin: checkLoggedIn
                 }
             })
-            .when("/user/:userId/profile",{
+            .when("/user/profile",{
                 templateUrl:"./views/user/profile.view.client.html",
                 controller :"ProfileController",
                 controllerAs :"model"

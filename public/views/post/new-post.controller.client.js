@@ -9,7 +9,9 @@
         function init() {
             vm.photos = null;
         }
-        init()
+        init();
+
+
         // Functions for Flicker support
         function searchPhotos(searchTerm) {
             vm.photos = null;

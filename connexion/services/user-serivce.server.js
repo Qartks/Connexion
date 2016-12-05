@@ -101,12 +101,12 @@ module.exports = function (app, model) {
     }
 
     function register (req, res) {
-        var user = req.body;
-        user.password = bcrypt.hashSync(user.password);
+        var userReq = req.body;
+        userReq.password = bcrypt.hashSync(userReq.password);
 
         model
             .userModel
-            .findUserByUsername(user.username)
+            .findUserByUsername(userReq.username)
             .then(
                 function (user) {
                     if (user) {
@@ -114,15 +114,15 @@ module.exports = function (app, model) {
                     } else {
                         model
                             .userModel
-                            .createUser(user)
+                            .createUser(userReq)
                             .then(
-                                function(user){
-                                    if(user){
-                                        req.login(user, function(err) {
+                                function(u){
+                                    if(u){
+                                        req.login(u, function(err) {
                                             if(err) {
                                                 res.status(400).send(err);
                                             } else {
-                                                res.json(user);
+                                                res.json(u);
                                             }
                                         });
                                     }
