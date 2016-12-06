@@ -3,8 +3,15 @@
         .module("Connexion")
         .controller("SearchController", SearchController);
 
-    function SearchController($http) {
+    function SearchController($http, PageService, $location) {
         var vm = this;
+
+        vm.goBack = goBack;
+
+        function goBack() {
+            $location.url(PageService.getPrevPage());
+        }
+
         vm.searchText = "";
         vm.data = [];
         $http.get('./assests/connexion-dummy.json').success(function (data) {

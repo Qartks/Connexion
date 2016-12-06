@@ -1,12 +1,15 @@
 <md-toolbar class= "md-whiteframe-9dp navbar-fixed-top">
     <div class="md-toolbar-tools">
         <i class="material-icons">menu</i>
-        <h1 class="main-header">
-            Connexion
-        </h1>
+        <span>
+            <a href="#/user">
+                <h1 class="main-header">Connexion</h1>
+            </a>
+        </span>
         <span flex=""></span>
-        <i class="tool-bar-icons material-icons">search</i>
-        <i class="tool-bar-icons material-icons">account_circle</i>
+        <a class="menu-icons" href="" ng-click="model.goToSearch()"><i class="tool-bar-icons material-icons">search</i></a>
+        <a class="menu-icons" href="" ng-click="model.goToProfile()"><i class="tool-bar-icons material-icons">account_circle</i></a>
+        <a class="menu-icons" href="" ng-click="model.goToCreatePost()"><i class="tool-bar-icons  material-icons">create</i></a>
         <i class="tool-bar-icons material-icons">more_vert</i>
     </div>
 </md-toolbar>
@@ -20,7 +23,7 @@
                             <h1>{{model.post.postName}}</h1>
                         </div>
                     </md-toolbar>
-                    <div id="details" layout-padding>
+                    <div id="details" class="my-height" layout-padding>
                         <md-card layout="row">
                             <div flex="50">Name :</div>
                             <div flex="50"> {{model.post.organizer}}</div>
@@ -39,7 +42,7 @@
                         </md-card>
                         <md-card layout="row">
                             <div flex="50">Event data :</div>
-                            <div flex="50"> {{model.post.dateCreated}}</div>
+                            <div flex="50"> {{model.post.dateOfEvent | date:'yyyy-MM-dd' }}</div>
                         </md-card>
                         <md-card layout="column">
                             <div>Event Description:</div>
@@ -47,7 +50,7 @@
                             <div> {{model.post.description}}</div>
                         </md-card>
                     </div>
-                    <div id="images" layout-padding>
+                    <div id="images" class="my-height" layout-padding>
                         <div id="carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner" role="listbox">
                                 <div class="item" ng-class='{active:$first}' ng-repeat="image in model.post.pictures">
@@ -64,7 +67,7 @@
                             </a>
                         </div>
                     </div>
-                    <div id="location" layout-padding>
+                    <div id="location" class="my-height" layout-padding>
                         <div class="map"></div>
                     </div>
                     <div layout="row">
@@ -96,7 +99,7 @@
 
                         </div>
                         <md-list flex layout-padding>
-                            <md-list-item class="md-2-line" ng-repeat="comment in model.sampleData" ng-click="null">
+                            <md-list-item class="md-2-line" ng-repeat="comment in model.getComments()" ng-click="null">
                                 <img ng-src="{{comment.url}}" class="md-avatar" />
                                 <div class="md-list-item-text" layout="column">
                                     <h3>{{ comment.name }}</h3>

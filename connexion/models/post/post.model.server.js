@@ -7,9 +7,11 @@ module.exports = function () {
     var api = {
         setModel        : setModel,
         getPostById     : getPostById,
-        createNewPost   : createNewPost,
+        createPost      : createPost,
         updatePost      : updatePost,
-        deletePostById  : deletePostById
+        deletePostById  : deletePostById,
+        getPostByUserId : getPostByUserId,
+        getAllOpenPosts : getAllOpenPosts
     };
     function setModel(_model) {
         model = _model;
@@ -17,14 +19,20 @@ module.exports = function () {
     function getPostById(postId){
         return PostModel.findOne({_id:postId});
     }
-    function createNewPost(post){
+    function createPost(post){
         return PostModel.create(post);
     }
     function updatePost(postId,post){
-        return PostModel.update({_id:postId},post)
+        return PostModel.update({_id:postId}, {$set : post});
     }
     function deletePostById(postId){
         return PostModel.remove({_id:postId});
+    }
+    function getPostByUserId(userId) {
+        return PostModel.find({creatorId : userId});
+    }
+    function getAllOpenPosts(userId) {
+        return PostModel.find({ $or : [ {isOpen : true }, {friends : userId}, {creatorId : userId}, {} ]});
     }
     return api;
 };

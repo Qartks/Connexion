@@ -11,8 +11,13 @@
             register: register,
             addUser: addUser,
             deleteUser: deleteUser,
-            findUserByCredentials: findUserByCredentials
+            findUserByCredentials: findUserByCredentials,
+            findUserById : findUserById
         };
+
+        function findUserById(userId) {
+            return $http.get("/api/user/"+userId);
+        }
         
         function register(user) {
             return $http.post("/api/register", user);

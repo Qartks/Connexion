@@ -1,6 +1,3 @@
-/**
- * Created by Vineeth on 12/3/16.
- */
 (function () {
     angular
         .module("Connexion")
@@ -13,8 +10,14 @@
             getPostById     : getPostById,
             getPostByUserId : getPostByUserId,
             deletePostById  : deletePostById,
-            updatePost      : updatePost
+            updatePost      : updatePost,
+            getAllOpenPosts : getAllOpenPosts
         };
+        
+        function getAllOpenPosts(userId) {
+            var url = "/api/"+userId+"/allposts";
+            return $http.get(url);
+        }
         function createPost(userId,newPost){
             var url = "/api/user/"+userId+"/post";
             return $http.post(url,newPost);

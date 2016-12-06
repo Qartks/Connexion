@@ -2,6 +2,7 @@ module.exports = function () {
     var mongoose = require('mongoose');
     var postSchema = mongoose.Schema({
         index       : { type : Number},
+        creatorId   : mongoose.Schema.Types.ObjectId,
         postName    : String,
         isOpen      : Boolean,
         organizer   : String,
@@ -23,7 +24,7 @@ module.exports = function () {
                 type : String
                 }
             ],
-        friends     : [
+        going     : [
             {
                 type : mongoose.Schema.Types.ObjectId,
                 ref : "user"

@@ -2,13 +2,15 @@
     <div class="md-toolbar-tools">
         <!--<span flex=""></span>-->
         <i class="material-icons">menu</i>
-        <h1 class="main-header">
-            Connexion
-        </h1>
+        <span>
+            <a href="#/user">
+                <h1 class="main-header">Connexion</h1>
+            </a>
+        </span>
         <span flex=""></span>
-        <i class="tool-bar-icons material-icons">search</i>
-        <i class="tool-bar-icons material-icons">account_circle</i>
-        <i class="tool-bar-icons material-icons">more_vert</i>
+        <a class="menu-icons" href="" ng-click="model.goToSearch()"><i class="tool-bar-icons material-icons">search</i></a>
+        <a class="menu-icons" href="" ng-click="model.goToCreatePost()"><i class="tool-bar-icons  material-icons">create</i></a>
+        <a class="menu-icons" href="" ng-click=""><i class="tool-bar-icons material-icons">more_vert</i></a>
     </div>
 </md-toolbar>
 
@@ -89,9 +91,9 @@
             <div class="col-sm-12 col-md-8">
                 <div> <h2 class="margin-0">User events</h2> </div>
                 <div class="event-list">
-                    <div class="event md-whiteframe-5dp" ng-repeat="d in model.data | filter:{postName:searchText}" ng-class="model.isthispostmine(d)">
+                    <div class="event md-whiteframe-5dp" ng-repeat="d in model.data | filter:{postName:searchText}" ng-class="model.isThisPostOpen(d)">
                         <div class="container-fluid">
-                            <h2>{{d.postName}}</h2>
+                            <h2>{{d.postName}} <span href="" ng-click="model.goToPostDetails(d)"><small>Details</small></span></h2>
                             <span class="md-subhead">{{d.organizer}}</span>
                             <a href="#" class="md-subhead">{{d.address}}</a>
                             <hr>
@@ -100,8 +102,6 @@
                     </div>
                 </div>
             </div>
-
-            <!--<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-15"></div>-->
 
         </div>
     </div>

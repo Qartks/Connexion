@@ -38,6 +38,7 @@ module.exports = function (app, model) {
     app.get("/api/user", findUser);
     app.post("/api/user", createUser);
     app.delete("/api/user", deleteUser);
+    app.get("/api/user/:userId", findUserById);
 
     // Login Operations
     app.post("/api/login", passport.authenticate('local'), login);
@@ -212,6 +213,24 @@ module.exports = function (app, model) {
                     }
                 }, function (err) {
                     res.sendStatus(400).send(err);
+                }
+            );
+    }
+
+    function findUserById(req, res) {
+        var userId = req.params.userId;
+        model
+            .userModel
+            .findUserById(userId)
+            .then(
+                function (user) {
+                    if (user) {
+                        res.send(user);
+                    } else {
+                        res.send("0");
+                    }
+                }, function (err) {
+                    res.sendStatus(500).send(err);
                 }
             );
     }

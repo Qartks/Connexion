@@ -1,13 +1,22 @@
-/**
- * Created by Vineeth on 12/3/16.
- */
 module.exports = function (app, models) {
     app.post("/api/user/:userId/post",createPost);
     app.get("/api/post/:postId",getPostById);
     app.get("/api/user/:userId/post/",getPostByUserId);
     app.delete("/api/user/:userId/post/:postId",deletePostById);
     app.put("/api/user/:userId/post/:postId",updatePost);
+    app.get("/api/:userId/allposts", getAllOpenPosts);
+
     (function () {models.postModel.setModel(models);})();
+
+    function getAllOpenPosts(req, res) {
+        var userId = req.params.userId;
+        models.postModel.getAllOpenPosts(userId)
+            .then(function (posts) {
+                res.send(posts);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+    }
 
     function createPost(req,res) {
         var post = req.body;
@@ -30,9 +39,9 @@ module.exports = function (app, models) {
     }
     function getPostByUserId(req,res) {
         var userId = req.params.userId;
-        models.postModel.findUserById(userId)
+        models.postModel.getPostByUserId(userId)
             .then(function (postObj) {
-                res.send(post);
+                res.send(postObj);
             },function (err) {
                 res.sendStatus(500).send(err);
         });

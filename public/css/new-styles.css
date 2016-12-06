@@ -74,6 +74,11 @@ html, body {
     background: #f2f2f2;
 }
 
+.alert {
+    border-radius: 0px;
+    border: none;
+}
+
 .list-group {
     border-radius: 0px;
 }
@@ -248,4 +253,8 @@ h1.main-header {
 }
 .new-post-card label{
     font-size: 80% !important;
+}
+
+.my-height {
+    min-height: 400px;
 }

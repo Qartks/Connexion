@@ -1,14 +1,48 @@
-/**
- * Created by Vineeth on 12/2/16.
- */
 (function () {
     angular
         .module("Connexion")
         .controller("DetailsPostController", DetailsPostController);
-    function DetailsPostController() {
+
+    function DetailsPostController($routeParams, PostService, PageService, $location) {
         var vm = this;
 
+        vm.userId = $routeParams.userId;
+        vm.postId = $routeParams.postId;
+        vm.post = {};
+
+        vm.goToSearch = goToSearch;
+        vm.goToProfile = goToProfile;
+        vm.goToCreatePost = goToCreatePost;
+        vm.getComments = getComments;
+        
+        function getComments() {
+
+        }
+
+        function goToSearch() {
+            PageService.setPrevPage('/user/' + vm.userId + '/post/' + vm.postId);
+            $location.url('/user/'+ vm.userId + '/search');
+        }
+
+        function goToProfile() {
+            $location.url('/user/' + vm.userId + '/profile');
+        }
+
+        function goToCreatePost() {
+            $location.url('/user/' + vm.userId + '/post');
+        }
+
         function init(){
+
+            PostService
+                .getPostById(vm.postId)
+                .success(function (p) {
+                    vm.post = p;
+                })
+                .error(function (err) {
+                    console.log(err);
+                });
+
             jQuery(function(){
                 jQuery('#details').show();
                 jQuery('#images').hide();
@@ -31,76 +65,7 @@
                 });
             });
         }
-        init()
-        vm.post = {
-            postName: "Pizza and Beer",
-            isOpen: true,
-            organizer: "Super Organizers",
-            email: "superoganizers@superstar.com",
-            phone: "+1 007007007",
-            address: "381 Huntington Ave, Boston Ma",
-            description: "Lore Ipsum Lore IpsumLore IpsumLore IpsumLore IpsumLore IpsumLore IpsumLore " +
-            "IpsumLore IpsumLore IpsumLore IpsumLore IpsumLore IpsumLore Ipsum IpsumLore IpsumLore IpsumLore IpsumLore " +
-            "IpsumLore IpsumLore Ipsum" ,
-            dateCreated:  Date.now(),
-            dateOfEvent: Date.now(),
-            pictures: [
-                {
-                    type : "http://lorempixel.com/800/600/"
-                },{
-                    type : "http://lorempixel.com/800/600/"
-                },{
-                    type : "http://lorempixel.com/800/600/"
-                }
-            ],
-            tags: [
-                {
-                    type : "food"
-                }
-            ],
-            noOfPeopleInvited: 10,
-            noOfPeopleGoing: 20,
-            noOfPeopleTalkingAbout: 11,
-            rating: 5
-        }
-        vm.sampleData = [
-            {
-                "url":"http://lorempixel.com/800/600/",
-                "comment":"Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an ",
-                "name":"Bob",
-                "additional": "There are many variations of passages of Lorem"
-            },
-            {
-                "url":"http://lorempixel.com/800/600/",
-                "comment":"Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an ",
-                "name":"Stephen",
-                "additional": "There are many variations of passages of Lorem"
-            },
-            {
-                "url":"http://lorempixel.com/800/600/",
-                "comment":"Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an ",
-                "name":"Remainder",
-                "additional": "There are many variations of passages of Lorem"
-            },
-            {
-                "url":"http://lorempixel.com/800/600/",
-                "comment":"Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an ",
-                "name":"Theorem",
-                "additional": "There are many variations of passages of Lorem"
-            },
-            {
-                "url":"http://lorempixel.com/800/600/",
-                "comment":"Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an ",
-                "name":"Flex",
-                "additional": "There are many variations of passages of Lorem"
-            },
-            {
-                "url":"http://lorempixel.com/800/600/",
-                "comment":"Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an ",
-                "name":"Andria",
-                "additional": "There are many variations of passages of Lorem"
-            },
-        ];
+        init();
     }
 })();
 
