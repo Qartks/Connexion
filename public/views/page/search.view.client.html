@@ -13,11 +13,14 @@
             <div id="user_results" class="container-fluid">
                 <strong>Users</strong>
                 <hr style="border-color: #434343">
-                <div ng-repeat="d in model.data | filter:{organizer:model.searchText} track by $index " class="col-sm-4 col-md-3 col-lg-3">
+                <div ng-repeat="d in model.users | filter:{username:model.searchText} track by $index " class="col-sm-4 col-md-4 col-lg-4">
                     <div class="thumbnail padding-15 md-whiteframe-2dp">
-                        <img class="img-responsive img-circle" ng-src="http://lorempixel.com/100/100/" alt="...">
+                        <a href="" ng-click="model.goToThisProfile(d)">
+                            <img class="img-responsive img-circle" ng-src="{{d.profilePicture}}" alt="..." height="100" width="100">
+                        </a>
                         <div class="caption text-center">
-                            <h4> {{ d.organizer }}</h4>
+                            <h4>  {{d.firstName + " " +d.lastName}}</h4>
+                            <h6> {{ d.username }}</h6>
                         </div>
                     </div>
                 </div>
@@ -26,9 +29,9 @@
             <div id="post_results" class="container-fluid">
                 <strong>Posts</strong>
                 <hr style="border-color: #434343">
-                <div ng-repeat="d in model.data2 | searchpost:model.searchText track by $index" class="col-sm-4 col-md-3 col-lg-3">
+                <div ng-repeat="d in model.posts track by $index" class="col-sm-4 col-md-4 col-lg-4">
                     <div class="thumbnail padding-15 md-whiteframe-2dp">
-                        <img class="img-responsive" ng-src="http://lorempixel.com/400/200/" alt="...">
+                        <img class="img-responsive" ng-src="{{d.pictures[0]}}" alt="...">
                         <div class="caption text-center">
                             <h4> {{ d.postName }}</h4>
                             <div class="inline">

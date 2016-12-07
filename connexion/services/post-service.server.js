@@ -2,8 +2,8 @@ module.exports = function (app, models) {
     app.post("/api/user/:userId/post",createPost);
     app.get("/api/post/:postId",getPostById);
     app.get("/api/user/:userId/post/",getPostByUserId);
-    app.delete("/api/user/:userId/post/:postId",deletePostById);
-    app.put("/api/user/:userId/post/:postId",updatePost);
+    app.delete("/api/post/:postId",deletePostById);
+    app.put("/api/post/:postId",updatePost);
     app.get("/api/:userId/allposts", getAllOpenPosts);
 
     (function () {models.postModel.setModel(models);})();
@@ -55,7 +55,7 @@ module.exports = function (app, models) {
                 res.sendStatus(500).send(err);
         });
     }
-    function updatePost() {
+    function updatePost(req, res) {
         var post = req.body;
         var postId = req.params.postId;
         models.postModel.updatePost(postId,post)

@@ -10,6 +10,7 @@
         <a class="menu-icons" href="" ng-click="model.goToSearch()"><i class="tool-bar-icons material-icons">search</i></a>
         <a class="menu-icons" href="" ng-click="model.goToProfile()"><i class="tool-bar-icons material-icons">account_circle</i></a>
         <a class="menu-icons" href="" ng-click="model.goToCreatePost()"><i class="tool-bar-icons  material-icons">create</i></a>
+        <a class="menu-icons" href="" ng-click="model.logout()"><i class="tool-bar-icons material-icons">keyboard_return</i></a>
         <i class="tool-bar-icons material-icons">more_vert</i>
     </div>
 </md-toolbar>
@@ -41,20 +42,20 @@
                             <div flex="50"> {{model.post.address}}</div>
                         </md-card>
                         <md-card layout="row">
-                            <div flex="50">Event data :</div>
+                            <div flex="50">Event date :</div>
                             <div flex="50"> {{model.post.dateOfEvent | date:'yyyy-MM-dd' }}</div>
                         </md-card>
                         <md-card layout="column">
                             <div>Event Description:</div>
                             <br>
-                            <div> {{model.post.description}}</div>
+                            <div class="pre-whitespace"> {{model.post.description}}</div>
                         </md-card>
                     </div>
                     <div id="images" class="my-height" layout-padding>
                         <div id="carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner" role="listbox">
-                                <div class="item" ng-class='{active:$first}' ng-repeat="image in model.post.pictures">
-                                    <img ng-src="{{image.type}}" alt="">
+                                <div class="item" ng-class='{active:$first}' ng-repeat="image in model.post.pictures track by $index">
+                                    <img ng-src="{{image}}" alt="">
                                 </div>
                             </div>
                             <a class="left carousel-control" data-target="#carousel" role="button" data-slide="prev">
@@ -117,6 +118,10 @@
             <div class="stick">
                 <div class="col-xs-12">
                     <!-- Here Here Here -->
+                    <div ng-show="model.isThisMine()" layout="row">
+                        <a href=""  ng-click="model.editThisPost()" class="btn btn-info" flex>Edit</a>
+                        <a href=""  ng-click="model.deleteThisPost()" class="btn btn-danger" flex>Delete</a>
+                    </div>
                     <div class="panel stats-panel">
                         <table class="table table-striped m-b-none">
                             <thead>

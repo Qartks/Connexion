@@ -1,5 +1,29 @@
 module.exports = function (app, model) {
 
+    var multer = require('multer');
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
+    app.post ("/api/upload", upload.single('myFile'), uploadImage);
+
+    function uploadImage(req, res) {
+
+        var userId = req.body.userId;
+        var text = req.body.text;
+        var imageFile = req.file;
+
+        var originalname  = imageFile.originalname; // file name on user's computer
+        var filename      = imageFile.filename;     // new file name in upload folder
+        var path          = imageFile.path;         // full path of uploaded file
+
+        var f = '/uploads/' + filename;
+        model.userModel.updateImageUrl(userId, f)
+            .then( function (user) {
+                res.redirect("/index.html#/user/"+userId+"/profile/edit");
+            }, function (err) {
+                res.sendStatus(400).send(err);
+            });
+    }
+
 
     var passport      = require('passport');
     var cookieParser = require('cookie-parser');
@@ -37,8 +61,10 @@ module.exports = function (app, model) {
     //CRUD Operations
     app.get("/api/user", findUser);
     app.post("/api/user", createUser);
-    app.delete("/api/user", deleteUser);
+    app.delete("/api/user/:userId", deleteUser);
     app.get("/api/user/:userId", findUserById);
+    app.put("/api/user/:userId", updateUser);
+    app.get("/api/:userId/users", getAllValidUsers);
 
     // Login Operations
     app.post("/api/login", passport.authenticate('local'), login);
@@ -231,6 +257,35 @@ module.exports = function (app, model) {
                     }
                 }, function (err) {
                     res.sendStatus(500).send(err);
+                }
+            );
+    }
+
+    function updateUser(req, res) {
+        var user = req.body;
+        var userId = req.params.userId;
+        model
+            .userModel
+            .updateUser(userId, user)
+            .then(
+                function () {
+                    res.sendStatus(200);
+                }, function (err) {
+                    res.sendStatus(400).send(err);
+                }
+            );
+    }
+
+    function getAllValidUsers(req, res) {
+        var userId = req.params.userId;
+        model
+            .userModel
+            .getAllValidUsers(userId)
+            .then(
+                function (users) {
+                    res.json(users)
+                }, function (err) {
+                    res.sendStatus(400).send(err);
                 }
             );
     }

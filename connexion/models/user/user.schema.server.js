@@ -6,19 +6,22 @@ module.exports = function () {
         lastName: String,
         username: String,
         password: String,
-        dob : String,
         email: String,
         phone: String,
         address: String,
+        tagline: String,
+        headline: String,
         bio: String,
         dateCreated: { type : Date, default : Date.now()},
-        profilePicture: { type : String },
+        profilePicture: String,
         friends: [
             {
                 type : mongoose.Schema.Types.ObjectId,
                 ref : "user"
             }
         ],
+        fblink: String,
+        twtrlink: String,
         rating: Number,
         searchHistory: [String]
     });

@@ -3,11 +3,11 @@
         .module("Connexion")
         .controller("UserLandingController", UserLandingController);
 
-    function UserLandingController($http, $sce, $location, $rootScope, PageService, PostService) {
+    function UserLandingController($http, $sce, $location, $rootScope, PageService, PostService, UserService) {
         var vm = this;
         vm.data = [];
         vm.userId = $rootScope.currentUser._id;
-        vm.message =" I'am going to this thing, are you";
+        vm.message =" I'am going to this thing";
         vm.hashtag = "Connexion";
 
         // $http.get('./assests/connexion-dummy.json').success(function (data) {
@@ -21,6 +21,16 @@
         vm.googleapiurl = googleapiurl;
         vm.goToPostDetails = goToPostDetails;
         vm.goToUserProfilePage = goToUserProfilePage;
+        vm.logout = logout;
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function () {
+                    $location.url("/login");
+                })
+        }
+
 
         function init() {
             PostService

@@ -3,7 +3,7 @@
         .module("Connexion")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($http, PageService, $location, $rootScope, $routeParams, PostService) {
+    function ProfileController($http, PageService, $location, $rootScope, $routeParams, PostService, UserService) {
 
         var vm = this;
         vm.data = [];
@@ -18,8 +18,43 @@
         vm.goToSearch = goToSearch;
         vm.goToCreatePost = goToCreatePost;
         vm.goToPostDetails = goToPostDetails;
+        vm.editThisProfile = editThisProfile;
+        vm.deleteThisProfile = deleteThisProfile;
+        vm.logout = logout;
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function () {
+                    $location.url("/login");
+                })
+        }
+        
+        function editThisProfile() {
+            $location.url("/user/" + vm.userId + "/profile/edit");
+        }
+
+        function deleteThisProfile() {
+            UserService
+                .deleteUser(vm.userId)
+                .success(function (page) {
+                    $location.url("/login");
+                })
+                .error(function (err) {
+                    console.log(err);
+                })
+        }
 
         function init() {
+            UserService
+                .findUserById(vm.userId)
+                .success(function (user) {
+                    vm.user = user;
+                })
+                .error(function (err) {
+                    console.log(err);
+                });
+
             PostService.getPostByUserId(vm.userId)
                 .success(function (posts) {
                     vm.data = posts;

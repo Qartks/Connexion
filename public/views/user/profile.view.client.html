@@ -10,6 +10,7 @@
         <span flex=""></span>
         <a class="menu-icons" href="" ng-click="model.goToSearch()"><i class="tool-bar-icons material-icons">search</i></a>
         <a class="menu-icons" href="" ng-click="model.goToCreatePost()"><i class="tool-bar-icons  material-icons">create</i></a>
+        <a class="menu-icons" href="" ng-click="model.logout()"><i class="tool-bar-icons material-icons">keyboard_return</i></a>
         <a class="menu-icons" href="" ng-click=""><i class="tool-bar-icons material-icons">more_vert</i></a>
     </div>
 </md-toolbar>
@@ -22,39 +23,36 @@
                 <div> <h2 class="margin-0">Profile</h2> </div>
                 <div class="panel">
                     <div class="text-center profile-panel">
-                        <a href="" class="inline">
-                            <img ng-src="http://lorempixel.com/90/90/" class="img-circle padding-15">
+                        <a ng-show="model.user.profilePicture" href="" class="inline">
+                            <img ng-src="{{model.user.profilePicture}}" class="img-circle padding-15" width="100">
                         </a>
                         <div>
-                            <h3 class="">Vineeth R.</h3>
+                            <h3 class="margin-0" style="padding-top: 15px"> {{model.user.firstName + " " +model.user.lastName}}</h3>
+                            <p class="padding-15"> {{ model.user.headline }}</p>
                         </div>
-                        <p>
-                            I am Building something.
-                        </p>
                     </div>
                     <hr class="margin-0">
                     <div class="padding-15">
                         <div>
-                            <p> Hello My name is Vineeth. I like playing games and drinking</p>
+                            <p> {{model.user.tagline}}</p>
                         </div>
                         <hr class="margin-0">
                         <div style="margin-top: 5px">
                             <p><strong>About</strong></p>
-                            <p>Lorem ipsum dolor sit amet, consecteter adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. </p>
+                            <p class="pre-whitespace"> {{model.user.bio}} </p>
                         </div>
                         <div layout="row" layout-align="center center" layout-wrap>
                             <div flex></div>
-                            <a class="profile-links"> <i class="fa fa-facebook"></i> </a>
-                            <a class="profile-links"> <i class="fa fa-twitter"></i> </a>
-                            <a class="profile-links"> <i class="fa fa-linkedin"></i> </a>
+                            <a ng-show="model.user.fblink" class="profile-links"> <i class="fa fa-facebook"></i> </a>
+                            <a ng-show="model.user.twtrlink" class="profile-links"> <i class="fa fa-twitter"></i> </a>
                             <div flex></div>
                         </div>
                     </div>
                 </div>
 
                 <section layout="row" layout-sm="row" layout-align="center">
-                    <md-button class="md-raised md-primary" ><span> + </span>Friend</md-button>
-                    <md-button class="md-raised md-warn" >Block</md-button>
+                    <md-button class="md-raised md-primary" ng-click="model.editThisProfile()"> Edit </md-button>
+                    <md-button class="md-raised md-warn" ng-click="model.deleteThisProfile()"> UnRegister </md-button>
                 </section>
 
                 <div class="panel stats-panel">

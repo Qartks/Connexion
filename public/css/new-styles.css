@@ -194,9 +194,9 @@ h1.main-header {
 
 .profile-panel {
     color: aliceblue;
-    background:url("http://lorempixel.com/90/90/") center center;
+    /*background:url("http://lorempixel.com/90/90/") center center;*/
     background-size:cover;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 3, 2, 1);
 }
 
 .event-list {
@@ -257,4 +257,12 @@ h1.main-header {
 
 .my-height {
     min-height: 400px;
+}
+
+.pre-whitespace {
+    white-space: pre-wrap;
+}
+
+.thumbnail {
+
 }

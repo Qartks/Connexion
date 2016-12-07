@@ -14,9 +14,41 @@
         vm.goToProfile = goToProfile;
         vm.goToCreatePost = goToCreatePost;
         vm.getComments = getComments;
+        vm.isThisMine = isThisMine;
+        vm.editThisPost = editThisPost;
+        vm.deleteThisPost = deleteThisPost;
+        vm.logout = logout;
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function () {
+                    $location.url("/login");
+                })
+        }
+
+        function editThisPost() {
+            $location.url("/user/"+vm.userId+"/post/"+vm.postId+"/edit");
+        }
+
+        function deleteThisPost() {
+            PostService
+                .deletePostById(vm.postId)
+                .success(function (obj) {
+                    vm.post = {};
+                })
+                .error(function (err) {
+                    console.log(err);
+                });
+            $location.url("/user");
+        }
         
         function getComments() {
 
+        }
+
+        function isThisMine() {
+            return vm.post.creatorId === vm.userId;
         }
 
         function goToSearch() {

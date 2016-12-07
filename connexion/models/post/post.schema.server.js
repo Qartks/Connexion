@@ -19,6 +19,11 @@ module.exports = function () {
                     type : String
                 }
             ],
+        thumbnails    : [
+            {
+                type : String
+            }
+        ],
         tags        : [
                 {
                 type : String

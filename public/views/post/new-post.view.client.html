@@ -9,6 +9,7 @@
         <span flex=""></span>
         <a class="menu-icons" href="" ng-click="model.goToSearch()"><i class="tool-bar-icons material-icons">search</i></a>
         <a class="menu-icons" href="" ng-click="model.goToProfile()"><i class="tool-bar-icons material-icons">account_circle</i></a>
+        <a class="menu-icons" href="" ng-click="model.logout()"><i class="tool-bar-icons material-icons">keyboard_return</i></a>
         <i class="tool-bar-icons material-icons">more_vert</i>
     </div>
 </md-toolbar>
@@ -28,19 +29,19 @@
                     </md-input-container>
                     <md-input-container>
                         <label>Contact Person</label>
-                        <input ng-model="model.organizerName" disabled>
+                        <input ng-model="model.user.username" disabled>
                     </md-input-container>
                     <md-input-container>
                         <label>Email</label>
-                        <input ng-model="model.post.email">
+                        <input ng-model="model.user.email">
                     </md-input-container>
                     <md-input-container>
                         <label>Phone</label>
-                        <input ng-model="model.post.phone">
+                        <input ng-model="model.user.phone">
                     </md-input-container>
                     <md-input-container>
-                        <label>Address</label>
-                        <input ng-model="model.post.address">
+                        <label>Location</label>
+                        <input ng-model="model.user.address">
                     </md-input-container>
                     <md-input-container>
                         <label>Description</label>
@@ -59,9 +60,8 @@
                             <label>Event date</label>
                             <md-datepicker ng-model="model.post.dateOfEvent"></md-datepicker>
                         </md-input-container>
-                        <label> Open?</label>
-                        <md-checkbox id="isOpen" ng-model="model.post.isOpen"></md-checkbox>
                     </div>
+                    <md-checkbox id="isOpen" ng-model="model.post.isOpen"> Open to all?</md-checkbox>
                 </md-card-content>
                 <md-card-actions layout="column" layout-align="start">
                     <md-button class="md-accent md-raised" ng-click="model.createPost(model.post)">Post</md-button>
@@ -101,6 +101,16 @@
                                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                                         <span class="sr-only">Next</span>
                                     </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md-whiteframe-5dp">
+                        <div ng-repeat="pic in model.pictures track by $index">
+                            <div class="col-sm-6">
+                                <div>
+                                    <img class="thumbnail" ng-dblclick="model.deleteThisPic($index)"ng-src="{{pic}}" alt="">
                                 </div>
                             </div>
                         </div>

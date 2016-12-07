@@ -9,15 +9,26 @@ module.exports = function () {
         findUserByUsername : findUserByUsername,
         findUserByCredentials : findUserByCredentials,
         findUserById : findUserById,
+        updateUser : updateUser,
         createUser: createUser,
         deleteUser: deleteUser,
-        setModel: setModel
+        setModel: setModel,
+        updateImageUrl : updateImageUrl,
+        getAllValidUsers : getAllValidUsers
     };
 
     return api;
 
     function setModel(_model) {
         model = _model;
+    }
+
+    function getAllValidUsers() {
+        return UserModel.find({});
+    }
+
+    function updateImageUrl(userId, f) {
+        return UserModel.update({_id : userId}, { profilePicture: f } );
     }
 
     function createUser(user) {
@@ -38,6 +49,10 @@ module.exports = function () {
 
     function deleteUser(userId) {
         return UserModel.remove({_id: userId});
+    }
+    
+    function updateUser(userId, user) {
+        return UserModel.update({_id: userId}, {$set : user});
     }
 
 

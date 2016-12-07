@@ -30,13 +30,13 @@
             var url = "/api/user/" + userId + "/post/";
             return $http.get(url);
         }
-        function deletePostById(userId,postId){
-            var url = "/api/user/" + userId + "/post/" + postId;
+        function deletePostById(postId){
+            var url = "/api/post/" + postId;
             return $http.delete(url)
         }
-        function updatePost(userId,postId,post){
-            var url = "/api/user/" + userId + "/post/"+ postId;
-            $http.put(url,post);
+        function updatePost(postId, post){
+            var url = "/api/post/"+ postId;
+            return $http.put(url,post);
         }
     }
 })();

@@ -11,6 +11,7 @@
         <a class="menu-icons" href="" ng-click="model.goToSearch()"><i class="tool-bar-icons material-icons">search</i></a>
         <a class="menu-icons" href="" ng-click="model.goToProfile()"><i class="tool-bar-icons material-icons">account_circle</i></a>
         <a class="menu-icons" href="" ng-click="model.goToCreatePost()"><i class="tool-bar-icons  material-icons">create</i></a>
+        <a class="menu-icons" href="" ng-click="model.logout()"><i class="tool-bar-icons material-icons">keyboard_return</i></a>
         <a class="menu-icons" href="" ng-click=""><i class="tool-bar-icons material-icons">more_vert</i></a>
     </div>
 </md-toolbar>
@@ -20,16 +21,14 @@
     <div class="content-wrapper">
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 right-column ">
 
-            <div class="event green md-whiteframe-5dp" ng-repeat="d in model.posts | filter:{postName:searchText}">
+            <div class="event green md-whiteframe-5dp" ng-repeat="d in model.posts | orderBy:'-dateCreated' ">
                 <div class="container-fluid">
-                    <img class="img-responsive padding-15" ng-src="http://lorempixel.com/800/600/" alt="">
+                    <img class="img-responsive padding-15" ng-src="{{d.pictures[0]}}" alt="">
                     <h2>{{d.postName}}  <span href="" ng-click="model.goToPostDetails(d)"><small>Details</small></span> </h2>
                     <span class="md-subhead" ng-click="model.goToUserProfilePage(d)">{{d.organizer}}</span>
                     <a href="#" class="md-subhead">{{d.address}}</a>
                     <hr>
-                    <p>{{d.description}}</p>
-                    <a href="https://twitter.com/intent/tweet?text={{model.message}},hashtags={{model.hashtag}}" class="twitter-share-button" data-show-count="false">Tweet</a>
-                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <p><pre>{{d.description}}</pre></p>
                 </div>
             </div>
 

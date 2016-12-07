@@ -38,6 +38,11 @@
                 controller :"ProfileController",
                 controllerAs :"model"
             })
+            .when("/user/:userId/profile/edit",{
+                templateUrl:"./views/user/edit-user.view.client.html",
+                controller :"UserEditController",
+                controllerAs :"model"
+            })
             .when("/user/:userId/post/:postId/edit",{
                 templateUrl:"./views/post/edit-post.view.client.html",
                 controller :"EditPostController",

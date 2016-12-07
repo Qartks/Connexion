@@ -8,12 +8,27 @@
 
         return {
             login: login,
+            logout: logout,
             register: register,
             addUser: addUser,
             deleteUser: deleteUser,
             findUserByCredentials: findUserByCredentials,
-            findUserById : findUserById
+            findUserById : findUserById,
+            updateUser : updateUser,
+            getAllValidUsers : getAllValidUsers
         };
+
+        function getAllValidUsers(userId) {
+            return $http.get("/api/"+ userId + "/users");
+        }
+
+        function updateUser(user) {
+            return $http.put("/api/user/" + user._id, user);
+        }
+
+        function logout() {
+            return $http.post("/api/logout");
+        }
 
         function findUserById(userId) {
             return $http.get("/api/user/"+userId);

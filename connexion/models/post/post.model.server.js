@@ -32,7 +32,7 @@ module.exports = function () {
         return PostModel.find({creatorId : userId});
     }
     function getAllOpenPosts(userId) {
-        return PostModel.find({ $or : [ {isOpen : true }, {friends : userId}, {creatorId : userId}, {} ]});
+        return PostModel.find({ $or : [ {isOpen : true }, {friends : userId}, {creatorId : userId}]});
     }
     return api;
 };
