@@ -22,7 +22,20 @@
         vm.goToPostDetails = goToPostDetails;
         vm.goToUserProfilePage = goToUserProfilePage;
         vm.logout = logout;
-        vm.cliclTweet = UserService.tweet();
+        vm.clickTweet = clickTweet;
+        function clickTweet(message){
+            var obj = {
+                'message' : message,
+                'userId' : vm.userId
+            };
+            UserService.tweet(obj)
+                .then(function (succ) {
+                    console.log("Tweet Posted");
+                },function (err) {
+                    console.log("Error while posting tweet");
+            });
+        }
+
         function logout() {
             UserService
                 .logout()

@@ -148,29 +148,35 @@ module.exports = function (app, model) {
         );
     }
 
-    app.get('/twitter/tweet', makeTweet);
+    app.post('/twitter/tweet', makeTweet);
 
     function makeTweet(req, res) {
-        makeTweetHelper(function (error, data) {
+        var tweetData = req.body;
+        var userId = tweetData.userId;
+        var message = tweetData.message;
+        makeTweetHelper(userId, message, function (error, data) {
             if(error) {
                 console.log(require('sys').inspect(error));
-                res.end('bad stuff happened');
+                res.send('bad stuff happened');
             } else {
                 console.log(data);
-                res.end('go check your tweets!');
+                res.send('OK');
             }
         });
     }
 
-    function makeTweetHelper(cb) {
+    function makeTweetHelper(userId, message, cb) {
         initTwitterOauth();
-        oa.post(
-            "https://api.twitter.com/1.1/statuses/update.json"
-            , "91085539-ASC5SNNR78dpWNqAXUUzvtmRurf2NpDtnkBAg2J03"
-            , "DqKWOS8pCp3lYOqLmDUhiG0AfRvuvrOaXuimPG7EZ78BY"
-            , {"status": "This is a test tweet" }
-            , cb
-        );
+        model.userModel.findUserById(userId)
+            .then(function (userObj) {
+                oa.post(
+                    "https://api.twitter.com/1.1/statuses/update.json"
+                    , userObj.twitter.token
+                    , userObj.twitter.tokenSecret
+                    , {"status": message }
+                    , cb
+                );
+            })
     }
 
 // End Of Twitter

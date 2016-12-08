@@ -19,11 +19,9 @@
             tweet : tweet
         };
 
-        function tweet(){
-            $http.get('/twitter/tweet')
-                .then(function (succ) {
-                    console.log("hi");
-                });
+        function tweet(obj) {
+            var url = '/twitter/tweet';
+            return $http.post(url,obj);
         }
         function getAllValidUsers(userId) {
             return $http.get("/api/"+ userId + "/users");
