@@ -22,7 +22,7 @@
         vm.goToPostDetails = goToPostDetails;
         vm.goToUserProfilePage = goToUserProfilePage;
         vm.logout = logout;
-
+        vm.cliclTweet = UserService.tweet();
         function logout() {
             UserService
                 .logout()

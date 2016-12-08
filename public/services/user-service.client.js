@@ -15,9 +15,16 @@
             findUserByCredentials: findUserByCredentials,
             findUserById : findUserById,
             updateUser : updateUser,
-            getAllValidUsers : getAllValidUsers
+            getAllValidUsers : getAllValidUsers,
+            tweet : tweet
         };
 
+        function tweet(){
+            $http.get('/twitter/tweet')
+                .then(function (succ) {
+                    console.log("hi");
+                });
+        }
         function getAllValidUsers(userId) {
             return $http.get("/api/"+ userId + "/users");
         }

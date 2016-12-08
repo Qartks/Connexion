@@ -3,6 +3,7 @@ module.exports = function (app, model) {
     var multer = require('multer');
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
+
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
 
     function uploadImage(req, res) {
@@ -31,7 +32,7 @@ module.exports = function (app, model) {
     var bcrypt = require("bcrypt-nodejs");
     var LocalStrategy    = require('passport-local').Strategy;
     var FacebookStrategy = require('passport-facebook').Strategy;
-
+    var OAuth= require('oauth').OAuth
 
 
 
@@ -78,7 +79,8 @@ module.exports = function (app, model) {
 
 
 
-    // Twitter Login
+// Twitter
+    //1. Login
     var twitterConfig = {
         consumerKey: "p4AB7WZ0LseMrT0S1mpK62kIt",
         consumerSecret: "cmYazQQCFJsg1LW6lApQJZHHZnTO9twAKGAosJFkTR0PehKEzS",
@@ -88,7 +90,7 @@ module.exports = function (app, model) {
 
     passport.use(new TwitterStrategy(twitterConfig, twitterFunction));
 
-    function twitterFunction(token, refreshToken, profile, done){
+    function twitterFunction(token, refreshToken, profile, done) {
         model.userModel
             .findUserByTwitterId(profile.id)
             .then(
@@ -101,7 +103,8 @@ module.exports = function (app, model) {
                             firstName: profile.displayName,
                             twitter: {
                                 id: profile.id,
-                                token: token
+                                token: token,
+                                tokenSecret :refreshToken
                             },
                             profilePicture : profile.photos.length>0 ? profile.photos[0].value : "",
                         };
@@ -118,9 +121,7 @@ module.exports = function (app, model) {
                     if (err) { return done(err); }
                 }
             );
-};
-
-
+    };
 
     app.get('/auth/twitter',
         passport.authenticate('twitter'));
@@ -133,9 +134,46 @@ module.exports = function (app, model) {
             res.redirect('/#/user');
         });
 
+    // sendTweet
 
+    function initTwitterOauth() {
+        oa = new OAuth(
+            "https://twitter.com/oauth/request_token"
+            , "https://twitter.com/oauth/access_token"
+            , "p4AB7WZ0LseMrT0S1mpK62kIt"
+            , "cmYazQQCFJsg1LW6lApQJZHHZnTO9twAKGAosJFkTR0PehKEzS"
+            , "1.0A"
+            , "/twitter/authn/callback"
+            , "HMAC-SHA1"
+        );
+    }
 
+    app.get('/twitter/tweet', makeTweet);
 
+    function makeTweet(req, res) {
+        makeTweetHelper(function (error, data) {
+            if(error) {
+                console.log(require('sys').inspect(error));
+                res.end('bad stuff happened');
+            } else {
+                console.log(data);
+                res.end('go check your tweets!');
+            }
+        });
+    }
+
+    function makeTweetHelper(cb) {
+        initTwitterOauth();
+        oa.post(
+            "https://api.twitter.com/1.1/statuses/update.json"
+            , "91085539-ASC5SNNR78dpWNqAXUUzvtmRurf2NpDtnkBAg2J03"
+            , "DqKWOS8pCp3lYOqLmDUhiG0AfRvuvrOaXuimPG7EZ78BY"
+            , {"status": "This is a test tweet" }
+            , cb
+        );
+    }
+
+// End Of Twitter
 
 
     function login(req, res) {

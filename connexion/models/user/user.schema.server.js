@@ -3,8 +3,8 @@ module.exports = function () {
     var userSchema = mongoose.Schema({
         twitter : {
             id: String,
-            handle : String,
-            photos : []
+            token : String,
+            tokenSecret : String
         },
         index: { type : Number},
         firstName: String,
