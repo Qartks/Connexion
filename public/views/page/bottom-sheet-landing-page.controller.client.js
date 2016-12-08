@@ -5,15 +5,14 @@
     angular
         .module("Connexion")
         .controller("ListBottomSheetCtrl", ListBottomSheetCtrl);
-    function ListBottomSheetCtrl($mdBottomSheet) {
+    function ListBottomSheetCtrl($mdBottomSheet,$location) {
         var vm = this;
         vm.items = [
             { name: 'Login', icon: 'assignment_ind' },
             { name: 'Register', icon: 'new_releases' },
         ];
-        vm.listItemClick = listItemClick;
-        function listItemClick($index) {
-            console.log($index);
-        }
+        vm.listItemClick = function(option) {
+            $mdBottomSheet.hide(option);
+        };
     }
 })();

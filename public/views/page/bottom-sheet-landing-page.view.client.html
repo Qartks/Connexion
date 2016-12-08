@@ -3,16 +3,17 @@
         Options
     </md-subheader>
     <md-list>
-        <md-item ng-repeat="item in model.items">
-        <md-item-content md-ink-ripple flex class="inset" layout="column">
-            <md-button flex class="bottom-sheet-button" aria-label="{{item.name}}" ng-click="model.listItemClick($index)">
+        <md-item ng-repeat="item in model.items" flex>
+            <md-button class="bottom-sheet-button" aria-label="{{item.name}}" ng-click="model.listItemClick(item.name)" layout="column">
+                <md-item-content md-ink-ripple class="inset">
                 <div layout="row">
                     <span>
                         <i class="material-icons">{{item.icon}}</i>
                         {{item.name}}
                     </span>
                 </div>
-            </md-button></md-item-content>
+                </md-item-content>
+            </md-button>
         </md-item>
     </md-list>
 </md-bottom-sheet>

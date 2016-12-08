@@ -3,7 +3,7 @@
         .module("Connexion")
         .controller("LandingPageController", LandingPageController);
 
-    function LandingPageController($mdBottomSheet) {
+    function LandingPageController($mdBottomSheet,$location) {
         var vm = this;
         vm.showListBottomSheet = function($event) {
             console.log("first");
@@ -12,7 +12,13 @@
                 controller: 'ListBottomSheetCtrl',
                 controllerAs : 'model',
                 targetEvent: $event
-            })
+            }).then(function(answer) {
+                if(answer == "Login")
+                    $location.url("login");
+                else if(answer == "Register")
+                    $location.url("register");
+            }, function() {
+            });
         };
 
 
