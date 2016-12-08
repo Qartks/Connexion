@@ -33,20 +33,24 @@ module.exports = function (app, model) {
     var FacebookStrategy = require('passport-facebook').Strategy;
 
 
-    // Twitter Login
-    var TwitterStrategy = require('passport-twitter').Strategy;
-    var twitterConfig = {
-        consumerKey: "AxbikkK8La8R62TTS98agCKf3",
-        consumerSecret: "GXV8dUUI2SOvjotNIuchAjvaMBRcWVXAwh626NeCQIXyFB7ac8",
-        callbackURL: "http://www.example.com/auth/twitter/callback"
-    };
-    passport.use(new TwitterStrategy(twitterConfig, twitterStrategy));
+
+
+
+    // Need this for twitter don't remove this
+    app.get('/*', function(req, res, next) {
+        if (req.headers.host.match(/^www\./) != null) {
+            res.redirect("http://" + req.headers.host.slice(4) + req.url, 301);
+        } else {
+            next();
+        }
+    });
 
 
     app.use(session({
         secret: "This is a secret lol",
         resave: true,
-        saveUninitialized: true
+        saveUninitialized: true,
+        cookie:{ secure: false }
     }));
     app.use(cookieParser());
     app.use(passport.initialize());
@@ -71,6 +75,69 @@ module.exports = function (app, model) {
     app.post("/api/logout", logout);
     app.get("/api/loggedin", loggedin);
     app.post("/api/register", register);
+
+
+
+
+
+
+    // Twitter Login
+    var twitterConfig = {
+        consumerKey: "p4AB7WZ0LseMrT0S1mpK62kIt",
+        consumerSecret: "cmYazQQCFJsg1LW6lApQJZHHZnTO9twAKGAosJFkTR0PehKEzS",
+        callbackURL: "/auth/twitter/callback"
+    };
+    var TwitterStrategy = require('passport-twitter').Strategy;
+
+    passport.use(new TwitterStrategy(twitterConfig, twitterFunction));
+
+    function twitterFunction(token, refreshToken, profile, done){
+        model.userModel
+            .findUserByTwitterId(profile.id)
+            .then(
+                function(user) {
+                    if (user) {
+                        return done(null, user);
+                    } else {
+                        var newTwitterUser = {
+                            username: profile.username,
+                            firstName: profile.displayName,
+                            twitter: {
+                                id: profile.id,
+                                token: token
+                            }
+                        };
+                        model.userModel.createUser(newTwitterUser)
+                            .then(function (user) {
+                                return done(null, user);
+                            },function (err) {
+                                if (err) { return done(err); }
+                            })
+
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            );
+};
+
+
+
+    app.get('/auth/twitter',
+        passport.authenticate('twitter'));
+
+    app.get('/auth/twitter/callback',
+        passport.authenticate('twitter',
+            { failureRedirect: '/#/login' }),
+        function(req, res) {
+
+            res.redirect('/#/user');
+        });
+
+
+
+
 
 
     function login(req, res) {
@@ -105,9 +172,7 @@ module.exports = function (app, model) {
             });
     }
 
-    function twitterStrategy(token, tokenSecret, profile, done) {
-        console.log(profile);
-    }
+
 
     function serializeUser(user, done) {
         done(null, user);

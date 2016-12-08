@@ -1,6 +1,11 @@
 module.exports = function () {
     var mongoose = require('mongoose');
     var userSchema = mongoose.Schema({
+        twitter : {
+            id: String,
+            handle : String,
+            photos : []
+        },
         index: { type : Number},
         firstName: String,
         lastName: String,
