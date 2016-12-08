@@ -3,18 +3,23 @@
         .module("Connexion")
         .controller("SearchController", SearchController);
 
-    function SearchController($routeParams, $http, PageService, $location, UserService, PostService) {
+    function SearchController($routeParams, $rootScope, PageService, $location, UserService, PostService) {
         var vm = this;
 
-        vm.userId = $routeParams.userId;
+        vm.userId = $rootScope.currentUser._id;
         vm.posts = [];
         vm.users = [];
 
         vm.goBack = goBack;
         vm.goToThisProfile = goToThisProfile;
+        vm.goToThisPost = goToThisPost;
+
+        function goToThisPost(post) {
+            $location.url("/user/post/"+post._id);
+        }
 
         function goToThisProfile(u) {
-            $location.url("/user/"+ u._id+"/profile");
+            $location.url("/user/profile/"+u._id);
         }
 
 
@@ -43,19 +48,6 @@
         }
 
         init();
-        // vm.searchText = "";
-        // vm.data = [];
-        // $http.get('./assests/connexion-dummy.json').success(function (data) {
-        //     vm.data = data;
-        //     vm.data = vm.data.slice(0, 5);
-        // });
-
-
-        // vm.data2 = [];
-        // $http.get('./assests/connexion-dummy.json').success(function (data) {
-        //     vm.data2 = data;
-        //     vm.data2 = vm.data2.slice(0, 10);
-        // });
     }
 
 })();

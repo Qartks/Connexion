@@ -3,16 +3,12 @@
         .module("Connexion")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($http, PageService, $location, $rootScope, $routeParams, PostService, UserService) {
+    function ProfileController($routeParams, PageService, $location, $rootScope, PostService, UserService) {
 
         var vm = this;
         vm.data = [];
+        vm.loggedInUser = $rootScope.currentUser._id;
         vm.userId = $routeParams.userId;
-
-        // $http.get('./assests/connexion-dummy.json').success(function (data) {
-        //     vm.data = data;
-        //     vm.data = vm.data.slice(5, 15);
-        // });
 
         this.isThisPostOpen = isThisPostOpen;
         vm.goToSearch = goToSearch;
@@ -20,7 +16,12 @@
         vm.goToPostDetails = goToPostDetails;
         vm.editThisProfile = editThisProfile;
         vm.deleteThisProfile = deleteThisProfile;
+        vm.isThisMine = isThisMine;
         vm.logout = logout;
+
+        function isThisMine() {
+            return vm.loggedInUser === vm.userId;
+        }
 
         function logout() {
             UserService
@@ -31,7 +32,7 @@
         }
         
         function editThisProfile() {
-            $location.url("/user/" + vm.userId + "/profile/edit");
+            $location.url("/user/profile/"+ vm.userId +"/edit");
         }
 
         function deleteThisProfile() {
@@ -67,7 +68,7 @@
         init();
 
         function goToPostDetails(post) {
-            $location.url('/user/'+ vm.userId + '/post/' + post._id);
+            $location.url('/user/post/' + post._id);
         }
 
         function isThisPostOpen(post) {
@@ -75,12 +76,12 @@
         }
 
         function goToSearch() {
-            PageService.setPrevPage('/user/' + vm.userId + '/profile');
-            $location.url('/user/'+ vm.userId + '/search');
+            PageService.setPrevPage('/user/profile/'+ vm.userId);
+            $location.url('/user/search');
         }
 
         function goToCreatePost() {
-            $location.url('/user/' + vm.userId + '/post');
+            $location.url('/user/post/new');
         }
 
     }

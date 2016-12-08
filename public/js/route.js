@@ -20,10 +20,13 @@
                 controller :"UserRegisterController",
                 controllerAs :"model"
             })
-            .when("/user/:userId/search",{
+            .when("/user/search",{
                 templateUrl:"./views/page/search.view.client.html",
                 controller :"SearchController",
-                controllerAs :"model"
+                controllerAs :"model",
+                resolve : {
+                    loggedin: checkLoggedIn
+                }
             })
             .when("/user",{
                 templateUrl:"./views/user/user-landing.view.client.html",
@@ -33,30 +36,45 @@
                     loggedin: checkLoggedIn
                 }
             })
-            .when("/user/:userId/profile",{
+            .when("/user/profile/:userId",{
                 templateUrl:"./views/user/profile.view.client.html",
                 controller :"ProfileController",
-                controllerAs :"model"
+                controllerAs :"model",
+                resolve : {
+                    loggedin: checkLoggedIn
+                }
             })
-            .when("/user/:userId/profile/edit",{
+            .when("/user/profile/:userId/edit",{
                 templateUrl:"./views/user/edit-user.view.client.html",
                 controller :"UserEditController",
-                controllerAs :"model"
+                controllerAs :"model",
+                resolve : {
+                    loggedin: checkLoggedIn
+                }
             })
-            .when("/user/:userId/post/:postId/edit",{
+            .when("/user/post/:postId/edit",{
                 templateUrl:"./views/post/edit-post.view.client.html",
                 controller :"EditPostController",
-                controllerAs :"model"
+                controllerAs :"model",
+                resolve : {
+                    loggedin: checkLoggedIn
+                }
             })
-            .when("/user/:userId/post",{
+            .when("/user/post/new",{
                 templateUrl:"./views/post/new-post.view.client.html",
                 controller :"NewPostController",
-                controllerAs :"model"
+                controllerAs :"model",
+                resolve : {
+                    loggedin: checkLoggedIn
+                }
             })
-            .when("/user/:userId/post/:postId",{
+            .when("/user/post/:postId",{
                 templateUrl:"./views/post/details-post.view.client.html",
                 controller :"DetailsPostController",
-                controllerAs :"model"
+                controllerAs :"model",
+                resolve : {
+                    loggedin: checkLoggedIn
+                }
             })
             .otherwise({
                 redirectTo: "/"

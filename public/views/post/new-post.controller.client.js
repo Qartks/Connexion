@@ -2,10 +2,10 @@
     angular
         .module("Connexion")
         .controller("NewPostController", NewPostController)
-    function NewPostController($routeParams, $location, $sce, FlickerService, PostService, PageService, UserService) {
+    function NewPostController($rootScope, $location, $sce, FlickerService, PostService, PageService, UserService) {
         var vm = this;
 
-        vm.userId = $routeParams.userId;
+        vm.userId = $rootScope.currentUser._id;
         vm.user = {};
         vm.post = {};
         vm.pictures = [];
@@ -43,7 +43,7 @@
 
             PostService.createPost(vm.userId, post)
                 .success(function (some) {
-                    $location.url('/user/' + vm.userId + '/profile');
+                    $location.url('/user/profile/'+ vm.userId );
                 })
                 .error(function (err) {
                     console.log(err);
@@ -51,12 +51,12 @@
         }
 
         function goToProfile() {
-            $location.url('/user/'+ vm.userId + '/profile');
+            $location.url('/user/profile/'+ vm.userId );
         }
 
         function goToSearch() {
-            PageService.setPrevPage('/user/'+ vm.userId + '/post');
-            $location.url('/user/'+ vm.userId + '/search');
+            PageService.setPrevPage('/user/post/new');
+            $location.url('/user/search');
         }
         
         function init() {

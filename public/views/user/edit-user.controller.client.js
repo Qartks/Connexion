@@ -3,16 +3,21 @@
         .module("Connexion")
         .controller("UserEditController", UserEditController);
     
-    function UserEditController($routeParams, $location, UserService, PageService, PostService, $mdToast) {
+    function UserEditController($rootScope, $location, UserService, PageService, PostService, $mdToast) {
         vm = this;
 
-        vm.userId = $routeParams.userId;
+        vm.userId = $rootScope.currentUser._id;
         vm.user= {};
 
         vm.goToSearch = goToSearch;
         vm.updateThisProfile = updateThisProfile;
         vm.goBackToProfile = goBackToProfile;
+        vm.goToCreatePost = goToCreatePost;
         vm.logout = logout;
+
+        function goToCreatePost() {
+            $location.url("/user/post/new");
+        }
 
         function logout() {
             UserService
@@ -23,7 +28,7 @@
         }
 
         function goBackToProfile() {
-            $location.url("/user/" + vm.userId + "/profile");
+            $location.url("/user/profile/" + vm.userId);
         }
 
         function showSimpleToast() {
@@ -61,8 +66,8 @@
         init();
 
         function goToSearch() {
-            PageService.setPrevPage('/user/' + vm.userId + '/profile/edit');
-            $location.url('/user/'+ vm.userId + '/search');
+            PageService.setPrevPage('/user/profile/'+ vm.userId +'/edit');
+            $location.url('/user/search');
         }
 
     }

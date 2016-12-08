@@ -50,7 +50,7 @@
                     </div>
                 </div>
 
-                <section layout="row" layout-sm="row" layout-align="center">
+                <section ng-show="model.isThisMine()" layout="row" layout-sm="row" layout-align="center">
                     <md-button class="md-raised md-primary" ng-click="model.editThisProfile()"> Edit </md-button>
                     <md-button class="md-raised md-warn" ng-click="model.deleteThisProfile()"> UnRegister </md-button>
                 </section>

@@ -3,17 +3,12 @@
         .module("Connexion")
         .controller("UserLandingController", UserLandingController);
 
-    function UserLandingController($http, $sce, $location, $rootScope, PageService, PostService, UserService) {
+    function UserLandingController($sce, $location, $rootScope, PageService, PostService, UserService) {
         var vm = this;
         vm.data = [];
         vm.userId = $rootScope.currentUser._id;
         vm.message =" I'am going to this thing";
         vm.hashtag = "Connexion";
-
-        // $http.get('./assests/connexion-dummy.json').success(function (data) {
-        //     vm.data = data;
-        //     vm.data = vm.data.slice(0, 5);
-        // });
 
         vm.goToSearch = goToSearch;
         vm.goToProfile = goToProfile;
@@ -46,11 +41,11 @@
         init();
 
         function goToUserProfilePage(post) {
-            $location.url("/user/" + post.creatorId + "/profile");
+            $location.url("/user/profile/" + post.creatorId);
         }
 
         function goToPostDetails(post) {
-            $location.url("/user/" + vm.userId + "/post/" + post._id);
+            $location.url("/user/post/" + post._id);
         }
 
         function googleapiurl(d) {
@@ -66,15 +61,15 @@
 
         function goToSearch() {
             PageService.setPrevPage('/user');
-            $location.url('/user/'+ vm.userId + '/search');
+            $location.url('/user/search');
         }
 
         function goToProfile() {
-            $location.url('/user/' + vm.userId + '/profile');
+            $location.url('/user/profile/'+ vm.userId);
         }
 
         function goToCreatePost() {
-            $location.url('/user/' + vm.userId + '/post');
+            $location.url('/user/post/new');
         }
 
     }

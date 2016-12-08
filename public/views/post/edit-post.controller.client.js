@@ -4,19 +4,31 @@
         .controller("EditPostController", EditController);
 
 
-    function EditController($routeParams, $location, PageService, PostService, UserService, $mdToast, FlickerService) {
+    function EditController($rootScope, $routeParams, $location, PageService, PostService, UserService, $mdToast, FlickerService) {
         var vm = this;
 
-        vm.userId = $routeParams.userId;
+        vm.userId = $rootScope.currentUser._id;
         vm.postId = $routeParams.postId;
         vm.post = {};
 
         vm.deleteThisPost = deleteThisPost;
         vm.updateThisPost = updateThisPost;
         vm.deleteThisPic = deleteThisPic;
+        vm.goToSearch = goToSearch;
+        vm.goToProfile = goToProfile;
         vm.logout = logout;
         vm.searchPhotos = searchPhotos;
         vm.selectPhoto = selectPhoto;
+
+
+        function goToProfile() {
+            $location.url("/user/profile/"+ vm.userId);
+        }
+
+        function goToSearch() {
+            PageService.setPrevPage("/user/post/"+ vm.postId +"/edit");
+            $location.url("/user/search");
+        }
 
         // Functions for Flicker support
         function searchPhotos(searchTerm) {
@@ -60,7 +72,7 @@
                 .updatePost(vm.postId, post)
                 .success(function (page) {
                     showSimpleToast();
-                    $location.url("/user/"+vm.userId+"/post/"+vm.postId);
+                    $location.url("/user/post/"+vm.postId);
                 })
                 .error(function (err) {
                     console.log(err);

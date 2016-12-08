@@ -3,10 +3,10 @@
         .module("Connexion")
         .controller("DetailsPostController", DetailsPostController);
 
-    function DetailsPostController($routeParams, PostService, PageService, $location) {
+    function DetailsPostController($rootScope, $routeParams, PostService, PageService, $location, UserService) {
         var vm = this;
 
-        vm.userId = $routeParams.userId;
+        vm.userId = $rootScope.currentUser._id;
         vm.postId = $routeParams.postId;
         vm.post = {};
 
@@ -28,7 +28,7 @@
         }
 
         function editThisPost() {
-            $location.url("/user/"+vm.userId+"/post/"+vm.postId+"/edit");
+            $location.url("/user/post/"+vm.postId+"/edit");
         }
 
         function deleteThisPost() {
@@ -52,16 +52,16 @@
         }
 
         function goToSearch() {
-            PageService.setPrevPage('/user/' + vm.userId + '/post/' + vm.postId);
-            $location.url('/user/'+ vm.userId + '/search');
+            PageService.setPrevPage('/user/post/' + vm.postId);
+            $location.url('/user/search');
         }
 
         function goToProfile() {
-            $location.url('/user/' + vm.userId + '/profile');
+            $location.url('/user/profile/' + vm.userId);
         }
 
         function goToCreatePost() {
-            $location.url('/user/' + vm.userId + '/post');
+            $location.url('/user/post/new');
         }
 
         function init(){
