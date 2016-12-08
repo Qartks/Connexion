@@ -78,9 +78,6 @@ module.exports = function (app, model) {
 
 
 
-
-
-
     // Twitter Login
     var twitterConfig = {
         consumerKey: "p4AB7WZ0LseMrT0S1mpK62kIt",
@@ -105,7 +102,8 @@ module.exports = function (app, model) {
                             twitter: {
                                 id: profile.id,
                                 token: token
-                            }
+                            },
+                            profilePicture : profile.photos.length>0 ? profile.photos[0].value : "",
                         };
                         model.userModel.createUser(newTwitterUser)
                             .then(function (user) {
