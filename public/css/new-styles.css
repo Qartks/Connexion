@@ -266,3 +266,28 @@ h1.main-header {
 .thumbnail {
 
 }
+.bottom-sheet-button{
+    font-size: 80%!important;
+    text-transform: none;
+}
+.bottom-sheet-button i {
+    vertical-align:middle;
+}
+/*Set lable to 80%*/
+.small-label {
+    font-size: 80% !important;
+    font-weight: 300!important;
+}
+/*Format button text*/
+.button-text {
+    text-transform: none!important;
+}
+.space-left {
+    margin-left: 5px
+}
+.twitter-button{
+    background-color: #00c2dd !important;
+}
+.white-icons{
+    color: #FFF;
+}

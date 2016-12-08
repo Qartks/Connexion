@@ -14,10 +14,12 @@ module.exports = function () {
         deleteUser: deleteUser,
         setModel: setModel,
         updateImageUrl : updateImageUrl,
-        getAllValidUsers : getAllValidUsers
+        getAllValidUsers : getAllValidUsers,
+        findUserByTwitterId :findUserByTwitterId
     };
 
     return api;
+
 
     function setModel(_model) {
         model = _model;
@@ -54,6 +56,8 @@ module.exports = function () {
     function updateUser(userId, user) {
         return UserModel.update({_id: userId}, {$set : user});
     }
-
+    function findUserByTwitterId(twitterId) {
+        return UserModel.findOne({"twitter.id":twitterId});
+    }
 
 }
