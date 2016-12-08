@@ -266,3 +266,10 @@ h1.main-header {
 .thumbnail {
 
 }
+.bottom-sheet-button{
+    font-size: 80%!important;
+    text-transform: none;
+}
+.bottom-sheet-button i {
+    vertical-align:middle;
+}
