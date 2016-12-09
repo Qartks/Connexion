@@ -25,35 +25,42 @@
                         </div>
                     </md-toolbar>
                     <div id="details" class="my-height" layout-padding>
-                        <md-card layout="row">
+                        <div layout="row">
                             <div flex="50">Name :</div>
                             <div flex="50"> {{model.post.organizer}}</div>
-                        </md-card>
-                        <md-card layout="row">
-                            <div flex="50">Organizer Contact :</div>
+                        </div>
+                        <md-divider></md-divider>
+                        <div layout="row">
+                            <div flex="50">Contact :</div>
                             <div fliex="50"> {{model.post.email}}</div>
-                        </md-card>
-                        <md-card layout="row">
+                        </div>
+                        <md-divider></md-divider>
+                        <div layout="row">
                             <div flex="50">Phone :</div>
                             <div flex="50"> {{model.post.phone}}</div>
-                        </md-card>
-                        <md-card layout="row">
+                        </div>
+                        <md-divider></md-divider>
+                        <div layout="row">
                             <div flex="50">Location of event :</div>
                             <div flex="50"> {{model.post.address}}</div>
-                        </md-card>
-                        <md-card layout="row">
+                        </div>
+                        <md-divider></md-divider>
+                        <div layout="row">
                             <div flex="50">Event date :</div>
                             <div flex="50"> {{model.post.dateOfEvent | date:'yyyy-MM-dd' }}</div>
-                        </md-card>
-                        <md-card layout="column">
+                        </div>
+                        <md-divider></md-divider>
+                        <div layout="column">
                             <div>Event Description:</div>
                             <br>
-                            <div class="pre-whitespace"> {{model.post.description}}</div>
-                        </md-card>
+                            <md-content>
+                                <div class="pre-whitespace"> {{model.post.description}}</div>
+                            </md-content>
+                        </div>
                     </div>
                     <div id="images" class="my-height" layout-padding>
                         <div id="carousel" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner" role="listbox">
+                            <div class="carousel-inner image-height" role="listbox">
                                 <div class="item" ng-class='{active:$first}' ng-repeat="image in model.post.pictures track by $index">
                                     <img ng-src="{{image}}" alt="">
                                 </div>
@@ -68,23 +75,17 @@
                             </a>
                         </div>
                     </div>
-                    <div id="location" class="my-height" layout-padding>
-                        <div class="map"></div>
-                    </div>
                     <div layout="row">
-                        <md-button id="details-button" flex="25">
+                        <md-button id="details-button" flex="50">
                             <i class="fa fa-info" aria-hidden="true"></i>
                         </md-button>
                         <md-button id="images-button" flex="50">
                             <i class="fa fa-camera" aria-hidden="true"></i>
                         </md-button>
-                        <md-button id="location-button" flex="25">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        </md-button>
                     </div>
                 </md-card>
             </section>
-            <section id="comments-section">
+            <section id="comments-section" class="comment-section">
                 <md-card>
                     <md-content>
                         <md-toolbar>
@@ -92,7 +93,7 @@
                                 Comments
                             </div>
                         </md-toolbar>
-                        <div style="margin-top: 5px" layout="row">
+                        <div layout="row">
                             <input ng-model="model.searchText" class="searchBox" placeholder="New comment" aria-label="Search">
                             <md-button aria-label="send">
                                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
@@ -117,12 +118,20 @@
         <div class="hidden-xs hidden-sm col-md-4 col-lg-4 left-column">
             <div class="stick">
                 <div class="col-xs-12">
+                    <div class="panel stats-panel">
+                        <ui-gmap-google-map center='model.map.center' zoom='model.map.zoom'>
+                            <ui-gmap-marker coords="model.marker" idKey='3'>
+                            </ui-gmap-marker>
+                        </ui-gmap-google-map>
+                    </div>
+                </div>
+                <div class="col-xs-12">
                     <!-- Here Here Here -->
                     <div ng-show="model.isThisMine()" layout="row">
                         <a href=""  ng-click="model.editThisPost()" class="btn btn-info" flex>Edit</a>
                         <a href=""  ng-click="model.deleteThisPost()" class="btn btn-danger" flex>Delete</a>
                     </div>
-                    <div class="panel stats-panel">
+                    <div class="panel">
                         <table class="table table-striped m-b-none">
                             <thead>
                             <tr>
@@ -181,6 +190,16 @@
                             </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="row" flex>
+                        <md-button class="md-raised login-button">
+                            Going
+                        </md-button>
+                        <md-button class="md-raised md-primary">
+                            Interested
+                        </md-button>
                     </div>
                 </div>
             </div>

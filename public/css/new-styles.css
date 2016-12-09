@@ -206,7 +206,7 @@ h1.main-header {
 }
 
 .my-height {
-    min-height: 400px;
+    min-height: 600px;
 }
 
 .pre-whitespace {
@@ -358,10 +358,27 @@ h1.main-header {
     margin-top: 10px;
     line-height: 200%;
     font-size: 90%;
+
 }
 
 .details-button {
     background-color:#3498db;
     color:#fff;
     border-radius: 10px;
+}
+
+.details-dial{
+    background-color:#3498db;
+    color:#fff;
+    border-radius: 10px;
+    padding:2px;
+}
+.comment-section {
+    margin-top: 50px;
+}
+.image-height {
+    max-height: 500px!important;
+}
+.angular-google-map-container {
+    height: 200px;
 }

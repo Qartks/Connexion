@@ -3,13 +3,12 @@
         .module("Connexion")
         .controller("DetailsPostController", DetailsPostController);
 
-    function DetailsPostController($rootScope, $routeParams, PostService, PageService, $location, UserService) {
+    function DetailsPostController($rootScope, $routeParams, PostService, PageService, $location, UserService, uiGmapGoogleMapApi) {
         var vm = this;
 
         vm.userId = $rootScope.currentUser._id;
         vm.postId = $routeParams.postId;
         vm.post = {};
-
         vm.goToSearch = goToSearch;
         vm.goToProfile = goToProfile;
         vm.goToCreatePost = goToCreatePost;
@@ -18,6 +17,8 @@
         vm.editThisPost = editThisPost;
         vm.deleteThisPost = deleteThisPost;
         vm.logout = logout;
+        vm.map = { center: { latitude: 42.3601, longitude: -71.0589 }, zoom: 4 };
+        vm.marker= {latitude: 40.1451, longitude: -99.6680 }
 
         function logout() {
             UserService
@@ -73,29 +74,29 @@
                 })
                 .error(function (err) {
                     console.log(err);
-                });
+            });
+            $(document ).ready(function() {
+                $('#details').show();
+                $('#images').hide();
+                $('#location').hide();
 
-            jQuery(function(){
-                jQuery('#details').show();
-                jQuery('#images').hide();
-                jQuery('#location').hide();
-
-                jQuery('#details-button').click(function(){
-                    jQuery('#details').show();
-                    jQuery('#images').hide();
-                    jQuery('#location').hide();
+                $('#details-button').click(function(){
+                    $('#details').show();
+                    $('#images').hide();
+                    $('#location').hide();
                 });
-                jQuery('#images-button').click(function(){
-                    jQuery('#details').hide();
-                    jQuery('#images').show();
-                    jQuery('#location').hide();
+                $('#images-button').click(function(){
+                    $('#details').hide();
+                    $('#images').show();
+                    $('#location').hide();
                 });
-                jQuery('#location-button').click(function(){
-                    jQuery('#details').hide();
-                    jQuery('#images').hide();
-                    jQuery('#location').show();
+                $('#location-button').click(function(){
+                    $('#details').hide();
+                    $('#images').hide();
+                    $('#location').show();
                 });
             });
+
         }
         init();
     }
