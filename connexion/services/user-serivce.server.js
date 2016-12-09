@@ -157,7 +157,7 @@ module.exports = function (app, model) {
         makeTweetHelper(userId, message, function (error, data) {
             if(error) {
                 console.log(require('sys').inspect(error));
-                res.send('bad stuff happened');
+                res.send('No twitter handle configured');
             } else {
                 console.log(data);
                 res.send('OK');
