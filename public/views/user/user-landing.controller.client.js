@@ -9,7 +9,7 @@
         vm.userId = $rootScope.currentUser._id;
         vm.message =" I'am going to this thing";
         vm.hashtag = "Connexion";
-        vm.toggleLeft = buildToggler('left');
+        vm.toggleLeft = toggleLeft('left');
         vm.goToSearch = goToSearch;
         vm.goToProfile = goToProfile;
         vm.goToCreatePost = goToCreatePost;
@@ -19,12 +19,12 @@
         vm.logout = logout;
         vm.clickTweet = clickTweet;
 
-        function buildToggler(navID) {
+        function toggleLeft(navID) {
             return function() {
                 $mdSidenav(navID)
                     .toggle()
                     .then(function () {
-                        console.log("");
+
                     });
             }
         }
@@ -68,7 +68,7 @@
                 })
                 .error(function (err) {
                     console.log("User not found",err);
-                })
+            })
         }
 
         init();

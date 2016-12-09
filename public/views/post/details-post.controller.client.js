@@ -3,7 +3,7 @@
         .module("Connexion")
         .controller("DetailsPostController", DetailsPostController);
 
-    function DetailsPostController($rootScope, $routeParams, PostService, PageService, $location, UserService, uiGmapGoogleMapApi) {
+    function DetailsPostController($rootScope, $routeParams, PostService, PageService, $location, UserService, $mdSidenav) {
         var vm = this;
 
         vm.userId = $rootScope.currentUser._id;
@@ -17,6 +17,7 @@
         vm.editThisPost = editThisPost;
         vm.deleteThisPost = deleteThisPost;
         vm.logout = logout;
+        vm.toggleLeft = toggleLeft('left');
         vm.map = { center: { latitude: 42.3601, longitude: -71.0589 }, zoom: 4 };
         vm.marker= {latitude: 40.1451, longitude: -99.6680 }
 
@@ -26,6 +27,16 @@
                 .then(function () {
                     $location.url("/login");
                 })
+        }
+
+        function toggleLeft(navID) {
+            return function() {
+                $mdSidenav(navID)
+                    .toggle()
+                    .then(function () {
+
+                    });
+            }
         }
 
         function editThisPost() {
@@ -74,6 +85,14 @@
                 })
                 .error(function (err) {
                     console.log(err);
+            });
+            UserService.findUserById(vm.userId)
+                .success(function (user) {
+                    vm.user = user;
+                    console.log(vm.user);
+                })
+                .error(function (err) {
+                    console.log("User not found",err);
             });
             $(document ).ready(function() {
                 $('#details').show();
