@@ -313,6 +313,7 @@ h1.main-header {
 }
 
 .tool-bar-color{
+    z-index: 1000;
     box-shadow: 0 1px 6px rgba(0,0,0,.3)!important;
     display: inline-block!important;
     height: 10px !important;
