@@ -64,6 +64,9 @@
 .center-box md-card-title-text {
     text-align: center;
 }
+.login-button {
+    background-color: #ba59e2 !important;
+}
 /*********************/
 /* General Settings  */
 /*********************/
@@ -288,6 +291,6 @@ h1.main-header {
 .twitter-button{
     background-color: #00c2dd !important;
 }
-.white-icons{
-    color: #FFF;
+.white-color{
+    color: #FFF !important;
 }

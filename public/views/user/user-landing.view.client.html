@@ -101,9 +101,8 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 tweet-panel">
-                    <a class="twitter-timeline" href="https://twitter.com/qartks89">Tweets by qartks89</a>
-                    <!--<a class="twitter-timeline"  href="https://twitter.com/hashtag/Connexion" data-widget-id="803820944515072000">#Connexion Tweets</a>-->
+                <div class="col-xs-12 tweet-panel" ng-if="model.user.twitter">
+                    <a class="twitter-timeline" href="https://twitter.com/{{model.user.twitter.twitterHandle}}">Tweets by {{model.user.twitter.twitterHandle}}</a>
                     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
 

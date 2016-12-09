@@ -48,7 +48,15 @@
                 })
                 .error(function (err) {
                     console.log(err);
-                });
+            });
+            UserService.findUserById(vm.userId)
+                .success(function (user) {
+                    vm.user = user;
+                    console.log(vm.user);
+                })
+                .error(function (err) {
+                    console.log("User not found",err);
+                })
         }
 
         init();

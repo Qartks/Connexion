@@ -2,21 +2,22 @@ module.exports = function () {
     var mongoose = require('mongoose');
     var userSchema = mongoose.Schema({
         twitter : {
-            id: String,
-            token : String,
-            tokenSecret : String
+            id              : String,
+            twitterHandle   : String,
+            token           : String,
+            tokenSecret     : String
         },
         index: { type : Number},
-        firstName: String,
-        lastName: String,
-        username: String,
-        password: String,
-        email: String,
-        phone: String,
-        address: String,
-        tagline: String,
-        headline: String,
-        bio: String,
+        firstName       : String,
+        lastName        : String,
+        username        : String,
+        password        : String,
+        email           : String,
+        phone           : String,
+        address         : String,
+        tagline         : String,
+        headline        : String,
+        bio             : String,
         dateCreated: { type : Date, default : Date.now()},
         profilePicture: String,
         friends: [
@@ -25,12 +26,10 @@ module.exports = function () {
                 ref : "user"
             }
         ],
-        fblink: String,
-        twtrlink: String,
-        rating: Number,
-        searchHistory: [String]
+        fblink          : String,
+        twtrlink        : String,
+        rating          : Number,
+        searchHistory   : [String]
     });
-
-
     return userSchema;
 };

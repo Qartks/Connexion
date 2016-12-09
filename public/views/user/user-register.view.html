@@ -1,4 +1,4 @@
-<md-card flex-gt-xs="50" flex-xs="75" class="center-box">
+<md-card flex-gt-md="25" flex-gt-xs="45" flex-xs="90" class="center-box">
     <md-card-title>
         <md-card-title-text>
             <span class="md-headline">Register</span>
@@ -12,20 +12,20 @@
     <md-card-content>
         <form  layout-gt-xs="column" layout-xs="column">
             <md-input-container>
-                <label>User Name</label>
+                <label class="small-label">Username</label>
                 <input ng-model="model.user.username">
             </md-input-container>
             <md-input-container>
-                <label>Password</label>
+                <label class="small-label">Password</label>
                 <input ng-model="model.user.password" type="password">
             </md-input-container>
             <md-input-container>
-                <label>Re enter Password</label>
+                <label class="small-label">Re enter Password</label>
                 <input ng-model="model.user.passwordVerify" type="password">
             </md-input-container>
             <md-card-actions layout="column" layout-align="start">
-                <md-button class="md-accent md-raised" ng-click="model.registerUser(model.user)">Register</md-button>
-                <md-button class="md-warn md-raised" ng-click="model.goBack()">Cancel</md-button>
+                <md-button class="md-raised button-text white-color login-button" ng-click="model.registerUser(model.user)">Register</md-button>
+                <md-button class="md-primary md-hue-1 md-raised button-text white-color" style="background-color: #f1c40f" ng-click="model.goBack()">Cancel</md-button>
             </md-card-actions>
         </form>
     </md-card-content>

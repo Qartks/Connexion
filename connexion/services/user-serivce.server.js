@@ -102,6 +102,7 @@ module.exports = function (app, model) {
                             username: profile.username,
                             firstName: profile.displayName,
                             twitter: {
+                                twitterHandle : profile.username,
                                 id: profile.id,
                                 token: token,
                                 tokenSecret :refreshToken

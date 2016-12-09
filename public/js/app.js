@@ -3,9 +3,8 @@
         .config(function ($mdThemingProvider, $mdAriaProvider) {
             $mdThemingProvider
                 .theme('default')
-                .primaryPalette('cyan')
+                .primaryPalette('blue')
                 .accentPalette('green');
-
             $mdAriaProvider.disableWarnings();
         });
 })();

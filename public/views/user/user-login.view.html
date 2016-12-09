@@ -1,5 +1,5 @@
 <div class="login-panel">
-    <md-card flex-gt-xs="50" flex-xs="75" class="center-box">
+    <md-card flex-gt-md="25" flex-gt-xs="45" flex-xs="90" class="center-box">
         <md-card-title>
             <md-card-title-text>
                 <span class="md-headline">Login</span>
@@ -20,12 +20,12 @@
                     <input type="password" ng-model="model.user.password">
                 </md-input-container>
                 <md-card-actions layout="column" layout-align="start">
-                    <md-button class="md-default md-raised button-text" style="color: #CDDC39;" ng-click="model.login(model.user)">Login</md-button>
-                    <md-button class="md-default md-raised button-text twitter-button" href="/auth/twitter">
-                        <i class="fa fa-twitter white-icons"></i>
+                    <md-button class="md-default md-raised button-text white-color login-button" ng-click="model.login(model.user)">Login</md-button>
+                    <md-button class="md-default md-raised button-text twitter-button white-color"  href="/auth/twitter">
+                        <i class="fa fa-twitter white-color"></i>
                         <span class="space-left">Twitter</span>
                     </md-button>
-                    <md-button class="md-accent md-raised button-text" ng-click="model.goToRegister()">Register</md-button>
+                    <md-button class="md-accent md-raised button-text white-color" ng-click="model.goToRegister()">Register</md-button>
                 </md-card-actions>
             </form>
         </md-card-content>
