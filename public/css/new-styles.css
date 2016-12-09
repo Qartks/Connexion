@@ -322,7 +322,9 @@ h1.main-header {
     width: 100%;
     position: fixed;
 }
-
+.fixed-position{
+    position: fixed!important;
+}
 .user-avatar {
     border-radius: 50%;
     width: 75px;
@@ -354,6 +356,12 @@ h1.main-header {
 }
 .details-card p {
     margin-top: 10px;
-    line-height: 170%;
-    font-size: 100%;
+    line-height: 200%;
+    font-size: 90%;
+}
+
+.details-button {
+    background-color:#3498db;
+    color:#fff;
+    border-radius: 10px;
 }
