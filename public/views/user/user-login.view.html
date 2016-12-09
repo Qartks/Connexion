@@ -2,7 +2,7 @@
     <md-card flex-gt-xs="50" flex-xs="75" class="center-box">
         <md-card-title>
             <md-card-title-text>
-                <span class="md-headline" style="color: #CDDC39;">Login</span>
+                <span class="md-headline">Login</span>
             </md-card-title-text>
         </md-card-title>
         <div ng-show="model.error"
@@ -20,7 +20,7 @@
                     <input type="password" ng-model="model.user.password">
                 </md-input-container>
                 <md-card-actions layout="column" layout-align="start">
-                    <md-button class="md-default md-raised button-text" ng-click="model.login(model.user)">Login</md-button>
+                    <md-button class="md-default md-raised button-text" style="color: #CDDC39;" ng-click="model.login(model.user)">Login</md-button>
                     <md-button class="md-default md-raised button-text twitter-button" href="/auth/twitter">
                         <i class="fa fa-twitter white-icons"></i>
                         <span class="space-left">Twitter</span>
