@@ -3,13 +3,13 @@
         .module("Connexion")
         .controller("UserLandingController", UserLandingController);
 
-    function UserLandingController($sce, $location, $rootScope, PageService, PostService, UserService) {
+    function UserLandingController($sce, $location, $mdSidenav, $rootScope, PageService, PostService, UserService) {
         var vm = this;
         vm.data = [];
         vm.userId = $rootScope.currentUser._id;
         vm.message =" I'am going to this thing";
         vm.hashtag = "Connexion";
-
+        vm.toggleLeft = buildToggler('left');
         vm.goToSearch = goToSearch;
         vm.goToProfile = goToProfile;
         vm.goToCreatePost = goToCreatePost;
@@ -18,6 +18,18 @@
         vm.goToUserProfilePage = goToUserProfilePage;
         vm.logout = logout;
         vm.clickTweet = clickTweet;
+
+        function buildToggler(navID) {
+            return function() {
+                $mdSidenav(navID)
+                    .toggle()
+                    .then(function () {
+                        console.log("");
+                    });
+            }
+        }
+
+
         function clickTweet(message){
             var obj = {
                 'message' : message,

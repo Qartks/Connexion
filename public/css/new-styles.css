@@ -217,9 +217,60 @@ h1.main-header {
 
 }
 .bottom-sheet-button{
-    font-size: 80%!important;
+    font-size: 100%!important;
     text-transform: none;
 }
+.side-nav-button{
+    padding: 0!important;
+    padding-left: 5px!important;
+    margin: 0!important;
+    width:100%;
+    font-size: 120%!important;
+    text-transform: none!important;
+    text-decoration: none!important;
+    color: #6a6a6a!important;
+}
+.side-nav-button:hover{
+    padding: 0!important;
+    padding-left: 5px!important;
+    margin: 0!important;
+    font-size: 120%!important;
+    text-transform: none!important;
+    text-decoration: none!important;
+    color: #6a6a6a!important;
+}
+.side-nav-button:visited{
+    padding: 0!important;
+    padding-left: 5px!important;
+    margin: 0!important;
+    font-size: 120%!important;
+    text-transform: none!important;
+    text-decoration: none!important;
+    color: #6a6a6a!important;
+}
+.side-nav-button:link{
+    padding: 0!important;
+    padding-left: 5px!important;
+    margin: 0!important;
+    font-size: 120%!important;
+    text-transform: none!important;
+    text-decoration: none!important;
+    color: #6a6a6a!important;
+}
+.side-nav-button:active{
+    padding: 0!important;
+    padding-left: 5px!important;
+    margin: 0!important;
+    font-size: 120%!important;
+    text-transform: none!important;
+    text-decoration: none!important;
+    color: #6a6a6a!important;
+}
+.center-vertical-align{
+    vertical-align: middle;
+}
+
+
 .bottom-sheet-button i {
     vertical-align:middle;
 }
@@ -268,6 +319,7 @@ h1.main-header {
     padding-left: 10px!important;
     padding-right: 0px!important;
     color:#fff;
+    width: 100%;
     position: fixed;
 }
 
@@ -280,7 +332,7 @@ h1.main-header {
 
 .sidenav-toolbar {
     display: inline-block!important;
-    background-color: #2980b9;
+    background-color: #e74c3c;
     padding: 5% 5%;
     line-height: 150%;
     color: #ffffff;
@@ -288,7 +340,7 @@ h1.main-header {
     width: 100%;
 }
 .sidenav-toolbar h3{
-    font-size: 90%;
+    font-size: 80%;
     padding: 0px!important;
     margin: 10px 0px!important;
 }
