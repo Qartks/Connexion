@@ -72,93 +72,34 @@
     <div class="content-wrapper">
 
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 right-column ">
-
             <div class="event md-whiteframe-5dp" ng-repeat="d in model.posts | orderBy:'-dateCreated' ">
                 <div class="container-fluid details-card">
                     <img class="img-responsive padding-15" ng-src="{{d.pictures[0]}}" alt="">
                     <h2>{{d.postName}}  <span href="" ng-click="model.goToPostDetails(d)"><small class="details-dial"> Details </small></span> </h2>
-                    <span class="md-subhead" ng-click="model.goToUserProfilePage(d)">{{d.organizer}}</span>
-                    <a href="#" class="md-subhead">{{d.address}}</a>
+                    <span class="md-subhead yellow-color" ng-click="model.goToUserProfilePage(d)">{{d.organizer}}</span>
+                    <a href="" class="md-subhead">{{d.address}}</a>
                     <md-divider></md-divider>
                     <p class="pre-whitespace">{{d.description}}</p>
                 </div>
             </div>
 
         </div>
-
         <div class="hidden-xs hidden-sm col-md-4 col-lg-4 left-column">
-
             <div class="stick">
-
-                <div class="col-xs-12">
-                    <div class="md-whiteframe-5dp green">
-
-                        <div class="card-header">
-                            <h2>Popular <small>What you would like</small> </h2>
-                        </div>
-
-                        <div class="list-group no-bg">
-
-                            <a href="" class="list-group-item no-bg">
-                            <span class="pull-right">
-                              <i class="material-icons">trending_up</i>
-                            </span>
-                                #TheWalkingDead
-                            </a>
-                            <a href="" class="list-group-item no-bg">
-                            <span class="pull-right">
-                              <i class="material-icons">trending_flat</i>
-                            </span>
-                                #Survivor
-                            </a>
-                            <a href="" class="list-group-item no-bg">
-                            <span class="pull-right">
-                              <i class="material-icons">trending_down</i>
-                            </span>
-                                #Whitehouse
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-xs-12">
-                    <div class="md-whiteframe-5dp green">
-
-                        <div class="card-header">
-                            <h2>Top Search <small>Something really cool</small> </h2>
-                        </div>
-
-                        <div class="list-group no-bg">
-                            <a href="" class="list-group-item no-bg">
-                            <span class="pull-right">
-                              1
-                            </span>
-                                #Story
-                            </a>
-                            <a href="" class="list-group-item no-bg">
-                            <span class="pull-right">
-                              2
-                            </span>
-                                #Nature
-                            </a>
-                            <a href="" class="list-group-item no-bg">
-                            <span class="pull-right">
-                              3
-                            </span>
-                                #Sleeping
-                            </a>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="col-xs-12 tweet-panel" ng-if="model.user.twitter">
                     <a class="twitter-timeline" href="https://twitter.com/{{model.user.twitter.twitterHandle}}">Tweets by {{model.user.twitter.twitterHandle}}</a>
                     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
-
+                <div class="col-xs-12 tweet-panel">
+                    <a class="twitter-timeline" href="https://twitter.com/connexion">Tweets on #Connexion</a>
+                    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
             </div>
-
         </div>
     </div>
 </div>
+
+<a href="https://twitter.com/intent/tweet?button_hashtag=connexion" class="twitter-hashtag-button" data-url="https://twitter.com/hashtag/connexion?src=hash" data-show-count="false">
+    Tweet #connexion</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8">
+</script>

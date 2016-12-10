@@ -341,7 +341,7 @@ h1.main-header {
     padding: 5% 5%;
     line-height: 150%;
     color: #ffffff;
-    z-index: 1000;
+    z-index: 10000;
     width: 100%;
 }
 .sidenav-toolbar h3{
@@ -469,4 +469,7 @@ h1.main-header {
 }
 .twitter-logo-center{
     margin: 0 auto
+}
+.yellow-color {
+    color: #f39c12;
 }
