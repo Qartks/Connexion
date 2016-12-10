@@ -299,7 +299,10 @@ h1.main-header {
     text-align: center;
     font-size:120%
 }
-
+.md-bottom-sheet{
+    position: fixed!important;
+    bottom: 0px!important;
+}
 
 .button-with-icon-fix{
     text-align: right;
@@ -332,7 +335,6 @@ h1.main-header {
     height: 75px;
     z-index: 1000;
 }
-
 .sidenav-toolbar {
     display: inline-block!important;
     background-color: #e74c3c;
@@ -444,10 +446,6 @@ h1.main-header {
     margin: 0 auto;
 }
 
-.bottom-sheet-fix-below{
-    position: fixed;
-    bottom: 0px;
-}
 .landing-section{
     height: 560px;
     background-color:white;
