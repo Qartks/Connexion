@@ -1,11 +1,71 @@
-<md-toolbar class= "md-whiteframe-9dp">
-    <div class="fa-white md-toolbar-tools">
-        <h1 class="main-header">
-            Connexion
-        </h1>
+<md-toolbar class="tool-bar-color">
+    <div class="md-toolbar-tools">
+        <a class="menu-icons" hide-gt-sm>
+            <i class="material-icons">menu</i>
+        </a>
+        <span>
+            <a href="#/user">
+                <h1 class="main-header">Connexion</h1>
+            </a>
+        </span>
         <span flex=""></span>
         <md-button aria-label="Open Settings" ng-click="model.showListBottomSheet($event)">
             <i class="tool-bar-icons material-icons menu-icons">more_vert</i>
         </md-button>
     </div>
 </md-toolbar>
+
+<div class="content-wrapper" layout="column">
+    <section id="landing-view" class="right-column landing-section" layout-gt-sm="row" layout-sm="column">
+        <div flex layout-padding class="black">
+            <div class="inner-div">
+                Never feel bored again.<br>
+                Say Hello to
+                <span class="span-logo">Connexion!</span>
+                <br>
+                A place to meet people and collaborate
+            </div>
+        </div>
+        <div flex class="youtube-widget">
+            <iframe class="responsive-image" src="https://www.youtube.com/embed/BNaeiIAd7dM" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </section>
+    <section id="demo-section" class="section-info">
+        <h1>
+            Discover ways to collaborate
+        </h1>
+        <div layout-gt-sm="row" layout-sm="column">
+            <img src="../../img/fun1.png" class="img-responsive landingpage-image"/>
+            <img src="../../img/fun2.png" class="img-responsive landingpage-image"/>
+            <img src="../../img/fun3.png" class="img-responsive landingpage-image"/>
+        </div>
+        <div layout-gt-sm="row" layout-sm="column">
+            <img src="../../img/fun4.png" class="img-responsive landingpage-image"/>
+            <img src="../../img/fun5.png" class="img-responsive landingpage-image"/>
+            <img src="../../img/fun6.png" class="img-responsive landingpage-image"/>
+        </div>
+
+    </section>
+    <section id="powerd-by" class="section-info powerd-by-section">
+        <h1>
+            Application powered by
+        </h1>
+        <md-list layout-gt-sm="row" layout-sm="column">
+            <md-list-item>
+                <img src="../../img/flickr-logo-png-20.png" class="log-image img-responsive"/>
+            </md-list-item>
+            <md-list-item>
+                <img src="../../img/google-map.png" class="log-image img-responsive"/>
+            </md-list-item>
+            <md-list-item class="twitter-logo">
+                <i class="fa fa-twitter twitter-logo-center"  aria-hidden="true"></i>
+            </md-list-item>
+        </md-list>
+    </section>
+    <section class="section-info" class="section-info">
+        <h2 href="">
+            Click here to start now
+        </h2>
+
+    </section>
+</div>
