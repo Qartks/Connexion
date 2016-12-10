@@ -6,7 +6,6 @@
     function SearchController($routeParams, $rootScope, PageService, $location, UserService, PostService) {
         var vm = this;
 
-        vm.userId = $rootScope.currentUser._id;
         vm.posts = [];
         vm.users = [];
 
@@ -22,14 +21,13 @@
             $location.url("/user/profile/"+u._id);
         }
 
-
         function goBack() {
             $location.url(PageService.getPrevPage());
         }
 
         function init() {
             UserService
-                .getAllValidUsers(vm.userId)
+                .getAllValidUsers()
                 .success(function (users) {
                     vm.users = users;
                 })
@@ -38,7 +36,7 @@
                 });
 
             PostService
-                .getAllOpenPosts(vm.userId)
+                .getAllOpenPosts()
                 .success(function (posts) {
                     vm.posts = posts;
                 })

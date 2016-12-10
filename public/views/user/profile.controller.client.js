@@ -7,7 +7,7 @@
 
         var vm = this;
         vm.data = [];
-        vm.loggedInUser = $rootScope.currentUser._id;
+        vm.loggedInUser = {};
         vm.userId = $routeParams.userId;
 
         this.isThisPostOpen = isThisPostOpen;
@@ -20,7 +20,7 @@
         vm.logout = logout;
 
         function isThisMine() {
-            return vm.loggedInUser === vm.userId;
+            return vm.loggedInUser._id === vm.userId || vm.loggedInUser.role==="admin";
         }
 
         function logout() {
@@ -62,6 +62,12 @@
                 })
                 .error(function (err) {
                     console.log(err);
+                });
+
+            UserService
+                .getLoggedInUser()
+                .success(function (user) {
+                    vm.loggedInUser = user;
                 });
         }
 

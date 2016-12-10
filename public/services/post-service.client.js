@@ -11,11 +11,23 @@
             getPostByUserId : getPostByUserId,
             deletePostById  : deletePostById,
             updatePost      : updatePost,
-            getAllOpenPosts : getAllOpenPosts
+            getAllOpenPosts : getAllOpenPosts,
+            getConversationsByPostId : getConversationsByPostId,
+            updateCommentsForPostId : updateCommentsForPostId
         };
-        
-        function getAllOpenPosts(userId) {
-            var url = "/api/"+userId+"/allposts";
+
+        function updateCommentsForPostId(postId, newComment) {
+            var url = "/api/post/"+ postId +"/comment";
+            return $http.put(url, newComment);
+        }
+
+        function getConversationsByPostId(postId) {
+            var url = "/api/post/"+ postId + "/comms";
+            return $http.get(url);
+        }
+
+        function getAllOpenPosts() {
+            var url = "/api/openposts";
             return $http.get(url);
         }
         function createPost(userId,newPost){

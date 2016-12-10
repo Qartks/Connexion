@@ -38,7 +38,13 @@ module.exports = function () {
         noOfPeopleInvited       : Number,
         noOfPeopleGoing         : Number,
         noOfPeopleTalkingAbout  : Number,
-        rating                  : Number
+        rating                  : Number,
+        comments                :  [{
+            userId: String,
+            profilePicture: String,
+            text: String,
+            dateCreated : { type : Date, default : Date.now()}
+        }]
     });
     return postSchema;
 };

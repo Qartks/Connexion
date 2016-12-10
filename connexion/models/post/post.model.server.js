@@ -1,9 +1,11 @@
 module.exports = function () {
+
     var model = {};
     var mongoose = require('mongoose');
     mongoose.Promise = require('bluebird');
     var PostSchema = require('./post.schema.server')();
     var PostModel = mongoose.model("PostModel", PostSchema);
+
     var api = {
         setModel        : setModel,
         getPostById     : getPostById,
@@ -11,8 +13,11 @@ module.exports = function () {
         updatePost      : updatePost,
         deletePostById  : deletePostById,
         getPostByUserId : getPostByUserId,
-        getAllOpenPosts : getAllOpenPosts
+        getAllOpenPosts : getAllOpenPosts,
+        getConversationsByPostId : getConversationsByPostId,
+        updateCommentsForPostId : updateCommentsForPostId
     };
+
     function setModel(_model) {
         model = _model;
     }
@@ -32,7 +37,30 @@ module.exports = function () {
         return PostModel.find({creatorId : userId});
     }
     function getAllOpenPosts(userId) {
-        return PostModel.find({ $or : [ {isOpen : true }, {friends : userId}, {creatorId : userId}]});
+        return PostModel.find({ $or : [ {isOpen : true } ]});
+    }
+    function getConversationsByPostId(postId) {
+        return PostModel.find({});
+    }
+    function updateCommentsForPostId( postId, comment) {
+        return PostModel
+            .findOneAndUpdate (
+                {
+                    _id :   postId
+                },
+                {
+                    $push: {
+                        comments : {
+                            userId          : comment.userId,
+                            profilePicture  : comment.profilePicture,
+                            text            : comment.text
+                        }
+                    }
+                },
+                {
+                    new     :     true
+                }
+            );
     }
     return api;
 };

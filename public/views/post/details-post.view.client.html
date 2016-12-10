@@ -1,8 +1,8 @@
 <md-sidenav class="md-sidenav-left md-whiteframe-4dp fixed-position" layout="column" md-component-id="left" flex>
     <div class="sidenav-toolbar">
-        <img ng-src="{{model.user.profilePicture}}" class="user-avatar">
-        <h3>Username : {{model.user.username}}</h3>
-        <h3>Name : {{model.user.firstName}}</h3>
+        <img ng-src="{{model.loggedInUser.profilePicture}}" class="user-avatar">
+        <h3>Username : {{model.loggedInUser.username}}</h3>
+        <h3>Name : {{model.loggedInUser.firstName}}</h3>
     </div>
 
     <md-list>
@@ -149,18 +149,16 @@
                             </div>
                         </md-toolbar>
                         <div layout="row">
-                            <input ng-model="model.searchText" class="searchBox" placeholder="New comment" aria-label="Search">
-                            <md-button aria-label="send">
+                            <input ng-model="model.newComment" class="searchBox" placeholder="New comment" aria-label="Search">
+                            <md-button ng-disabled="!model.isLoggedIn()" aria-label="send" ng-click="model.sendComment(model.newComment)">
                                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
                             </md-button>
-
                         </div>
                         <md-list flex layout-padding>
-                            <md-list-item class="md-2-line" ng-repeat="comment in model.getComments()" ng-click="null">
-                                <img ng-src="{{comment.url}}" class="md-avatar" />
+                            <md-list-item class="md-2-line" ng-repeat="comment in model.post.comments | orderBy:'-dateCreated' track by $index " ng-click="null">
+                                <img ng-src="{{comment.profilePicture}}" class="md-avatar" />
                                 <div class="md-list-item-text" layout="column">
-                                    <h3>{{ comment.name }}</h3>
-                                    <p>{{ comment.comment }}</p>
+                                    <p>{{ comment.text }}</p>
                                 </div>
                                 <md-divider ></md-divider>
                             </md-list-item>
@@ -247,7 +245,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-xs-12">
+                <div class="col-xs-12" ng-show="model.isLoggedIn()">
                     <div class="row" flex>
                         <md-button class="md-raised login-button">
                             Going

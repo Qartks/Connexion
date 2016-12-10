@@ -3,10 +3,11 @@
         .module("Connexion")
         .controller("UserEditController", UserEditController);
     
-    function UserEditController($rootScope, $location, UserService, PageService, PostService, $mdToast) {
+    function UserEditController($routeParams, $rootScope, $location, UserService, PageService, PostService, $mdToast) {
         vm = this;
 
-        vm.userId = $rootScope.currentUser._id;
+        vm.loggedInUserId = $rootScope.currentUser._id;
+        vm.userId = $routeParams.userId;
         vm.user= {};
 
         vm.goToSearch = goToSearch;

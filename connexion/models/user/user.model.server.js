@@ -26,7 +26,7 @@ module.exports = function () {
     }
 
     function getAllValidUsers() {
-        return UserModel.find({});
+        return UserModel.find({ role : null });
     }
 
     function updateImageUrl(userId, f) {

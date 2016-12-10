@@ -10,6 +10,7 @@ module.exports = function () {
     //         process.env.MLAB_PASSWORD +
     //         '@ds013916.mlab.com:13916/web-dev-kartikeya-db';
     // }
+
     mongoose.connect('mongodb://admin:admin@ds063546.mlab.com:63546/connexion-db');
 
     var userModel = require('./user/user.model.server')();

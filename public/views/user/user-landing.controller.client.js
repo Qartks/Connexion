@@ -3,12 +3,12 @@
         .module("Connexion")
         .controller("UserLandingController", UserLandingController);
 
-    function UserLandingController($sce, $location, $mdSidenav, $rootScope, PageService, PostService, UserService) {
+    function UserLandingController($sce, $location, $mdSidenav, PageService, PostService, UserService, ToastService) {
         var vm = this;
         vm.data = [];
-        vm.userId = $rootScope.currentUser._id;
-        vm.message =" I'am going to this thing";
-        vm.hashtag = "Connexion";
+
+        vm.loggedInUser = {};
+
         vm.toggleLeft = toggleLeft('left');
         vm.goToSearch = goToSearch;
         vm.goToProfile = goToProfile;
@@ -28,7 +28,6 @@
                     });
             }
         }
-
 
         function clickTweet(message){
             var obj = {
@@ -54,21 +53,20 @@
 
         function init() {
             PostService
-                .getAllOpenPosts(vm.userId)
+                .getAllOpenPosts()
                 .success(function (posts) {
                     vm.posts = posts;
                 })
                 .error(function (err) {
                     console.log(err);
             });
-            UserService.findUserById(vm.userId)
+
+            UserService
+                .getLoggedInUser()
                 .success(function (user) {
-                    vm.user = user;
-                    console.log(vm.user);
-                })
-                .error(function (err) {
-                    console.log("User not found",err);
-            })
+                    vm.loggedInUser = user;
+                });
+
         }
 
         init();
@@ -98,11 +96,19 @@
         }
 
         function goToProfile() {
-            $location.url('/user/profile/'+ vm.userId);
+            if (vm.loggedInUser !== '0' ) {
+                $location.url('/user/profile/'+ vm.loggedInUser._id);
+            } else {
+                ToastService.showToast('You need to login!');
+            }
         }
 
         function goToCreatePost() {
-            $location.url('/user/post/new');
+            if (vm.loggedInUser !== '0' ) {
+                $location.url('/user/post/new');
+            } else {
+                ToastService.showToast('You need to login! ->');
+            }
         }
 
     }

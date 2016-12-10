@@ -3,23 +3,31 @@
         .module("Connexion")
         .controller("DetailsPostController", DetailsPostController);
 
-    function DetailsPostController($rootScope, $routeParams, PostService, PageService, $location, UserService, $mdSidenav) {
+    function DetailsPostController($rootScope, $routeParams, PostService, PageService, $location, UserService, ToastService) {
         var vm = this;
 
-        vm.userId = $rootScope.currentUser._id;
         vm.postId = $routeParams.postId;
         vm.post = {};
+        vm.loggedInUser= {};
+
+        vm.toggleLeft = toggleLeft('left');
+        vm.map = { center: { latitude: 42.3601, longitude: -71.0589 }, zoom: 4 };
+        vm.marker= {latitude: 40.1451, longitude: -99.6680 };
+
+        vm.comments = [];
+
         vm.goToSearch = goToSearch;
         vm.goToProfile = goToProfile;
         vm.goToCreatePost = goToCreatePost;
         vm.getComments = getComments;
+        vm.sendComment = sendComment;
         vm.isThisMine = isThisMine;
         vm.editThisPost = editThisPost;
         vm.deleteThisPost = deleteThisPost;
+        vm.isLoggedIn = isLoggedIn;
         vm.logout = logout;
-        vm.toggleLeft = toggleLeft('left');
-        vm.map = { center: { latitude: 42.3601, longitude: -71.0589 }, zoom: 4 };
-        vm.marker= {latitude: 40.1451, longitude: -99.6680 }
+
+
 
         function logout() {
             UserService
@@ -37,6 +45,24 @@
 
                     });
             }
+        }
+        
+        function sendComment(cmt) {
+            vm.newComment = "";
+            var newComment = {
+                userId : vm.loggedInUser._id,
+                profilePicture : vm.loggedInUser.profilePicture,
+                text : cmt
+            };
+
+            PostService
+                .updateCommentsForPostId(vm.postId, newComment)
+                .success(function (post) {
+                    vm.post = post;
+                })
+                .error(function (err) {
+                    console.log(err);
+                });
         }
 
         function editThisPost() {
@@ -60,7 +86,9 @@
         }
 
         function isThisMine() {
-            return vm.post.creatorId === vm.userId;
+            if(isLoggedIn()) {
+                return vm.post.creatorId === vm.loggedInUser._id || vm.loggedInUser.role==="admin";
+            }
         }
 
         function goToSearch() {
@@ -69,11 +97,23 @@
         }
 
         function goToProfile() {
-            $location.url('/user/profile/' + vm.userId);
+            if (isLoggedIn()) {
+                $location.url('/user/profile/' + vm.userId);
+            } else {
+                ToastService.showToast("Login already!");
+            }
         }
 
         function goToCreatePost() {
-            $location.url('/user/post/new');
+            if (isLoggedIn()) {
+                $location.url('/user/post/new');
+            } else {
+                ToastService.showToast("Please Login");
+            }
+        }
+
+        function isLoggedIn() {
+            return vm.loggedInUser !== '0';
         }
 
         function init(){
@@ -86,14 +126,13 @@
                 .error(function (err) {
                     console.log(err);
             });
-            UserService.findUserById(vm.userId)
+
+            UserService
+                .getLoggedInUser()
                 .success(function (user) {
-                    vm.user = user;
-                    console.log(vm.user);
-                })
-                .error(function (err) {
-                    console.log("User not found",err);
-            });
+                    vm.loggedInUser = user;
+                });
+
             $(document ).ready(function() {
                 $('#details').show();
                 $('#images').hide();

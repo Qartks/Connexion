@@ -16,15 +16,20 @@
             findUserById : findUserById,
             updateUser : updateUser,
             getAllValidUsers : getAllValidUsers,
-            tweet : tweet
+            tweet : tweet,
+            getLoggedInUser : getLoggedInUser
         };
 
+        function getLoggedInUser() {
+            var url = "/api/loggedin";
+            return $http.get(url);
+        }
         function tweet(obj) {
             var url = '/twitter/tweet';
             return $http.post(url,obj);
         }
-        function getAllValidUsers(userId) {
-            return $http.get("/api/"+ userId + "/users");
+        function getAllValidUsers() {
+            return $http.get("/api/allusers");
         }
 
         function updateUser(user) {

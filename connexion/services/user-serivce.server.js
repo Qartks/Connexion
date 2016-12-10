@@ -31,10 +31,7 @@ module.exports = function (app, model) {
     var session      = require('express-session');
     var bcrypt = require("bcrypt-nodejs");
     var LocalStrategy    = require('passport-local').Strategy;
-    var FacebookStrategy = require('passport-facebook').Strategy;
-    var OAuth= require('oauth').OAuth
-
-
+    var OAuth= require('oauth').OAuth;
 
 
     // Need this for twitter don't remove this
@@ -69,7 +66,7 @@ module.exports = function (app, model) {
     app.delete("/api/user/:userId", deleteUser);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
-    app.get("/api/:userId/users", getAllValidUsers);
+    app.get("/api/allusers", getAllValidUsers);
 
     // Login Operations
     app.post("/api/login", passport.authenticate('local'), login);
@@ -79,7 +76,7 @@ module.exports = function (app, model) {
 
 
 
-// Twitter
+    // Twitter
     //1. Login
     var twitterConfig = {
         consumerKey: "p4AB7WZ0LseMrT0S1mpK62kIt",
@@ -385,10 +382,9 @@ module.exports = function (app, model) {
     }
 
     function getAllValidUsers(req, res) {
-        var userId = req.params.userId;
         model
             .userModel
-            .getAllValidUsers(userId)
+            .getAllValidUsers()
             .then(
                 function (users) {
                     res.json(users)

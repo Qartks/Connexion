@@ -23,33 +23,26 @@
             .when("/user/search",{
                 templateUrl:"./views/page/search.view.client.html",
                 controller :"SearchController",
-                controllerAs :"model",
-                resolve : {
-                    loggedin: checkLoggedIn
-                }
+                controllerAs :"model"
             })
             .when("/user",{
                 templateUrl:"./views/user/user-landing.view.client.html",
                 controller :"UserLandingController",
-                controllerAs :"model",
-                resolve : {
-                    loggedin: checkLoggedIn
-                }
+                controllerAs :"model"
             })
             .when("/user/profile/:userId",{
                 templateUrl:"./views/user/profile.view.client.html",
                 controller :"ProfileController",
-                controllerAs :"model",
-                resolve : {
-                    loggedin: checkLoggedIn
-                }
+                controllerAs :"model"
             })
             .when("/user/profile/:userId/edit",{
                 templateUrl:"./views/user/edit-user.view.client.html",
                 controller :"UserEditController",
                 controllerAs :"model",
                 resolve : {
-                    loggedin: checkLoggedIn
+                    loggedin: checkLoggedIn,
+                    isProfileOwn: isProfileOwn
+
                 }
             })
             .when("/user/post/:postId/edit",{
@@ -57,7 +50,8 @@
                 controller :"EditPostController",
                 controllerAs :"model",
                 resolve : {
-                    loggedin: checkLoggedIn
+                    loggedin: checkLoggedIn,
+                    isPostOwner: isPostOwner
                 }
             })
             .when("/user/post/new",{
@@ -71,15 +65,56 @@
             .when("/user/post/:postId",{
                 templateUrl:"./views/post/details-post.view.client.html",
                 controller :"DetailsPostController",
-                controllerAs :"model",
-                resolve : {
-                    loggedin: checkLoggedIn
-                }
+                controllerAs :"model"
             })
             .otherwise({
                 redirectTo: "/"
             });
     }
+
+    var isProfileOwn = function ($q, $http, $location, $rootScope, $routeParams, UserService) {
+        var deferred = $q.defer();
+        var userId = $routeParams.userId;
+        UserService
+            .findUserById(userId)
+            .success(function (user) {
+                if (user._id === $rootScope.currentUser._id || $rootScope.currentUser.role === "admin") {
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                    console.log("You're trying to do a bad thing!");
+                    $http.post("/api/logout");
+                    $location.url("/login");
+                }
+            })
+            .error(function (err) {
+                console.log("You're trying to do a bad thing!");
+            });
+
+        return deferred.promise;
+    };
+
+    var isPostOwner = function ($q, $http, $location, $rootScope, $routeParams, PostService) {
+        var deferred = $q.defer();
+        var postId = $routeParams.postId;
+        PostService
+            .getPostById(postId)
+            .success(function (post) {
+                if (post.creatorId === $rootScope.currentUser._id || $rootScope.currentUser.role==="admin") {
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                    console.log("You're trying to do a bad thing!");
+                    $http.post("/api/logout");
+                    $location.url("/login");
+                }
+            })
+            .error(function (err) {
+                console.log("You're trying to do a bad thing!")
+            });
+
+        return deferred.promise;
+    };
 
     var checkLoggedIn = function ($q, $http, $location, $rootScope) {
         var deferred = $q.defer();
@@ -92,7 +127,7 @@
                     deferred.resolve();
                 } else {
                     deferred.reject();
-                    $rootScope.error = "You need to log in."
+                    $rootScope.error = "You need to log in.";
                     $location.url("/login");
                 }
             });

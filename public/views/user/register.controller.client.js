@@ -30,7 +30,7 @@
                                 } else {
                                     var user = response.data;
                                     $rootScope.currentUser = user;
-                                    $location.url("/user/"+ $rootScope.currentUser._id +"/profile/edit");
+                                    $location.url("/user/profile/"+ user._id + "/edit");
                                 }
                             });
                 } else {

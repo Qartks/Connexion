@@ -29,7 +29,7 @@
             <div id="post_results" class="container-fluid">
                 <strong>Posts</strong>
                 <hr style="border-color: #434343">
-                <div ng-repeat="d in model.posts track by $index" class="col-sm-4 col-md-4 col-lg-4">
+                <div ng-repeat="d in model.posts | filter:{postName:model.searchText} track by $index" class="col-sm-4 col-md-4 col-lg-4">
                     <div ng-click="model.goToThisPost(d)" class="thumbnail padding-15 md-whiteframe-2dp">
                         <img class="img-responsive" ng-src="{{d.pictures[0]}}" alt="...">
                         <div class="caption text-center">

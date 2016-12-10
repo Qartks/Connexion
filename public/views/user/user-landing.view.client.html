@@ -1,10 +1,9 @@
 <md-sidenav class="md-sidenav-left md-whiteframe-4dp fixed-position" layout="column" md-component-id="left" flex>
     <div class="sidenav-toolbar">
-        <img ng-src="{{model.user.profilePicture}}" class="user-avatar">
-        <h3>Username : {{model.user.username}}</h3>
-        <h3>Name : {{model.user.firstName}}</h3>
+        <img ng-src="{{model.loggedInUser.profilePicture}}" class="user-avatar">
+        <h3>Username : {{model.loggedInUser.username}}</h3>
+        <h3>Name : {{model.loggedInUser.firstName}}</h3>
     </div>
-
     <md-list>
         <md-item>
             <md-button class="side-nav-button" ng-click="model.goToProfile()">
@@ -69,9 +68,9 @@
     </div>
 </md-toolbar>
 
-
 <div class="container">
     <div class="content-wrapper">
+
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 right-column ">
 
             <div class="event md-whiteframe-5dp" ng-repeat="d in model.posts | orderBy:'-dateCreated' ">
