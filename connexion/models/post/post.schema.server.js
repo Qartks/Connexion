@@ -35,12 +35,19 @@ module.exports = function () {
                 ref : "user"
             }
         ],
-        noOfPeopleInvited       : Number,
-        noOfPeopleGoing         : Number,
-        noOfPeopleTalkingAbout  : Number,
-        rating                  : Number,
+        interested     : [
+            {
+                type : mongoose.Schema.Types.ObjectId,
+                ref : "user"
+            }
+        ],
+        noOfPeopleInvited       : { type : Number, default: 0 },
+        noOfPeopleGoing         : { type : Number, default: 0 },
+        noOfPeopleTalkingAbout  : { type : Number, default: 0 },
+        rating                  : { type : Number, default: 0 },
         comments                :  [{
             userId: String,
+            username : String,
             profilePicture: String,
             text: String,
             dateCreated : { type : Date, default : Date.now()}

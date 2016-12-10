@@ -158,7 +158,8 @@
                             <md-list-item class="md-2-line" ng-repeat="comment in model.post.comments | orderBy:'-dateCreated' track by $index " ng-click="null">
                                 <img ng-src="{{comment.profilePicture}}" class="md-avatar" />
                                 <div class="md-list-item-text" layout="column">
-                                    <p>{{ comment.text }}</p>
+                                    <p> {{ comment.username }} </p>
+                                    <h3>{{ comment.text }}</h3>
                                 </div>
                                 <md-divider ></md-divider>
                             </md-list-item>
@@ -193,21 +194,21 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>Number of people invited</td>
+                                <td>People invited</td>
                                 <td class="text-success">
-                                    <i class="fa fa-level-up"></i> {{model.post.noOfPeopleInvited}}
+                                    {{model.post.noOfPeopleInvited}}
                                 </td>
                             </tr>
                             <tr>
-                                <td>Number of people going</td>
-                                <td class="text-warning">
-                                    <i class="fa fa-level-down"></i> {{model.post.noOfPeopleGoing}}
+                                <td>People going</td>
+                                <td class="text-success">
+                                    {{model.post.noOfPeopleGoing}}
                                 </td>
                             </tr>
                             <tr>
-                                <td>Number of people talking</td>
-                                <td class="text-danger">
-                                    <i class="fa fa-level-down"></i> {{model.post.noOfPeopleTalkingAbout}}
+                                <td>People Interested</td>
+                                <td class="text-success">
+                                    {{model.post.noOfPeopleTalkingAbout}}
                                 </td>
                             </tr>
                             </tbody>
@@ -232,7 +233,7 @@
                             <tr>
                                 <td>Rating of organizer</td>
                                 <td class="text-warning">
-                                    {{model.post.noOfPeopleGoing}}
+                                    {{model.loggedInUser.rating}}
                                 </td>
                             </tr>
                             <tr>
@@ -247,10 +248,10 @@
                 </div>
                 <div class="col-xs-12" ng-show="model.isLoggedIn()">
                     <div class="row" flex>
-                        <md-button class="md-raised login-button">
+                        <md-button class="md-raised login-button" ng-click="model.imGoing()">
                             Going
                         </md-button>
-                        <md-button class="md-raised md-primary">
+                        <md-button class="md-raised md-primary" ng-click="model.imInterested()">
                             Interested
                         </md-button>
                     </div>

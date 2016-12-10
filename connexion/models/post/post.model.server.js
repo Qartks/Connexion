@@ -28,7 +28,7 @@ module.exports = function () {
         return PostModel.create(post);
     }
     function updatePost(postId,post){
-        return PostModel.update({_id:postId}, {$set : post});
+        return PostModel.findOneAndUpdate({_id:postId}, {$set : post} , { new: true });
     }
     function deletePostById(postId){
         return PostModel.remove({_id:postId});
@@ -52,6 +52,7 @@ module.exports = function () {
                     $push: {
                         comments : {
                             userId          : comment.userId,
+                            username        : comment.username,
                             profilePicture  : comment.profilePicture,
                             text            : comment.text
                         }

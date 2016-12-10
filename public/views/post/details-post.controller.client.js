@@ -24,10 +24,40 @@
         vm.isThisMine = isThisMine;
         vm.editThisPost = editThisPost;
         vm.deleteThisPost = deleteThisPost;
+        vm.imGoing = imGoing;
+        vm.imInterested = imInterested;
         vm.isLoggedIn = isLoggedIn;
         vm.logout = logout;
 
-
+        function imGoing() {
+            if (vm.post.going.indexOf(vm.loggedInUser._id) == -1) {
+                vm.post.going.push(vm.loggedInUser._id);
+            }
+            vm.post.noOfPeopleGoing = vm.post.going.length;
+            PostService
+                .updatePost(vm.postId, vm.post)
+                .success(function (post) {
+                    vm.post = post;
+                })
+                .error(function (err) {
+                    console.log(err);
+                });
+        }
+        
+        function imInterested() {
+            if (vm.post.interested.indexOf(vm.loggedInUser._id) == -1) {
+                vm.post.interested.push(vm.loggedInUser._id);
+            }
+            vm.post.noOfPeopleTalkingAbout = vm.post.interested.length;
+            PostService
+                .updatePost(vm.postId, vm.post)
+                .success(function (post) {
+                    vm.post = post;
+                })
+                .error(function (err) {
+                    console.log(err);
+                });
+        }
 
         function logout() {
             UserService
@@ -50,9 +80,10 @@
         function sendComment(cmt) {
             vm.newComment = "";
             var newComment = {
-                userId : vm.loggedInUser._id,
-                profilePicture : vm.loggedInUser.profilePicture,
-                text : cmt
+                userId          : vm.loggedInUser._id,
+                username        : vm.loggedInUser.username,
+                profilePicture  : vm.loggedInUser.profilePicture,
+                text            : cmt
             };
 
             PostService
@@ -98,7 +129,7 @@
 
         function goToProfile() {
             if (isLoggedIn()) {
-                $location.url('/user/profile/' + vm.userId);
+                $location.url('/user/profile/' + vm.loggedInUser._id);
             } else {
                 ToastService.showToast("Login already!");
             }

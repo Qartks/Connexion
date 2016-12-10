@@ -28,7 +28,7 @@ module.exports = function () {
         ],
         fblink          : String,
         twtrlink        : String,
-        rating          : Number,
+        rating          : { type : Number, default : 0 },
         role            : String,
         searchHistory   : [String]
     });
