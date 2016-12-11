@@ -224,8 +224,8 @@ h1.main-header {
     text-transform: none;
 }
 .bottom-sheet-fix-below{
-    bottom: 0px!important;
-    position: fixed!important;
+    bottom: 0px;
+
 }
 .side-nav-button{
     padding: 0!important;
@@ -397,7 +397,7 @@ h1.main-header {
 }
 .youtube-widget {
     position: relative;
-    padding-bottom: 20%; /* 16:9 */
+    padding-bottom: 23%; /* 16:9 */
     height: 0;
 }
 .youtube-widget iframe {
@@ -544,13 +544,16 @@ ul.rating {
 }
 .get-started-section {
     height:400px;
-    padding-top:100px!important;
+    padding-top:150px!important;
     background-color: white!important;
-    text-align: center
+    text-align: center;
 }
-.get-started-section a,
-.get-started-section a:hover{
+.get-started-section a{
     text-decoration: none;
+}
+.get-started-section :hover{
+    color:white;
+    transition: color 1s;
 }
 .get-started-section span
 {
@@ -568,7 +571,6 @@ ul.rating {
     color:white;
 }
 .linkedin-vin :hover{
-    font-size:100px;
     color: #2ecc71!important;
     transition: color 1s;
 }
@@ -583,7 +585,6 @@ ul.rating {
     color:white;
 }
 .linkedin-shu :hover{
-    font-size:100px;
     color: #f39c12!important;
     transition: color 1s;
 }
@@ -607,9 +608,6 @@ ul.rating {
     text-decoration: none;
     text-transform: none;
     color: white;
-}
-.leave-place{
-    padding-top: 100px;
 }
 .footer {
     text-align: center;
