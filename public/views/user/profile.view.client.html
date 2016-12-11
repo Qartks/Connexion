@@ -54,6 +54,13 @@
                     <md-button class="md-raised md-primary" ng-click="model.editThisProfile()"> Edit </md-button>
                     <md-button class="md-raised md-warn" ng-click="model.deleteThisProfile()"> UnRegister </md-button>
                 </section>
+                <section layout="row" layout-sm="row"  layout-align="center">
+                    <span>Rating({{model.user.rating}})</span>
+                    <md-slider-container>
+                        <md-slider flex md-discrete min="0" max="5" ng-model="model.user.rating" ng-disabled="!model.loggedInUser">
+                        </md-slider>
+                    <md-input-container>
+                </section>
 
                 <div class="panel stats-panel">
                     <table class="table table-striped m-b-none">
@@ -66,19 +73,13 @@
                         <tr>
                             <td>Events hosted</td>
                             <td class="text-success">
-                                <i class="fa fa-level-up"></i> 40%
+                                {{model.eventsHosted}}
                             </td>
                         </tr>
                         <tr>
                             <td>Popularity</td>
                             <td class="text-warning">
-                                <i class="fa fa-level-down"></i> 5%
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Customer increase</td>
-                            <td class="text-danger">
-                                <i class="fa fa-level-down"></i> 20%
+                                {{model.poplarity}}
                             </td>
                         </tr>
                         </tbody>
@@ -100,7 +101,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

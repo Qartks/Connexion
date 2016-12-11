@@ -4,11 +4,33 @@
         .controller("ProfileController", ProfileController);
 
     function ProfileController($routeParams, PageService, $location, $rootScope, PostService, UserService) {
-
         var vm = this;
+        vm.user = {};
         vm.data = [];
         vm.loggedInUser = {};
         vm.userId = $routeParams.userId;
+
+
+        init();
+
+        vm.getSelectedRating = getSelectedRating;
+        vm.rating =  {
+            current: vm.user.rating,
+            max: 5
+        };
+
+        function getSelectedRating (rating) {
+            vm.user.rating = rating;
+            UserService
+                .updateUser(vm.userId, vm.user)
+                .success(function (obj) {
+
+                })
+                .error(function (err) {
+                    console.log(err);
+                });
+        }
+
 
         this.isThisPostOpen = isThisPostOpen;
         vm.goToSearch = goToSearch;
@@ -51,6 +73,7 @@
                 .findUserById(vm.userId)
                 .success(function (user) {
                     vm.user = user;
+                    vm.userRating = user.rating;
                 })
                 .error(function (err) {
                     console.log(err);
@@ -71,7 +94,6 @@
                 });
         }
 
-        init();
 
         function goToPostDetails(post) {
             $location.url('/user/post/' + post._id);
