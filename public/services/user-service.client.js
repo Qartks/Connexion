@@ -17,9 +17,13 @@
             updateUser : updateUser,
             getAllValidUsers : getAllValidUsers,
             tweet : tweet,
-            getLoggedInUser : getLoggedInUser
+            getLoggedInUser : getLoggedInUser,
+            findUserByUserName : findUserByUserName
         };
-
+        
+        function findUserByUserName(username) {
+            return $http.get("/api/user/username/"+username);
+        }
         function getLoggedInUser() {
             var url = "/api/loggedin";
             return $http.get(url);

@@ -144,9 +144,9 @@ h1.main-header {
 
 .profile-panel {
     color: aliceblue;
-    background: #7b4397; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #7b4397 , #dc2430); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #7b4397 , #dc2430); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #4776E6; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #4776E6 , #8E54E9); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #4776E6 , #8E54E9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-size:cover;
     background-color: rgba(0, 3, 2, 1);
 }
@@ -341,7 +341,9 @@ h1.main-header {
 }
 .sidenav-toolbar {
     display: inline-block!important;
-    background-color: #e74c3c;
+    background: #DE6262; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #DE6262 , #FFB88C); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #DE6262 , #FFB88C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     padding: 5% 5%;
     line-height: 150%;
     color: #ffffff;
@@ -511,4 +513,7 @@ ul.rating {
 .blue-color {
     color: #3498db;
     font-size: 70%;
+}
+.margin-bottom {
+    margin-bottom: 10px;
 }

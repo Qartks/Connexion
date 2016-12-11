@@ -134,7 +134,7 @@
                     <div id="details" class="my-height" layout-padding>
                         <div layout="row">
                             <div flex="50">Name :</div>
-                            <div flex="50"> {{model.post.organizer}}</div>
+                            <div flex="50"><a ng-click="model.goToUser()" class="anchor-link"> {{model.post.organizer}}</a></div>
                         </div>
                         <md-divider></md-divider>
                         <div layout="row">
@@ -233,9 +233,13 @@
                 </div>
                 <div class="col-xs-12">
                     <!-- Here Here Here -->
-                    <div ng-show="model.isThisMine()" layout="row">
-                        <a href=""  ng-click="model.editThisPost()" class="btn btn-info" flex>Edit</a>
-                        <a href=""  ng-click="model.deleteThisPost()" class="btn btn-danger" flex>Delete</a>
+                    <div ng-show="!model.isThisMine()" layout="row" class="margin-bottom">
+                        <md-button class="md-raised login-button white-color" ng-click="model.imGoing()" flex> Going </md-button>
+                        <md-button class="md-raised md-primary" ng-click="model.imInterested()" flex> Interested </md-button>
+                    </div>
+                    <div ng-show="model.isThisMine()" layout="row" class="margin-bottom">
+                        <md-button ng-click="model.editThisPost()" class="md-default md-raised" flex>Edit Post</md-button>
+                        <md-button ng-click="model.deleteThisPost()" class="md-warn md-raised" flex>Delete</md-button>
                     </div>
                     <div class="panel">
                         <table class="table table-striped m-b-none">
@@ -296,16 +300,6 @@
                             </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-                <div class="col-xs-12" ng-show="model.isLoggedIn()">
-                    <div class="row" flex>
-                        <md-button class="md-raised login-button" ng-click="model.imGoing()">
-                            Going
-                        </md-button>
-                        <md-button class="md-raised md-primary" ng-click="model.imInterested()">
-                            Interested
-                        </md-button>
                     </div>
                 </div>
             </div>
