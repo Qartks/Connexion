@@ -23,7 +23,45 @@
         vm.isThisMine = isThisMine;
         vm.logout = logout;
         vm.goBack = goBack;
+        vm.slider = {
+            value: 5,
+            options: {
+                id: 'slider-id',
+                onStart: function(id) {
+                },
+                onChange: function(id) {
+                },
+                onEnd: function(id) {
+                    updateRating();
+                }
+            }
+        };
+        var updateRating = function() {
+            if(typeof(vm.user.rating) === "object") {
+                vm.user.rating[vm.loggedInUser._id] = vm.slider.value;
+            } else {
+                vm.user.rating = {};
+                vm.user.rating[vm.loggedInUser._id] = vm.slider.value;
+            }
+            var sum = 0;
+            var count = 0;
+            for (var key in vm.user.rating) {
+                sum+= Number(vm.user.rating[key]);
+                count++;
+            }
+            if(count == 0)
+                vm.rating = new Array(1);
+            else {
+                console.log("Sum ",sum,"Count ",count);
+                vm.rating = new Array(Math.floor(sum / count));
+            }
+            UserService.updateUser(vm.user)
+                .success(function (succ) {
 
+                }).error(function (err) {
+
+            });
+        };
         vm.toggleLeft = toggleLeft('left');
         function toggleLeft(navID) {
             return function() {
@@ -63,8 +101,16 @@
                 .findUserById(vm.userId)
                 .success(function (user) {
                     vm.user = user;
-                    vm.userRating = user.rating;
-
+                    var sum = 0;
+                    var count = 0;
+                    for (var key in user.rating) {
+                        sum+= Number(user.rating[key]);
+                        count++;
+                    }
+                    if(count == 0)
+                        vm.rating = new Array(1);
+                    else
+                        vm.rating = new Array(Math.floor(sum / count));
                     PostService
                         .getPostCreatedByUserId(user._id)
                         .success(function (posts) {
