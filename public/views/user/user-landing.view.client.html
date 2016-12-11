@@ -56,9 +56,6 @@
 
 <md-toolbar class="tool-bar-color">
     <div class="md-toolbar-tools">
-        <a ng-click="model.toggleLeft()" class="menu-icons" hide-gt-sm>
-            <i class="material-icons">menu</i>
-        </a>
         <span>
             <a href="#/user">
                 <h1 class="main-header">Connexion</h1>
@@ -69,7 +66,9 @@
         <a class="menu-icons" href="" ng-click="model.goToProfile()" hide-sm hide-xs><i class="tool-bar-icons material-icons">account_circle</i></a>
         <a class="menu-icons" href="" ng-click="model.goToCreatePost()" hide-sm hide-xs><i class="tool-bar-icons  material-icons">create</i></a>
         <a class="menu-icons" href="" ng-click="model.logout()" hide-sm hide-xs><i class="tool-bar-icons material-icons">power_settings_new</i></a>
-        <!--<md-button ng-click ="model.clickTweet('This is a sample tweet from view')" hide-sm hide-xs>Tweet!</md-button>-->
+        <a ng-click="model.toggleLeft('')" class="menu-icons" hide-gt-sm>
+            <i class="tool-bar-icons material-icons">more_vert</i>
+        </a>
     </div>
 </md-toolbar>
 

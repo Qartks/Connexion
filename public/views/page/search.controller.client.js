@@ -22,6 +22,7 @@
         }
 
         function goBack() {
+            console.log(PageService.getPrevPage())
             $location.url(PageService.getPrevPage());
         }
 

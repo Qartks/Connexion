@@ -3,14 +3,14 @@
         .module("Connexion")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($routeParams, PageService, $location, $rootScope, PostService, UserService) {
+    function ProfileController($routeParams, PageService, $location, $rootScope, PostService, UserService, $mdSidenav) {
 
         var vm = this;
         vm.data = [];
         vm.loggedInUser = {};
         vm.userId = $routeParams.userId;
 
-        this.isThisPostOpen = isThisPostOpen;
+        vm.isThisPostOpen = isThisPostOpen;
         vm.goToSearch = goToSearch;
         vm.goToCreatePost = goToCreatePost;
         vm.goToPostDetails = goToPostDetails;
@@ -18,6 +18,18 @@
         vm.deleteThisProfile = deleteThisProfile;
         vm.isThisMine = isThisMine;
         vm.logout = logout;
+        vm.goBack = goBack;
+
+        vm.toggleLeft = toggleLeft('left');
+        function toggleLeft(navID) {
+            return function() {
+                $mdSidenav(navID)
+                    .toggle()
+                    .then(function () {
+
+                    });
+            }
+        }
 
         function isThisMine() {
             return vm.loggedInUser._id === vm.userId || vm.loggedInUser.role==="admin";
@@ -29,10 +41,6 @@
                 .then(function () {
                     $location.url("/login");
                 })
-        }
-        
-        function editThisProfile() {
-            $location.url("/user/profile/"+ vm.userId +"/edit");
         }
 
         function deleteThisProfile() {
@@ -73,7 +81,16 @@
 
         init();
 
+        function goBack() {
+            $location.url(PageService.getPrevPage());
+        }
+        function editThisProfile() {
+            PageService.setPrevPage('/user/profile/'+ vm.userId);
+            $location.url("/user/profile/"+ vm.userId +"/edit");
+        }
+
         function goToPostDetails(post) {
+            PageService.setPrevPage('/user/profile/'+ vm.userId);
             $location.url('/user/post/' + post._id);
         }
 
@@ -87,6 +104,7 @@
         }
 
         function goToCreatePost() {
+            PageService.setPrevPage('/user/profile/'+ vm.userId);
             $location.url('/user/post/new');
         }
 

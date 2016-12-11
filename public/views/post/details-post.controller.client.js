@@ -129,6 +129,7 @@
 
         function goToProfile() {
             if (isLoggedIn()) {
+                PageService.setPrevPage('/user/post/' + vm.postId);
                 $location.url('/user/profile/' + vm.loggedInUser._id);
             } else {
                 ToastService.showToast("Login already!");
@@ -137,6 +138,7 @@
 
         function goToCreatePost() {
             if (isLoggedIn()) {
+                PageService.setPrevPage('/user/post/' + vm.postId);
                 $location.url('/user/post/new');
             } else {
                 ToastService.showToast("Please Login");

@@ -144,7 +144,9 @@ h1.main-header {
 
 .profile-panel {
     color: aliceblue;
-    /*background:url("http://lorempixel.com/90/90/") center center;*/
+    background: #7b4397; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #7b4397 , #dc2430); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #7b4397 , #dc2430); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-size:cover;
     background-color: rgba(0, 3, 2, 1);
 }
@@ -476,8 +478,8 @@ h1.main-header {
     color: #f39c12;
 }
 .card-image{
-    min-width: 250px!important;
-    max-width: 250px!important;
-    min-height: 250px!important;
-    max-height: 250px!important;
+    min-width: 70%;
+}
+.purple {
+    color: purple;
 }
