@@ -466,6 +466,27 @@ h1.main-header {
 .demo-section{
     background-color: #ecf0f1
 }
+#powerd-by p{
+    text-align: center!important;
+    font-size: 120% !important;
+    line-height: 170%!important;
+    color: #686868;
+}
+#powerd-by div{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#powerd-by img{
+    width: 30%;
+    height: 40%
+}
+#demo-section p{
+    text-align: center!important;
+    font-size: 120% !important;
+    line-height: 170%;
+    color: #686868;
+}
 .powerd-by-section{
     background-color:white;
 }
@@ -516,4 +537,79 @@ ul.rating {
 }
 .margin-bottom {
     margin-bottom: 10px;
+}
+.get-started-section {
+    height:400px;
+    padding-top:100px!important;
+    background-color: white!important;
+    text-align: center
+}
+.get-started-section a,
+.get-started-section a:hover{
+    text-decoration: none;
+}
+.get-started-section span
+{
+    color: #8e44ad;
+    font-size: 250%;
+    text-decoration: none;
+    text-transform: none;
+}
+.get-started-section:hover{
+    background-color: #00BCD4!important;
+    transition: background-color 1s;
+}
+.linkedin-vin{
+    font-size:100px;
+    color:white;
+}
+.linkedin-vin :hover{
+    font-size:100px;
+    color: #2ecc71!important;
+    transition: color 1s;
+}
+.linkedin-vin a{
+    font-size:100px;
+    text-decoration: none;
+    text-transform: none;
+    color: white;
+}
+.linkedin-shu{
+    font-size:100px;
+    color:white;
+}
+.linkedin-shu :hover{
+    font-size:100px;
+    color: #f39c12!important;
+    transition: color 1s;
+}
+
+.linkedin-shu a{
+    font-size:100px;
+    text-decoration: none;
+    text-transform: none;
+    color: white;
+}
+.linkedin-git{
+    color:white;
+}
+.linkedin-git :hover{
+    font-size:100px;
+    color: #1abc9c!important;
+    transition: color 1s;
+}
+.linkedin-git a{
+    font-size:100px;
+    text-decoration: none;
+    text-transform: none;
+    color: white;
+}
+.leave-place{
+    padding-top: 100px;
+}
+.footer {
+    text-align: center;
+    padding-top: 30px;
+    background-color: #2c3e50;
+    color:#95a5a6
 }
