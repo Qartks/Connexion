@@ -4,7 +4,7 @@
         .controller("NewPostController", NewPostController)
     function NewPostController($rootScope, $location, $sce, FlickerService, PostService, PageService, UserService, $mdSidenav) {
         var vm = this;
-
+        vm.result ='';
         vm.userId = $rootScope.currentUser._id;
         vm.user = {};
         vm.post = {};
@@ -66,12 +66,13 @@
         function createPost(post) {
             post.organizer = vm.user.username;
             post.creatorId = vm.userId;
-            post.email = vm.user.email;
-            post.phone = vm.user.phone;
-            post.address = vm.user.address;
+            post.email = vm.user.email || "";
+            post.phone = vm.user.phone || "";
+            post.address = vm.user.address.formatted_address;
+            post.latitude = vm.user.address.geometry.location.lat();
+            post.longitude = vm.user.address.geometry.location.lng();
             post.pictures = fullPic;
             post.thumbnails = vm.pictures;
-
             PostService.createPost(vm.userId, post)
                 .success(function (some) {
                     $location.url('/user/profile/'+ vm.userId );

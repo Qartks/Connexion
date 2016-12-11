@@ -90,8 +90,9 @@
                     </md-input-container>
                     <md-input-container>
                         <label>Location</label>
-                        <input ng-model="model.user.address">
+                        <input ng-model="model.user.address" g-places-autocomplete>
                     </md-input-container>
+
                     <md-input-container>
                         <label>Description</label>
                         <textarea ng-model="model.post.description" md-maxlength="140" rows="5" md-select-on-focus="">
@@ -162,7 +163,7 @@
                         <div ng-repeat="pic in model.pictures track by $index">
                             <div class="col-sm-6">
                                 <div>
-                                    <img class="thumbnail" ng-dblclick="model.deleteThisPic($index)"ng-src="{{pic}}" alt="">
+                                    <img class="" ng-dblclick="model.deleteThisPic($index)"ng-src="{{pic}}" alt="">
                                 </div>
                             </div>
                         </div>
