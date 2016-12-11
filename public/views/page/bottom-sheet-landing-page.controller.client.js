@@ -8,6 +8,7 @@
     function ListBottomSheetCtrl($mdBottomSheet,$location) {
         var vm = this;
         vm.items = [
+            { name: 'Explore', icon: 'new_releases' },
             { name: 'Login', icon: 'assignment_ind' },
             { name: 'Register', icon: 'new_releases' },
         ];

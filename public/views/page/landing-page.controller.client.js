@@ -17,6 +17,8 @@
                     $location.url("login");
                 else if(answer == "Register")
                     $location.url("register");
+                else if(answer == "Explore")
+                    $location.url("user");
             }, function() {
             });
         };
