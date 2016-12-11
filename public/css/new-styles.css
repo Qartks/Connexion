@@ -504,3 +504,11 @@ ul.rating {
 .purple {
     color: purple;
 }
+.anchor-link{
+    text-decoration: none!important;
+    text-transform: none!important;
+}
+.blue-color {
+    color: #3498db;
+    font-size: 70%;
+}

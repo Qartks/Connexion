@@ -128,7 +128,7 @@
             if (vm.loggedInUser !== '0' ) {
                 $location.url('/user/post/new');
             } else {
-                // ToastService.showToast('You need to login!');
+                ToastService.showToast('You need to login!');
             }
         }
     }

@@ -4,7 +4,7 @@
         .controller("EditPostController", EditController);
 
 
-    function EditController($rootScope, $routeParams, $location, PageService, PostService, UserService, $mdToast, FlickerService) {
+    function EditController($rootScope, $routeParams, $location, PageService, PostService, UserService, $mdToast, FlickerService,$mdSidenav) {
         var vm = this;
 
         vm.userId = $rootScope.currentUser._id;
@@ -19,14 +19,29 @@
         vm.logout = logout;
         vm.searchPhotos = searchPhotos;
         vm.selectPhoto = selectPhoto;
+        vm.goBack = goBack;
+        vm.toggleLeft = toggleLeft('left');
 
+        function toggleLeft(navID) {
+            return function() {
+                $mdSidenav(navID)
+                    .toggle()
+                    .then(function () {
+
+                    });
+            }
+        }
+
+        function goBack() {
+            $location.url(PageService.getPrevPage());
+        }
 
         function goToProfile() {
             $location.url("/user/profile/"+ vm.userId);
         }
 
         function goToSearch() {
-            PageService.setPrevPage("/user/post/"+ vm.postId +"/edit");
+            PageService.setPrevPage("/user/post/"+ vm.postId);
             $location.url("/user/search");
         }
 
