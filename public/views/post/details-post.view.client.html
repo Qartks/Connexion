@@ -30,6 +30,55 @@
                 </md-item-content>
             </md-button>
         </md-item>
+
+        <md-item ng-show="model.isThisMine()">
+            <md-button class="side-nav-button" ng-click="model.editThisPost()">
+                <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                    <div class="inset">
+                        <i class="material-icons center-vertical-align">format_align_right</i>
+                    </div>
+                    <div class="inset center-vertical-align">
+                        Edit Post
+                    </div>
+                </md-item-content>
+            </md-button>
+        </md-item>
+        <md-item ng-show="model.isThisMine()">
+            <md-button class="side-nav-button" ng-click="model.deleteThisPost()">
+                <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                    <div class="inset">
+                        <i class="material-icons center-vertical-align">delete</i>
+                    </div>
+                    <div class="inset center-vertical-align">
+                        Delete Post
+                    </div>
+                </md-item-content>
+            </md-button>
+        </md-item>
+        <md-item ng-show="!model.isThisMine()">
+            <md-button class="side-nav-button" ng-click="model.imGoing()">
+                <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                    <div class="inset">
+                        <i class="material-icons center-vertical-align">play_arrow</i>
+                    </div>
+                    <div class="inset center-vertical-align">
+                        Going
+                    </div>
+                </md-item-content>
+            </md-button>
+        </md-item>
+        <md-item ng-show="!model.isThisMine()">
+            <md-button class="side-nav-button" ng-click="model.imInterested()">
+                <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                    <div class="inset">
+                        <i class="material-icons center-vertical-align">add_alert</i>
+                    </div>
+                    <div class="inset center-vertical-align">
+                        Interested
+                    </div>
+                </md-item-content>
+            </md-button>
+        </md-item>
         <md-item>
             <md-button class="side-nav-button" ng-click="model.logout()">
                 <md-item-content md-ink-ripple layout="row" layout-align="start center">
@@ -52,8 +101,8 @@
 
 <md-toolbar class= "tool-bar-color">
     <div class="md-toolbar-tools">
-        <a ng-click="model.toggleLeft()" class="menu-icons" hide-gt-sm>
-            <i class="material-icons">menu</i>
+        <a class="menu-icons" ng-click="model.goBack()">
+            <i class="material-icons">arrow_back</i>
         </a>
         <span>
             <a href="#/user">
@@ -65,6 +114,9 @@
         <a class="menu-icons" href="" ng-click="model.goToProfile()" hide-sm hide-xs><i class="tool-bar-icons material-icons">account_circle</i></a>
         <a class="menu-icons" href="" ng-click="model.goToCreatePost()" hide-sm hide-xs><i class="tool-bar-icons  material-icons">create</i></a>
         <a class="menu-icons" href="" ng-click="model.logout()" hide-sm hide-xs><i class="tool-bar-icons material-icons">power_settings_new</i></a>
+        <a ng-click="model.toggleLeft('')" class="menu-icons" hide-gt-sm>
+            <i class="tool-bar-icons material-icons">more_vert</i>
+        </a>
         <!--<md-button ng-click ="model.clickTweet('This is a sample tweet from view')" hide-sm hide-xs>Tweet!</md-button>-->
     </div>
 </md-toolbar>

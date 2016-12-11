@@ -3,7 +3,7 @@
         .module("Connexion")
         .controller("DetailsPostController", DetailsPostController);
 
-    function DetailsPostController($rootScope, $routeParams, PostService, PageService, $location, UserService, ToastService) {
+    function DetailsPostController($rootScope, $routeParams, PostService, PageService, $location, UserService, ToastService, $mdSidenav) {
         var vm = this;
 
         vm.postId = $routeParams.postId;
@@ -28,6 +28,22 @@
         vm.imInterested = imInterested;
         vm.isLoggedIn = isLoggedIn;
         vm.logout = logout;
+        vm.goBack = goBack;
+        vm.toggleLeft = toggleLeft('left');
+
+        function toggleLeft(navID) {
+            return function() {
+                $mdSidenav(navID)
+                    .toggle()
+                    .then(function () {
+
+                    });
+            }
+        }
+
+        function goBack() {
+            $location.url(PageService.getPrevPage());
+        }
 
         function imGoing() {
             if (vm.post.going.indexOf(vm.loggedInUser._id) == -1) {
@@ -97,6 +113,7 @@
         }
 
         function editThisPost() {
+            PageService.setPrevPage('/user/post/' + vm.postId);
             $location.url("/user/post/"+vm.postId+"/edit");
         }
 
