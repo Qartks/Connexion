@@ -109,14 +109,21 @@
                 .deletePostById(vm.postId)
                 .success(function (obj) {
                     vm.post = {};
+                    $location.url(PageService.getPrevPage());
                 })
                 .error(function (err) {
                     console.log(err);
                 });
-            $location.url("/user");
         }
 
         function init() {
+            UserService.findUserById(vm.userId)
+                .success(function (user) {
+                    vm.user = user;
+                })
+                .error(function (err) {
+                    console.log(err);
+            });
             PostService
                 .getPostById(vm.postId)
                 .success(function (post) {

@@ -67,6 +67,8 @@ module.exports = function (app, model) {
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.get("/api/allusers", getAllValidUsers);
+    app.get("/api/user/username/:username",getUserByUserName);
+
 
     // Login Operations
     app.post("/api/login", passport.authenticate('local'), login);
@@ -364,6 +366,22 @@ module.exports = function (app, model) {
                     res.sendStatus(500).send(err);
                 }
             );
+    }
+
+    function getUserByUserName(req, res){
+        var username = req.params.username;
+        model
+            .userModel
+            .findUserByUsername(username)
+            .then(function (user) {
+                if(user){
+                    res.send(user)
+                } else {
+                    res.send('0')
+                }
+            },function (err) {
+                res.sendStatus(500).send(err);
+        })
     }
 
     function updateUser(req, res) {

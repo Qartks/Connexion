@@ -28,6 +28,8 @@
         vm.isLoggedIn = isLoggedIn;
         vm.logout = logout;
         vm.goBack = goBack;
+        vm.goToUser = goToUser;
+
         vm.toggleLeft = toggleLeft('left');
 
         function toggleLeft(navID) {
@@ -151,6 +153,10 @@
                 ToastService.showToast("Login already!");
             }
         }
+        function goToUser() {
+            PageService.setPrevPage('/user/post/' + vm.postId);
+            $location.url('/user/profile/' + vm.organizer._id);
+        }
 
         function goToCreatePost() {
             if (isLoggedIn()) {
@@ -191,7 +197,13 @@
                         });
 
                     vm.marker= {latitude: p.latitude ||42 , longitude: p.longitude || -71 };
-                    console.log("marker",vm.marker);
+                    UserService
+                        .findUserByUserName(vm.post.organizer)
+                        .success(function (user) {
+                            if(user!=='0')
+                                vm.organizer = user;
+                            console.log("user is ",user);
+                        })
                 })
                 .error(function (err) {
                     console.log(err);
@@ -201,6 +213,7 @@
                 .success(function (user) {
                     vm.loggedInUser = user;
                 });
+
 
             $(document ).ready(function() {
                 $('#details').show();
