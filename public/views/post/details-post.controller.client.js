@@ -155,7 +155,7 @@
         }
         function goToUser() {
             PageService.setPrevPage('/user/post/' + vm.postId);
-            $location.url('/user/profile/' + vm.organizer._id);
+            $location.url('/user/profile/' + vm.post.creatorId);
         }
 
         function goToCreatePost() {
@@ -202,7 +202,6 @@
                         .success(function (user) {
                             if(user!=='0')
                                 vm.organizer = user;
-                            console.log("user is ",user);
                         })
                 })
                 .error(function (err) {

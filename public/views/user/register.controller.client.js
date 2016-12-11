@@ -4,7 +4,7 @@
         .controller("UserRegisterController", UserRegisterController);
 
 
-    function UserRegisterController($rootScope, $location, UserService) {
+    function UserRegisterController($scope, $rootScope, $location, UserService) {
         var vm = this;
         vm.error = "";
         vm.user = {};
@@ -17,6 +17,11 @@
         }
         
         function registerUser(user) {
+
+            if (!$scope.registerForm.$valid) {
+                vm.error = "There are invalid fields";
+                return;
+            }
 
             if (user.username && user.password) {
                 if (user.password === user.passwordVerify) {

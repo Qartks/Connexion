@@ -3,7 +3,7 @@
         .module("Connexion")
         .controller("UserEditController", UserEditController);
     
-    function UserEditController($routeParams, $rootScope, $location, UserService, PageService, PostService, $mdToast,$mdSidenav) {
+    function UserEditController($scope, $routeParams, $rootScope, $location, UserService, PageService, PostService, $mdToast,$mdSidenav) {
         vm = this;
 
         vm.loggedInUserId = $rootScope.currentUser._id;
@@ -61,6 +61,12 @@
         }
         
         function updateThisProfile(user) {
+
+            if (!$scope.editUserForm.$valid) {
+                vm.error = "There are invalid fields";
+                return;
+            }
+
             UserService
                 .updateUser(user)
                 .success(function (u) {

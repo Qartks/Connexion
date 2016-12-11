@@ -10,14 +10,14 @@
             {{model.error}}
         </div>
         <md-card-content>
-            <form  layout-gt-xs="column" layout-xs="column">
-                <md-input-container>
+            <form name="userForm"  layout-gt-xs="column" layout-xs="column" ng-submit="model.submit()">
+                <md-input-container ng-class="{ 'has-error': userForm.username.$invalid }">
                     <label class="small-label">User Name</label>
-                    <input ng-model="model.user.username">
+                    <input type="text" name="username" ng-model="model.user.username" required>
                 </md-input-container>
-                <md-input-container>
+                <md-input-container ng-class="{ 'has-error': userForm.password.$invalid }">
                     <label class="small-label">Password</label>
-                    <input type="password" ng-model="model.user.password">
+                    <input type="password" name="password" ng-model="model.user.password" required>
                 </md-input-container>
                 <md-card-actions layout="column" layout-align="start">
                     <md-button class="md-default md-raised button-text white-color login-button" ng-click="model.login(model.user)">Login</md-button>
@@ -26,6 +26,7 @@
                         <span class="space-left">Twitter</span>
                     </md-button>
                     <md-button class="md-accent md-raised button-text white-color" ng-click="model.goToRegister()">Register</md-button>
+                    <md-button class="md-default md-raised button-text" href="#/user">Continue As Guest</md-button>
                 </md-card-actions>
             </form>
         </md-card-content>

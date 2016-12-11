@@ -4,13 +4,19 @@
         .controller("UserLoginController", UserLoginController);
 
 
-    function UserLoginController($location, UserService){
+    function UserLoginController($location, UserService, $scope){
         var vm = this;
 
         vm.error = "";
 
         vm.goToRegister = goToRegister;
         vm.login = login;
+        vm.submit = submit;
+        
+        
+        function submit() {
+            login(vm.user);
+        }
 
         function goToRegister() {
             $location.url("/register");
@@ -22,16 +28,20 @@
                 return;
             }
 
-            // UserService.findUserByCredentials(user.username, user.password)
+            if (!$scope.userForm.$valid) {
+                vm.error = "There are invalid fields";
+                return;
+            }
+
             UserService.login(user)
                 .success(function (user) {
-                    if(user === "0") {
-                        vm.error = "No Such user";
-                    } else {
+                    if(user !== "0") {
                         $location.url("/user");
                     }
                 })
                 .error(function (err) {
+                    vm.user={};
+                    vm.error = "No Such User";
                     console.log(err);
                 });
         }

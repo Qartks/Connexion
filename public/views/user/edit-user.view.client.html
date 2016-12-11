@@ -119,77 +119,71 @@
             </div>
 
             <div class="col-sm-12 col-md-8">
-                <md-card>
-                    <md-card-title>
+                <form name="editUserForm">
 
-                        <md-card-title-text>
-                            <span class="md-headline">Edit profile</span>
-                        </md-card-title-text>
+                    <div ng-show="model.error"
+                         class="alert alert-danger alert-dismissable ">
+                        {{model.error}}
+                    </div>
 
-                    </md-card-title>
-                    <md-card-content layout="column" class="new-post-card">
+                    <md-card>
+                        <md-card-title>
 
-                        <md-input-container>
-                            <label>First Name</label>
-                            <input ng-model="model.user.firstName">
-                        </md-input-container>
+                            <md-card-title-text>
+                                <span class="md-headline">Edit profile</span>
+                            </md-card-title-text>
 
-                        <md-input-container>
-                            <label>Last Name</label>
-                            <input ng-model="model.user.lastName">
-                        </md-input-container>
+                        </md-card-title>
+                        <md-card-content layout="column" class="new-post-card">
 
-                        <md-input-container>
-                            <label>Username</label>
-                            <input ng-model="model.user.username" disabled>
-                        </md-input-container>
+                            <md-input-container>
+                                <label>First Name</label>
+                                <input ng-model="model.user.firstName" required>
+                            </md-input-container>
 
-                        <md-input-container>
-                            <label>Email</label>
-                            <input ng-model="model.user.email">
-                        </md-input-container>
+                            <md-input-container>
+                                <label>Last Name</label>
+                                <input ng-model="model.user.lastName" required>
+                            </md-input-container>
 
-                        <md-input-container>
-                            <label>Phone</label>
-                            <input ng-model="model.user.phone">
-                        </md-input-container>
+                            <md-input-container>
+                                <label>Username</label>
+                                <input ng-model="model.user.username" disabled>
+                            </md-input-container>
 
-                        <md-input-container>
-                            <label>Address</label>
-                            <input ng-model="model.user.address">
-                        </md-input-container>
+                            <md-input-container>
+                                <label>Email</label>
+                                <input ng-model="model.user.email" required>
+                            </md-input-container>
 
-                        <md-input-container>
-                            <label>Headline</label>
-                            <input ng-model="model.user.headline">
-                        </md-input-container>
+                            <md-input-container>
+                                <label>Phone</label>
+                                <input ng-model="model.user.phone">
+                            </md-input-container>
 
-                        <md-input-container>
-                            <label>Tag line</label>
-                            <input ng-model="model.user.tagline">
-                        </md-input-container>
+                            <md-input-container>
+                                <label>Headline</label>
+                                <input ng-model="model.user.headline" required>
+                            </md-input-container>
 
-                        <md-input-container>
-                            <label>Description</label>
-                            <textarea ng-model="model.user.bio" md-maxlength="200" rows="5" md-select-on-focus=""></textarea>
-                        </md-input-container>
+                            <md-input-container>
+                                <label>Tag line</label>
+                                <input ng-model="model.user.tagline" required>
+                            </md-input-container>
 
-                        <md-input-container>
-                            <label>Facebook</label>
-                            <input ng-model="model.user.fblink">
-                        </md-input-container>
+                            <md-input-container>
+                                <label>Description</label>
+                                <textarea ng-model="model.user.bio" md-maxlength="200" rows="5" md-select-on-focus="" required></textarea>
+                            </md-input-container>
 
-                        <md-input-container>
-                            <label>Twitter</label>
-                            <input ng-model="model.user.twtrlink">
-                        </md-input-container>
+                        </md-card-content>
+                        <md-card-actions layout="column" layout-align="start">
+                            <md-button class="md-accent md-raised" ng-click="model.updateThisProfile(model.user)">Update</md-button>
+                            <md-button class="md-warn md-raised" ng-click="model.goBackToProfile()">Cancel</md-button>
+                        </md-card-actions>
+                    </md-card>
 
-                    </md-card-content>
-                    <md-card-actions layout="column" layout-align="start">
-                        <md-button class="md-accent md-raised" ng-click="model.updateThisProfile(model.user)">Update</md-button>
-                        <md-button class="md-warn md-raised" ng-click="model.goBackToProfile()">Cancel</md-button>
-                    </md-card-actions>
-                </md-card>
+                </form>
             </div>
 
         </div>

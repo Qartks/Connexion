@@ -63,9 +63,9 @@ module.exports = function (app, model) {
     //CRUD Operations
     app.get("/api/user", findUser);
     app.post("/api/user", createUser);
-    app.delete("/api/user/:userId", deleteUser);
+    app.delete("/api/user/:userId", authorized, deleteUser);
     app.get("/api/user/:userId", findUserById);
-    app.put("/api/user/:userId", updateUser);
+    app.put("/api/user/:userId", authorized, updateUser);
     app.get("/api/allusers", getAllValidUsers);
     app.get("/api/user/username/:username",getUserByUserName);
 
@@ -121,7 +121,7 @@ module.exports = function (app, model) {
                     if (err) { return done(err); }
                 }
             );
-    };
+    }
 
     app.get('/auth/twitter',
         passport.authenticate('twitter'));
@@ -181,6 +181,13 @@ module.exports = function (app, model) {
 
 // End Of Twitter
 
+    function authorized (req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.send(401);
+        } else {
+            next();
+        }
+    }
 
     function login(req, res) {
         var user = req.user;

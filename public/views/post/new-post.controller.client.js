@@ -2,7 +2,7 @@
     angular
         .module("Connexion")
         .controller("NewPostController", NewPostController)
-    function NewPostController($rootScope, $location, $sce, FlickerService, PostService, PageService, UserService, $mdSidenav) {
+    function NewPostController($rootScope, $location, $sce, $scope, FlickerService, PostService, PageService, UserService, $mdSidenav) {
         var vm = this;
         vm.result ='';
         vm.userId = $rootScope.currentUser._id;
@@ -64,20 +64,26 @@
         }
 
         function createPost(post) {
+
+            if (!$scope.newPostForm.$valid) {
+                vm.error = "There are invalid fields";
+                return;
+            }
+
             post.organizer = vm.user.username;
             post.creatorId = vm.userId;
             post.email = vm.user.email || "";
             post.phone = vm.user.phone || "";
-            post.address = vm.user.address.formatted_address;
-            post.latitude = vm.user.address.geometry.location.lat();
-            post.longitude = vm.user.address.geometry.location.lng();
+            post.address = vm.address.formatted_address;
+            post.latitude = vm.address.geometry.location.lat();
+            post.longitude = vm.address.geometry.location.lng();
             post.pictures = fullPic;
             post.thumbnails = vm.pictures;
             PostService.createPost(vm.userId, post)
                 .success(function (some) {
                     $location.url('/user/profile/'+ vm.userId );
                     if (vm.user.twitter.id && vm.sendTweet) {
-                        clickTweet("I just posted an event \"" + post.postName + "\"  on @AppConnexion #WebDev");
+                        clickTweet("I just posted an event \"" + post.postName + "\"  on @AppConnexion #NeverMissAnEvent #WebDev");
                     }
                 })
                 .error(function (err) {
@@ -123,12 +129,9 @@
         function selectPhoto(photo) {
             var url = "https://farm" + photo.farm + ".staticflickr.com/"
                 + photo.server + "/" + photo.id + "_" + photo.secret + "_b.jpg";
-
             fullPic.push(url);
-
             url = "https://farm" + photo.farm + ".staticflickr.com/"
                 + photo.server + "/" + photo.id + "_" + photo.secret + "_s.jpg";
-
             vm.pictures.push(url);
         }
     }

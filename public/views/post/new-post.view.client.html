@@ -65,63 +65,63 @@
 <div class="container">
     <div class="content-wrapper">
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 right-column ">
-            <md-card>
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">New Post</span>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-content layout="column" class="new-post-card">
-                    <md-input-container>
-                        <label>Title</label>
-                        <input ng-model="model.post.postName">
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Contact Person</label>
-                        <input ng-model="model.user.username" disabled>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Email</label>
-                        <input ng-model="model.user.email">
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Phone</label>
-                        <input ng-model="model.user.phone">
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Location</label>
-                        <input ng-model="model.user.address" g-places-autocomplete>
-                    </md-input-container>
+            <form name="newPostForm">
 
-                    <md-input-container>
-                        <label>Description</label>
-                        <textarea ng-model="model.post.description" md-maxlength="140" rows="5" md-select-on-focus="">
-                        </textarea>
-                    </md-input-container>
-                    <div layout-gt-xs="row">
-                        <md-input-container class="md-block" flex-gt-sm="">
-                            <label>Tags</label>
-                            <md-select ng-model="model.post.tags">
-                                <md-option>
-                                </md-option>
-                            </md-select>
+
+                <div ng-show="model.error"
+                     class="alert alert-danger alert-dismissable">
+                    {{model.error}}
+                </div>
+
+                <md-card>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">New Post</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content layout="column" class="new-post-card">
+                        <md-input-container>
+                            <label>Title</label>
+                            <input ng-model="model.post.postName" required>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Contact Person</label>
+                            <input ng-model="model.user.username" disabled>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Email</label>
+                            <input ng-model="model.user.email" required>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Phone</label>
+                            <input ng-model="model.user.phone">
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Location</label>
+                            <input ng-model="model.address" g-places-autocomplete required>
                         </md-input-container>
 
                         <md-input-container>
-                            <label>Event date</label>
-                            <md-datepicker ng-model="model.post.dateOfEvent"></md-datepicker>
+                            <label>Description</label>
+                            <textarea ng-model="model.post.description" md-maxlength="140" rows="5" md-select-on-focus="" required>
+                            </textarea>
                         </md-input-container>
-                    </div>
-                    <md-checkbox id="isOpen" ng-model="model.post.isOpen"> Open to all?</md-checkbox>
-                    <md-checkbox ng-show="model.user.twitter.id" id="tweet" ng-model="model.sendTweet"> Send a Tweet out?</md-checkbox>
+                        <div layout-gt-xs="row">
+                            <md-input-container>
+                                <label>Event date</label>
+                                <md-datepicker ng-model="model.post.dateOfEvent"></md-datepicker>
+                            </md-input-container>
+                        </div>
+                        <md-checkbox id="isOpen" ng-model="model.post.isOpen" required> Open to all?</md-checkbox>
+                        <md-checkbox ng-show="model.user.twitter.id" id="tweet" ng-model="model.sendTweet"> Send a Tweet out?</md-checkbox>
 
-                </md-card-content>
-                <md-card-actions layout="column" layout-align="start">
-                    <md-button class="md-accent md-raised" ng-click="model.createPost(model.post)">Post</md-button>
-                    <md-button class="md-warn md-raised">Cancel</md-button>
-                </md-card-actions>
-            </md-card>
-
+                    </md-card-content>
+                    <md-card-actions layout="column" layout-align="start">
+                        <md-button class="md-accent md-raised" ng-click="model.createPost(model.post)">Post</md-button>
+                        <md-button class="md-warn md-raised" href="#/user">Cancel</md-button>
+                    </md-card-actions>
+                </md-card>
+            </form>
         </div>
         <div class="hidden-xs hidden-sm col-md-4 col-lg-4 left-column">
             <div class="stick">

@@ -4,7 +4,7 @@
         .controller("EditPostController", EditController);
 
 
-    function EditController($rootScope, $routeParams, $location, PageService, PostService, UserService, $mdToast, FlickerService,$mdSidenav) {
+    function EditController($rootScope, $routeParams, $scope, $location, PageService, PostService, UserService, $mdToast, FlickerService, $mdSidenav) {
         var vm = this;
 
         vm.userId = $rootScope.currentUser._id;
@@ -83,6 +83,12 @@
         }
 
         function updateThisPost(post) {
+
+            if (!$scope.editPostForm.$valid) {
+                vm.error = "There are invalid fields";
+                return;
+            }
+
             PostService
                 .updatePost(vm.postId, post)
                 .success(function (page) {

@@ -75,6 +75,7 @@
         var deferred = $q.defer();
         var userId = $routeParams.userId;
         var url = "/api/loggedin";
+
         $http.get(url)
             .success(function (user) {
                 $rootScope.error = null;
@@ -83,7 +84,7 @@
                 }
 
                 if ($rootScope.currentUser) {
-                    if (userId == $rootScope.currentUser || $rootScope.currentUser.role==="admin") {
+                    if (userId == $rootScope.currentUser._id || ($rootScope.currentUser.role ==="admin")) {
                         deferred.resolve();
                     } else {
                         console.log("You're trying to do a bad thing!");
@@ -103,26 +104,33 @@
     var isPostOwner = function ($q, $http, $location, $rootScope, $routeParams, PostService) {
         var deferred = $q.defer();
         var postId = $routeParams.postId;
+        var url = "/api/loggedin";
+        $http.get(url)
+            .success(function (user) {
+                $rootScope.error = null;
+                if (user !== '0') {
+                    $rootScope.currentUser = user;
+                }
 
-        if ($rootScope.currentUser) {
-            PostService
-                .getPostById(postId)
-                .success(function (post) {
-                    if (post.creatorId === $rootScope.currentUser._id || $rootScope.currentUser.role==="admin") {
-                        deferred.resolve();
-                    } else {
-                        deferred.reject();
-                        console.log("You're trying to do a bad thing!");
-                        $http.post("/api/logout");
-                        $location.url("/login");
-                    }
-                })
-                .error(function (err) {
-                    console.log("You're trying to do a bad thing!");
-                });
-        } else {
-            console.log("You're trying to do a bad thing!");
-        }
+                if ($rootScope.currentUser) {
+                    PostService
+                        .getPostById(postId)
+                        .success(function (post) {
+                            if (post.creatorId === $rootScope.currentUser._id || $rootScope.currentUser.role==="admin") {
+                                deferred.resolve();
+                            } else {
+                                deferred.reject();
+                                console.log("You're trying to do a bad thing!");
+                                $http.post("/api/logout");
+                                $location.url("/login");
+                            }
+                        });
+                } else {
+                    console.log("Please login ! ");
+                    deferred.reject();
+                    $location.url("/login");
+                }
+            });
 
         return deferred.promise;
     };
