@@ -28,9 +28,10 @@ module.exports = function () {
         ],
         fblink          : String,
         twtrlink        : String,
-        rating          : { type : Number, default : 1 },
+        rating          : {
+        },
         role            : String,
-        searchHistory   : [String]
+        searchHistory   : [String],
     });
     return userSchema;
 };

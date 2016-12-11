@@ -615,3 +615,11 @@ ul.rating {
     background-color: #2c3e50;
     color:#95a5a6
 }
+.slider-div{
+    padding: 10px 10px!important;
+}
+.stars{
+    padding: 5px!important;
+    width: 25px!important;
+    color: gold!important;
+}
