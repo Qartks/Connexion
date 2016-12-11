@@ -91,19 +91,16 @@
         <div class="hidden-xs hidden-sm col-md-4 col-lg-4 left-column">
             <div class="stick">
 
-                <div class="col-xs-12 tweet-panel" ng-if="model.user.twitter">
-                    <a class="twitter-timeline" href="https://twitter.com/{{model.user.twitter.twitterHandle}}">Tweets by {{model.user.twitter.twitterHandle}}</a>
+                <div class="col-xs-12 tweet-panel">
+                    <a class="twitter-timeline" href="https://twitter.com/AppConnexion">Tweets by AppConnexion</a>
                     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
-                <div class="col-xs-12 tweet-panel">
-                    <a class="twitter-timeline" href="https://twitter.com/connexion">Tweets on #Connexion</a>
+
+                <div class="col-xs-12 tweet-panel" ng-if="model.loggedInUser.twitter" style="margin-top: 20px">
+                    <a class="twitter-timeline" href="https://twitter.com/{{model.loggedInUser.username}}">Tweets by {{model.loggedInUser.username}}</a>
                     <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<a href="https://twitter.com/intent/tweet?button_hashtag=connexion" class="twitter-hashtag-button" data-url="https://twitter.com/hashtag/connexion?src=hash" data-show-count="false">
-    Tweet #connexion</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8">
-</script>

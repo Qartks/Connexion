@@ -246,12 +246,6 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>People invited</td>
-                                <td class="text-success">
-                                    {{model.post.noOfPeopleInvited}}
-                                </td>
-                            </tr>
-                            <tr>
                                 <td>People going</td>
                                 <td class="text-success">
                                     {{model.post.noOfPeopleGoing}}
@@ -279,13 +273,13 @@
                             <tr>
                                 <td>Number events organized</td>
                                 <td class="text-success">
-                                    {{model.post.noOfPeopleInvited}}
+                                    {{model.posts.length}}
                                 </td>
                             </tr>
                             <tr>
                                 <td>Rating of organizer</td>
                                 <td class="text-warning">
-                                    {{model.loggedInUser.rating}}
+                                    {{model.user.rating}}
                                 </td>
                             </tr>
                             <tr>

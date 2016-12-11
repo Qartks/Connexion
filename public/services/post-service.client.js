@@ -13,8 +13,14 @@
             updatePost      : updatePost,
             getAllOpenPosts : getAllOpenPosts,
             getConversationsByPostId : getConversationsByPostId,
-            updateCommentsForPostId : updateCommentsForPostId
+            updateCommentsForPostId : updateCommentsForPostId,
+            getPostCreatedByUserId : getPostCreatedByUserId
         };
+
+        function getPostCreatedByUserId(userId) {
+            var url = "/api/"+userId+"/posts";
+            return $http.get(url);
+        }
 
         function updateCommentsForPostId(postId, newComment) {
             var url = "/api/post/"+ postId +"/comment";

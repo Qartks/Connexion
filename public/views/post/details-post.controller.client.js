@@ -8,6 +8,8 @@
 
         vm.postId = $routeParams.postId;
         vm.post = {};
+        vm.posts = [];
+        vm.user = {};
         vm.loggedInUser= {};
 
         vm.toggleLeft = toggleLeft('left');
@@ -172,6 +174,25 @@
                 .getPostById(vm.postId)
                 .success(function (p) {
                     vm.post = p;
+
+                    UserService
+                        .findUserById(vm.post.creatorId)
+                        .success(function (user) {
+                            vm.user = user;
+
+                            PostService
+                                .getPostCreatedByUserId(user._id)
+                                .success(function (posts) {
+                                    vm.posts = posts;
+                                })
+                                .error(function (err) {
+                                    console.log(err);
+                                });
+                        })
+                        .error(function (err) {
+                            console.log(err);
+                        });
+
                 })
                 .error(function (err) {
                     console.log(err);

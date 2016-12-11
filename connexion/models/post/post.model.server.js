@@ -15,7 +15,8 @@ module.exports = function () {
         getPostByUserId : getPostByUserId,
         getAllOpenPosts : getAllOpenPosts,
         getConversationsByPostId : getConversationsByPostId,
-        updateCommentsForPostId : updateCommentsForPostId
+        updateCommentsForPostId : updateCommentsForPostId,
+        getPostCreatedByUserId :getPostCreatedByUserId
     };
 
     function setModel(_model) {
@@ -35,6 +36,9 @@ module.exports = function () {
     }
     function getPostByUserId(userId) {
         return PostModel.find( {$or : [{ creatorId : userId }, { going : userId }] });
+    }
+    function getPostCreatedByUserId(userId) {
+        return PostModel.find( { creatorId : userId } );
     }
     function getAllOpenPosts(userId) {
         return PostModel.find({ $or : [ {isOpen : true } ]});

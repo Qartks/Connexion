@@ -75,6 +75,7 @@
                         </a>
                         <div>
                             <h3 class="margin-0" style="padding-top: 15px"> {{model.user.firstName + " " +model.user.lastName}}</h3>
+                            <small> {{model.user.username}}</small>
                             <p class="padding-15"> {{ model.user.headline }}</p>
                         </div>
                     </div>
@@ -111,9 +112,15 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>Events hosted</td>
+                            <td>Events Involved</td>
                             <td class="text-success">
                                 {{model.data.length}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Events hosted</td>
+                            <td class="text-success">
+                                {{model.posts.length}}
                             </td>
                         </tr>
                         <tr>
@@ -134,7 +141,7 @@
                 <div> <h2 class="margin-0">User events</h2> </div>
 
                 <div class="event-list">
-                    <div class="event" ng-repeat="d in model.data | filter:{postName:searchText}" ng-class="model.isThisPostOpen(d)">
+                    <div class="event" ng-repeat="d in model.data | filter:{postName:searchText}" ng-class="model.typeOfPost(d)">
                         <div class="container-fluid">
                             <div class="container-fluid details-card">
                                 <h2>{{d.postName}}  <span href="" ng-click="model.goToPostDetails(d)"><small class="details-dial"> Details </small></span> </h2>

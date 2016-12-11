@@ -73,7 +73,7 @@
 
         function init() {
             UserService
-                .findUserById(vm.userId)
+                .findUserById(vm.loggedInUserId)
                 .success(function (user) {
                     vm.user = user;
                 })

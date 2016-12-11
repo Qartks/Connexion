@@ -7,6 +7,19 @@ module.exports = function (app, model) {
     app.put("/api/post/:postId",updatePost);
     app.get("/api/openposts", getAllOpenPosts);
     app.put("/api/post/:postId/comment", updateCommentsForPostId);
+    app.get("/api/:userId/posts", getPostCreatedByUserId);
+
+    function getPostCreatedByUserId(req, res) {
+        var userId = req.params.userId;
+        model
+            .postModel
+            .getPostCreatedByUserId(userId)
+            .then(function (posts) {
+                res.send(posts)
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+    }
 
     function updateCommentsForPostId(req, res) {
         var postId = req.params.postId;

@@ -8,6 +8,7 @@
         vm.userId = $rootScope.currentUser._id;
         vm.user = {};
         vm.post = {};
+        vm.sendTweet ="";
         vm.pictures = [];
         var fullPic = [];
 
@@ -74,8 +75,8 @@
             PostService.createPost(vm.userId, post)
                 .success(function (some) {
                     $location.url('/user/profile/'+ vm.userId );
-                    if (vm.user.twitter.id) {
-                        clickTweet("I just posted this ::" + post.postName + " :: on #Connexion #WebDev");
+                    if (vm.user.twitter.id && vm.sendTweet) {
+                        clickTweet("I just posted an event \"" + post.postName + "\"  on @AppConnexion #WebDev");
                     }
                 })
                 .error(function (err) {

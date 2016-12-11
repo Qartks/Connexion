@@ -30,7 +30,7 @@ module.exports = function () {
     }
 
     function updateImageUrl(userId, f) {
-        return UserModel.update({_id : userId}, { profilePicture: f } );
+        return UserModel.findOneAndUpdate({_id : userId}, { profilePicture: f }, {$new : true} );
     }
 
     function createUser(user) {
