@@ -11,11 +11,8 @@
         vm.posts = [];
         vm.user = {};
         vm.loggedInUser= {};
-
-        vm.toggleLeft = toggleLeft('left');
         vm.map = { center: { latitude: 42.3601, longitude: -71.0589 }, zoom: 4 };
-        vm.marker= {latitude: 40.1451, longitude: -99.6680 };
-
+        vm.toggleLeft = toggleLeft('left');
         vm.comments = [];
 
         vm.goToSearch = goToSearch;
@@ -193,11 +190,12 @@
                             console.log(err);
                         });
 
+                    vm.marker= {latitude: p.latitude ||42 , longitude: p.longitude || -71 };
+                    console.log("marker",vm.marker);
                 })
                 .error(function (err) {
                     console.log(err);
             });
-
             UserService
                 .getLoggedInUser()
                 .success(function (user) {
