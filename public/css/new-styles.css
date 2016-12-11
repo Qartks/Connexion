@@ -223,6 +223,10 @@ h1.main-header {
     font-size: 100%!important;
     text-transform: none;
 }
+.bottom-sheet-fix-below{
+    bottom: 0px!important;
+    position: fixed!important;
+}
 .side-nav-button{
     padding: 0!important;
     padding-left: 5px!important;
