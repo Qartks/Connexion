@@ -34,7 +34,7 @@ module.exports = function () {
         return PostModel.remove({_id:postId});
     }
     function getPostByUserId(userId) {
-        return PostModel.find({creatorId : userId});
+        return PostModel.find( {$or : [{ creatorId : userId }, { going : userId }] });
     }
     function getAllOpenPosts(userId) {
         return PostModel.find({ $or : [ {isOpen : true } ]});

@@ -1,5 +1,5 @@
 (function () {
-    angular.module('Connexion',['ngMaterial','ngRoute','uiGmapgoogle-maps', 'starDirective'])
+    angular.module('Connexion',['ngMaterial','ngRoute','uiGmapgoogle-maps'])
         .config(function ($mdThemingProvider, $mdAriaProvider,uiGmapGoogleMapApiProvider) {
             $mdThemingProvider
                 .theme('default')

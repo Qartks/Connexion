@@ -19,7 +19,7 @@ module.exports = function (app, model) {
         var f = '/uploads/' + filename;
         model.userModel.updateImageUrl(userId, f)
             .then( function (user) {
-                res.redirect("/index.html#/user/"+userId+"/profile/edit");
+                res.redirect("/index.html#/user/profile/"+userId+"/edit");
             }, function (err) {
                 res.sendStatus(400).send(err);
             });

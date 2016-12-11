@@ -94,7 +94,8 @@
                     </md-input-container>
                     <md-input-container>
                         <label>Description</label>
-                        <textarea ng-model="model.post.description" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
+                        <textarea ng-model="model.post.description" md-maxlength="140" rows="5" md-select-on-focus="">
+                        </textarea>
                     </md-input-container>
                     <div layout-gt-xs="row">
                         <md-input-container class="md-block" flex-gt-sm="">
@@ -111,6 +112,8 @@
                         </md-input-container>
                     </div>
                     <md-checkbox id="isOpen" ng-model="model.post.isOpen"> Open to all?</md-checkbox>
+                    <md-checkbox ng-show="model.user.twitter.id" id="tweet" ng-model="model.post.isOpen"> Send a Tweet out?</md-checkbox>
+
                 </md-card-content>
                 <md-card-actions layout="column" layout-align="start">
                     <md-button class="md-accent md-raised" ng-click="model.createPost(model.post)">Post</md-button>

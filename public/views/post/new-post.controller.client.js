@@ -20,6 +20,20 @@
         vm.deleteThisPic = deleteThisPic;
         vm.goBack = goBack;
         vm.toggleLeft = toggleLeft('left');
+        vm.clickTweet = clickTweet;
+
+        function clickTweet(message){
+            var obj = {
+                'message' : message,
+                'userId' : vm.userId
+            };
+            UserService.tweet(obj)
+                .then(function (succ) {
+                    console.log("Tweet Posted");
+                },function (err) {
+                    console.log("Error while posting tweet");
+                });
+        }
 
         function toggleLeft(navID) {
             return function() {
@@ -60,6 +74,9 @@
             PostService.createPost(vm.userId, post)
                 .success(function (some) {
                     $location.url('/user/profile/'+ vm.userId );
+                    if (vm.user.twitter.id) {
+                        clickTweet("I just posted this ::" + post.postName + " :: on #Connexion #WebDev");
+                    }
                 })
                 .error(function (err) {
                     console.log(err);

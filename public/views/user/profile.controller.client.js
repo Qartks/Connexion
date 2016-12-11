@@ -3,7 +3,8 @@
         .module("Connexion")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($routeParams, PageService, $location, $rootScope, PostService, UserService, $mdSidenav) {
+    function ProfileController($routeParams, PageService, $location, $rootScope, PostService, UserService, $mdSidenav, ToastService) {
+
         var vm = this;
         vm.user = {};
         vm.data = [];
@@ -124,7 +125,11 @@
 
         function goToCreatePost() {
             PageService.setPrevPage('/user/profile/'+ vm.userId);
-            $location.url('/user/post/new');
+            if (vm.loggedInUser !== '0' ) {
+                $location.url('/user/post/new');
+            } else {
+                // ToastService.showToast('You need to login!');
+            }
         }
     }
 })();
