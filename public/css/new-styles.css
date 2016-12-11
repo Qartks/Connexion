@@ -214,7 +214,8 @@ h1.main-header {
 }
 
 .thumbnail {
-
+    min-height: 350px;
+    max-height: 350px;
 }
 .bottom-sheet-button{
     font-size: 100%!important;
@@ -328,6 +329,7 @@ h1.main-header {
 }
 .fixed-position{
     position: fixed!important;
+    z-index: 1000000;
 }
 .user-avatar {
     border-radius: 50%;
@@ -472,4 +474,10 @@ h1.main-header {
 }
 .yellow-color {
     color: #f39c12;
+}
+.card-image{
+    min-width: 250px!important;
+    max-width: 250px!important;
+    min-height: 250px!important;
+    max-height: 250px!important;
 }

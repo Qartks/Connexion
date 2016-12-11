@@ -1,8 +1,13 @@
 <md-sidenav class="md-sidenav-left md-whiteframe-4dp fixed-position" layout="column" md-component-id="left" flex>
     <div class="sidenav-toolbar">
-        <img ng-src="{{model.loggedInUser.profilePicture}}" class="user-avatar">
-        <h3>Username : {{model.loggedInUser.username}}</h3>
-        <h3>Name : {{model.loggedInUser.firstName}}</h3>
+        <div ng-if="model.loggedInUser!=='0'">
+            <img ng-src="{{model.loggedInUser.profilePicture}}" class="user-avatar">
+            <h3>Username : {{model.loggedInUser.username}}</h3>
+            <h3>Name : {{model.loggedInUser.firstName}}</h3>
+        </div>
+        <div ng-if="model.loggedInUser==='0'">
+            <span><br><br></span>
+        </div>
     </div>
     <md-list>
         <md-item>
@@ -36,7 +41,7 @@
                         <i class="material-icons center-vertical-align">power_settings_new</i>
                     </div>
                     <div class="inset center-vertical-align">
-                        Logout
+                        Login/Logout
                     </div>
                 </md-item-content>
             </md-button>
