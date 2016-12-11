@@ -9,7 +9,7 @@
 
         vm.loggedInUser = {};
 
-        vm.toggleLeft = toggleLeft('left');
+
         vm.goToSearch = goToSearch;
         vm.goToProfile = goToProfile;
         vm.goToCreatePost = goToCreatePost;
@@ -18,7 +18,7 @@
         vm.goToUserProfilePage = goToUserProfilePage;
         vm.logout = logout;
         vm.clickTweet = clickTweet;
-
+        vm.toggleLeft = toggleLeft('left');
         function toggleLeft(navID) {
             return function() {
                 $mdSidenav(navID)
@@ -71,14 +71,6 @@
 
         init();
 
-        function goToUserProfilePage(post) {
-            $location.url("/user/profile/" + post.creatorId);
-        }
-
-        function goToPostDetails(post) {
-            $location.url("/user/post/" + post._id);
-        }
-
         function googleapiurl(d) {
             var apiKey = process.env.GMAP_API_KEY;
             var url = "https://www.google.com/maps/embed/v1/place?key="+ apiKey + "&q=";
@@ -90,6 +82,16 @@
             return $sce.trustAsResourceUrl(url);
         }
 
+        function goToUserProfilePage(post) {
+            PageService.setPrevPage('/user');
+            $location.url("/user/profile/" + post.creatorId);
+        }
+
+        function goToPostDetails(post) {
+            PageService.setPrevPage('/user');
+            $location.url("/user/post/" + post._id);
+        }
+
         function goToSearch() {
             PageService.setPrevPage('/user');
             $location.url('/user/search');
@@ -97,6 +99,7 @@
 
         function goToProfile() {
             if (vm.loggedInUser !== '0' ) {
+                PageService.setPrevPage('/user');
                 $location.url('/user/profile/'+ vm.loggedInUser._id);
             } else {
                 ToastService.showToast('You need to login!');
@@ -105,6 +108,7 @@
 
         function goToCreatePost() {
             if (vm.loggedInUser !== '0' ) {
+                PageService.setPrevPage('/user');
                 $location.url('/user/post/new');
             } else {
                 ToastService.showToast('You need to login! ->');

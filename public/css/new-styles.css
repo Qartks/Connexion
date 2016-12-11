@@ -144,7 +144,9 @@ h1.main-header {
 
 .profile-panel {
     color: aliceblue;
-    /*background:url("http://lorempixel.com/90/90/") center center;*/
+    background: #7b4397; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #7b4397 , #dc2430); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #7b4397 , #dc2430); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-size:cover;
     background-color: rgba(0, 3, 2, 1);
 }
@@ -214,7 +216,8 @@ h1.main-header {
 }
 
 .thumbnail {
-
+    min-height: 350px;
+    max-height: 350px;
 }
 .bottom-sheet-button{
     font-size: 100%!important;
@@ -299,7 +302,10 @@ h1.main-header {
     text-align: center;
     font-size:120%
 }
-
+.md-bottom-sheet{
+    position: fixed!important;
+    bottom: 0px!important;
+}
 
 .button-with-icon-fix{
     text-align: right;
@@ -325,6 +331,7 @@ h1.main-header {
 }
 .fixed-position{
     position: fixed!important;
+    z-index: 1000000;
 }
 .user-avatar {
     border-radius: 50%;
@@ -332,14 +339,13 @@ h1.main-header {
     height: 75px;
     z-index: 1000;
 }
-
 .sidenav-toolbar {
     display: inline-block!important;
     background-color: #e74c3c;
     padding: 5% 5%;
     line-height: 150%;
     color: #ffffff;
-    z-index: 1000;
+    z-index: 10000;
     width: 100%;
 }
 .sidenav-toolbar h3{
@@ -444,10 +450,6 @@ h1.main-header {
     margin: 0 auto;
 }
 
-.bottom-sheet-fix-below{
-    position: fixed;
-    bottom: 0px;
-}
 .landing-section{
     height: 560px;
     background-color:white;
@@ -489,6 +491,16 @@ ul.rating {
     font-weight: bold;
     cursor: pointer;
 }
+
 .rating .filled {
     color: red;
+}
+.yellow-color {
+    color: #f39c12;
+}
+.card-image{
+    min-width: 70%;
+}
+.purple {
+    color: purple;
 }

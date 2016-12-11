@@ -2,7 +2,7 @@
     angular
         .module("Connexion")
         .controller("NewPostController", NewPostController)
-    function NewPostController($rootScope, $location, $sce, FlickerService, PostService, PageService, UserService) {
+    function NewPostController($rootScope, $location, $sce, FlickerService, PostService, PageService, UserService, $mdSidenav) {
         var vm = this;
 
         vm.userId = $rootScope.currentUser._id;
@@ -18,6 +18,22 @@
         vm.createPost = createPost;
         vm.logout = logout;
         vm.deleteThisPic = deleteThisPic;
+        vm.goBack = goBack;
+        vm.toggleLeft = toggleLeft('left');
+
+        function toggleLeft(navID) {
+            return function() {
+                $mdSidenav(navID)
+                    .toggle()
+                    .then(function () {
+
+                    });
+            }
+        }
+
+        function goBack() {
+            $location.url(PageService.getPrevPage());
+        }
 
         function deleteThisPic(index) {
             vm.pictures.splice(index, 1);
@@ -51,6 +67,7 @@
         }
 
         function goToProfile() {
+            PageService.setPrevPage('/user/post/new');
             $location.url('/user/profile/'+ vm.userId );
         }
 

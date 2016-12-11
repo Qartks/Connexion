@@ -3,7 +3,7 @@
         .module("Connexion")
         .controller("UserEditController", UserEditController);
     
-    function UserEditController($routeParams, $rootScope, $location, UserService, PageService, PostService, $mdToast) {
+    function UserEditController($routeParams, $rootScope, $location, UserService, PageService, PostService, $mdToast,$mdSidenav) {
         vm = this;
 
         vm.loggedInUserId = $rootScope.currentUser._id;
@@ -15,8 +15,25 @@
         vm.goBackToProfile = goBackToProfile;
         vm.goToCreatePost = goToCreatePost;
         vm.logout = logout;
+        vm.goBack = goBack;
+        vm.toggleLeft = toggleLeft('left');
+
+        function toggleLeft(navID) {
+            return function() {
+                $mdSidenav(navID)
+                    .toggle()
+                    .then(function () {
+
+                    });
+            }
+        }
+
+        function goBack() {
+            $location.url(PageService.getPrevPage());
+        }
 
         function goToCreatePost() {
+            PageService.setPrevPage('/user/profile/'+ vm.userId +'/edit');
             $location.url("/user/post/new");
         }
 
@@ -29,6 +46,7 @@
         }
 
         function goBackToProfile() {
+            PageService.setPrevPage('/user/profile/'+ vm.userId +'/edit');
             $location.url("/user/profile/" + vm.userId);
         }
 
@@ -70,6 +88,5 @@
             PageService.setPrevPage('/user/profile/'+ vm.userId +'/edit');
             $location.url('/user/search');
         }
-
     }
 })();

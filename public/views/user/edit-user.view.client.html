@@ -1,22 +1,79 @@
-<md-toolbar class= "md-whiteframe-9dp navbar-fixed-top">
+<md-sidenav class="md-sidenav-left md-whiteframe-4dp fixed-position" layout="column" md-component-id="left" flex>
+    <div class="sidenav-toolbar">
+        <div ng-if="model.user">
+            <img ng-src="{{model.user.profilePicture}}" class="user-avatar">
+            <h3>Username : {{model.user.username}}</h3>
+            <h3>Name : {{model.user.firstName}}</h3>
+        </div>
+        <div ng-if="!model.user">
+            <span><br><br></span>
+        </div>
+    </div>
+    <md-list>
+        <md-item>
+            <md-button class="side-nav-button" ng-click="model.goToProfile()">
+                <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                    <div class="inset">
+                        <i class="material-icons center-vertical-align">account_circle</i>
+                    </div>
+                    <div class="inset center-vertical-align">
+                        Profile
+                    </div>
+                </md-item-content>
+            </md-button>
+        </md-item>
+        <md-item>
+            <md-button class="side-nav-button" ng-click="model.goToCreatePost()">
+                <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                    <div class="inset">
+                        <i class="material-icons center-vertical-align">create</i>
+                    </div>
+                    <div class="inset center-vertical-align">
+                        Create Post
+                    </div>
+                </md-item-content>
+            </md-button>
+        </md-item>
+        <md-item>
+            <md-button class="side-nav-button" ng-click="model.logout()">
+                <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                    <div class="inset">
+                        <i class="material-icons center-vertical-align">power_settings_new</i>
+                    </div>
+                    <div class="inset center-vertical-align">
+                        Login/Logout
+                    </div>
+                </md-item-content>
+            </md-button>
+        </md-item>
+        <div class="bottom-bar">
+            <md-button class="md-fab md-primary md-whiteframe-4dp" ng-click="model.toggleLeft()">
+                <i class="material-icons center-vertical-align">cancel</i>
+            </md-button>
+        </div>
+    </md-list>
+</md-sidenav>
+
+<md-toolbar class="tool-bar-color">
     <div class="md-toolbar-tools">
-        <!--<span flex=""></span>-->
-        <i class="material-icons">menu</i>
+        <a class="menu-icons" ng-click="model.goBack()">
+            <i class="material-icons">arrow_back</i>
+        </a>
         <span>
             <a href="#/user">
                 <h1 class="main-header">Connexion</h1>
             </a>
         </span>
         <span flex=""></span>
-        <a class="menu-icons" href="" ng-click="model.goToSearch()"><i class="tool-bar-icons material-icons">search</i></a>
-        <a class="menu-icons" href="" ng-click="model.goBackToProfile()"><i class="tool-bar-icons material-icons">account_circle</i></a>
-        <a class="menu-icons" href="" ng-click="model.goToCreatePost()"><i class="tool-bar-icons  material-icons">create</i></a>
-        <a class="menu-icons" href="" ng-click="model.logout()"><i class="tool-bar-icons material-icons">keyboard_return</i></a>
-        <a class="menu-icons" href="" ng-click=""><i class="tool-bar-icons material-icons">more_vert</i></a>
+        <a class="menu-icons" href="" ng-click="model.goToSearch()" ><i class="tool-bar-icons material-icons">search</i></a>
+        <a class="menu-icons" href="" ng-click="model.goToProfile()" hide-sm hide-xs><i class="tool-bar-icons material-icons">account_circle</i></a>
+        <a class="menu-icons" href="" ng-click="model.goToCreatePost()" hide-sm hide-xs><i class="tool-bar-icons  material-icons">create</i></a>
+        <a class="menu-icons" href="" ng-click="model.logout()" hide-sm hide-xs><i class="tool-bar-icons material-icons">power_settings_new</i></a>
+        <a ng-click="model.toggleLeft('')" class="menu-icons" hide-gt-sm>
+            <i class="tool-bar-icons material-icons">more_vert</i>
+        </a>
     </div>
 </md-toolbar>
-
-
 
 <div class="container">
     <div class="content-wrapper">
