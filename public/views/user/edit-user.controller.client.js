@@ -71,6 +71,7 @@
                 .updateUser(user)
                 .success(function (u) {
                     showSimpleToast();
+                    $location.url("/user/profile/"+ userId);
                 })
                 .error(function (err) {
                     console.log(err);

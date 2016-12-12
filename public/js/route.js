@@ -84,7 +84,9 @@
                 }
 
                 if ($rootScope.currentUser) {
-                    if (userId == $rootScope.currentUser._id || ($rootScope.currentUser.role ==="admin")) {
+                    if (typeof userId === 'undefined') {
+                        deferred.resolve();
+                    } else if (userId == $rootScope.currentUser._id || ($rootScope.currentUser.role ==="admin")) {
                         deferred.resolve();
                     } else {
                         console.log("You're trying to do a bad thing!");
@@ -111,20 +113,24 @@
                 if (user !== '0') {
                     $rootScope.currentUser = user;
                 }
-
                 if ($rootScope.currentUser) {
-                    PostService
-                        .getPostById(postId)
-                        .success(function (post) {
-                            if (post.creatorId === $rootScope.currentUser._id || $rootScope.currentUser.role==="admin") {
-                                deferred.resolve();
-                            } else {
-                                deferred.reject();
-                                console.log("You're trying to do a bad thing!");
-                                $http.post("/api/logout");
-                                $location.url("/login");
-                            }
-                        });
+                    if (typeof postId === 'undefined') {
+                        deferred.resolve();
+                    } else {
+                        PostService
+                            .getPostById(postId)
+                            .success(function (post) {
+
+                                if (post.creatorId === $rootScope.currentUser._id || $rootScope.currentUser.role==="admin") {
+                                    deferred.resolve();
+                                } else {
+                                    deferred.reject();
+                                    console.log("You're trying to do a bad thing!");
+                                    $http.post("/api/logout");
+                                    $location.url("/login");
+                                }
+                            });
+                    }
                 } else {
                     console.log("Please login ! ");
                     deferred.reject();

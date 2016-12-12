@@ -35,7 +35,7 @@ module.exports = function () {
         return PostModel.remove({_id:postId});
     }
     function getPostByUserId(userId) {
-        return PostModel.find( {$or : [{ creatorId : userId }, { going : userId }] });
+        return PostModel.find( {$or : [{ creatorId : userId }, { going : userId }, { interested : userId }] });
     }
     function getPostCreatedByUserId(userId) {
         return PostModel.find( { creatorId : userId } );

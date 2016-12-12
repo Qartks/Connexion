@@ -89,6 +89,13 @@
                 return;
             }
 
+
+            if (typeof vm.address.geometry !== 'undefined') {
+                post.address = vm.address.formatted_address;
+                post.latitude = vm.address.geometry.location.lat();
+                post.longitude = vm.address.geometry.location.lng();
+            }
+
             PostService
                 .updatePost(vm.postId, post)
                 .success(function (page) {
@@ -134,6 +141,7 @@
                 .getPostById(vm.postId)
                 .success(function (post) {
                     vm.post = post;
+                    vm.address = post.address;
                 })
                 .error(function (err) {
                     console.log(err);

@@ -82,13 +82,13 @@
                 <div> <h2 class="margin-0"><small>Preview</small></h2> </div>
                 <div class="panel">
                     <div class="text-center profile-panel">
-                        <a href="" class="inline">
-                            <img ng-src="{{model.user.profilePicture}}" class="img-circle padding-15" height="100" width="100">
-                        </a>
+                        <img class=" img-circle padding-15" ng-if="model.user.profilePicture" ng-src="{{model.user.profilePicture}}" alt="..." width="100"/>
+                        <img class=" img-circle padding-15" ng-if="!model.user.profilePicture" ng-src="../../img/person.png" alt="..." width="100"/>
                         <div>
-                            <h3 class=""> {{model.user.firstName + " " +model.user.lastName}}</h3>
+                            <h3 class="margin-0" style="padding-top: 15px"> {{model.user.firstName + " " +model.user.lastName}}</h3>
+                            <small> {{model.user.username}}</small>
+                            <p class="padding-15"> {{ model.user.headline }}</p>
                         </div>
-                        <p> {{ model.user.headline }}</p>
                     </div>
                     <hr class="margin-0">
                     <div class="padding-15">
@@ -99,12 +99,6 @@
                         <div style="margin-top: 5px">
                             <p><strong>About</strong></p>
                             <p class="pre-whitespace"> {{model.user.bio}} </p>
-                        </div>
-                        <div layout="row" layout-align="center center" layout-wrap>
-                            <div flex></div>
-                            <a ng-show="model.user.fblink" class="profile-links"> <i class="fa fa-facebook"></i> </a>
-                            <a ng-show="model.user.twtrlink" class="profile-links"> <i class="fa fa-twitter"></i> </a>
-                            <div flex></div>
                         </div>
                     </div>
                 </div>
