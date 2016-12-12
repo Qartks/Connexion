@@ -21,7 +21,6 @@
         vm.editThisProfile = editThisProfile;
         vm.deleteThisProfile = deleteThisProfile;
         vm.isThisMine = isThisMine;
-        vm.openPost = openPost;
         vm.logout = logout;
         vm.goBack = goBack;
         vm.slider = {
@@ -154,20 +153,8 @@
             $location.url('/user/post/' + post._id);
         }
 
-        function openPost(post) {
+        function typeOfPost(post) {
             return post.isOpen ? "green" : "blue";
-        }
-
-        function typeOfPost(post, type) {
-            if ( type === 1) {
-                var index = post.going.indexOf(vm.userId);
-                return index !== -1
-            } else if ( type === 2) {
-                var index = post.interested.indexOf(vm.userId);
-                return index !== -1
-            } else if ( type === 3) {
-                return post.creatorId === vm.userId;
-            }
         }
 
         function goToSearch() {

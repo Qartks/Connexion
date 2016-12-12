@@ -155,7 +155,7 @@
         }
         function goToUser() {
             PageService.setPrevPage('/user/post/' + vm.postId);
-            $location.url('/user/profile/' + vm.post.creatorId);
+            $location.url('/user/profile/' + vm.organizer._id);
         }
 
         function goToCreatePost() {
@@ -177,20 +177,12 @@
                 .getPostById(vm.postId)
                 .success(function (p) {
                     vm.post = p;
+
                     UserService
                         .findUserById(vm.post.creatorId)
                         .success(function (user) {
                             vm.user = user;
-                            var sum = 0;
-                            var count = 0;
-                            for (var key in vm.user.rating) {
-                                sum+= Number(vm.user.rating[key]);
-                                count++;
-                            }
-                            if(count == 0)
-                                vm.rating = new Array(1);
-                            else
-                                vm.rating = new Array(Math.floor(sum / count));
+
                             PostService
                                 .getPostCreatedByUserId(user._id)
                                 .success(function (posts) {
@@ -210,6 +202,7 @@
                         .success(function (user) {
                             if(user!=='0')
                                 vm.organizer = user;
+                            console.log("user is ",user);
                         })
                 })
                 .error(function (err) {

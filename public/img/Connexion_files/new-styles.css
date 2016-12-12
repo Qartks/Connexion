@@ -615,32 +615,6 @@ ul.rating {
     background-color: #2c3e50;
     color:#95a5a6
 }
-
-.font-white {
-    color: aliceblue;
-}
-
-.circle {
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
-    margin-top: 28px;
-    margin-left: 10px;
-}
-
-.red-color {
-    background : #f26b67;
-}
-
-.other-color {
-    background: #be9826;
-}
-
-.bluish-color {
-    background: #5080f2;
-}
-
 .slider-div{
     padding: 10px 10px!important;
 }

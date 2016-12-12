@@ -284,7 +284,9 @@
                             <tr>
                                 <td>Rating of organizer</td>
                                 <td class="text-warning">
-                                    {{model.user.rating}}
+                                    <span ng-repeat="i in model.rating track by $index">
+                                        <i class="material-icons stars">star_rate</i>
+                                    </span>
                                 </td>
                             </tr>
                             </tbody>

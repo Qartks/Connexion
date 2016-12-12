@@ -118,24 +118,29 @@
                         </tr>
                         <tr>
                             <td>Popularity</td>
-                            <td class="text-warning">
-                                <span>Rating({{model.user.rating}})</span>
-                                <md-slider-container>
-                                    <md-slider flex md-discrete min="0" max="5" ng-model="model.user.rating" ng-disabled="!model.loggedInUser" ng-click="model.getSelectedRating(model.user.rating)">
-                                    </md-slider>
-                                    <md-input-container>
+
+                            <td layout="row">
+                                <span ng-repeat="i in model.rating track by $index">
+                                    <i class="material-icons stars">star_rate</i>
+                                </span>
                             </td>
-                        </tr>
+                        </td>
                         </tbody>
                     </table>
+                    <div class="slider-div">
+                        <p>Rate User</p>
+                        <rzslider rz-slider-model="model.slider.value" rz-slider-options="model.slider.options"></rzslider>
+                    </div>
+
                 </div>
             </div>
             <div class="col-sm-12 col-md-8">
                 <div> <h2 class="margin-0">User events</h2> </div>
 
-                <div class="event-list">
 
-                    <div class="event" ng-repeat="d in model.data | filter:{postName:searchText}" ng-class="model.openPost(d)" >
+
+                <div class="event-list">
+                    <div class="event" ng-if="model.data[0]" ng-repeat="d in model.data | filter:{postName:searchText}" ng-class="model.openPost(d)">
                         <div class="container-fluid">
                             <div class="container-fluid details-card">
                                 <div layout="row">
@@ -159,6 +164,9 @@
                                 <p class="pre-whitespace">{{d.description}}</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="event md-whiteframe-1dp no-posts"  ng-if="!model.data[0]" layout-padding>
+                        No Posts to show right now.
                     </div>
                 </div>
             </div>
