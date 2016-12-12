@@ -177,12 +177,20 @@
                 .getPostById(vm.postId)
                 .success(function (p) {
                     vm.post = p;
-
                     UserService
                         .findUserById(vm.post.creatorId)
                         .success(function (user) {
                             vm.user = user;
-
+                            var sum = 0;
+                            var count = 0;
+                            for (var key in vm.user.rating) {
+                                sum+= Number(vm.user.rating[key]);
+                                count++;
+                            }
+                            if(count == 0)
+                                vm.rating = new Array(1);
+                            else
+                                vm.rating = new Array(Math.floor(sum / count));
                             PostService
                                 .getPostCreatedByUserId(user._id)
                                 .success(function (posts) {
