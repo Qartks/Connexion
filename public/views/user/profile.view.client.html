@@ -144,8 +144,10 @@
             <div class="col-sm-12 col-md-8">
                 <div> <h2 class="margin-0">User events</h2> </div>
 
+
+
                 <div class="event-list">
-                    <div class="event" ng-repeat="d in model.data | filter:{postName:searchText}" ng-class="model.typeOfPost(d)">
+                    <div class="event" ng-if="model.data[0]" ng-repeat="d in model.data | filter:{postName:searchText}" ng-class="model.typeOfPost(d)">
                         <div class="container-fluid">
                             <div class="container-fluid details-card">
                                 <h2>{{d.postName}}  <span href="" ng-click="model.goToPostDetails(d)"><small class="details-dial"> Details </small></span> </h2>
@@ -155,6 +157,9 @@
                                 <p class="pre-whitespace">{{d.description}}</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="event md-whiteframe-1dp no-posts"  ng-if="!model.data[0]" layout-padding>
+                        No Posts to show right now.
                     </div>
                 </div>
             </div>
