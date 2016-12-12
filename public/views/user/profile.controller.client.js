@@ -9,7 +9,7 @@
         vm.user = {};
         vm.data = [];
         vm.posts = [];
-        vm.loggedInUser = {};
+        vm.loggedInUser = '0';
         vm.userId = $routeParams.userId;
         init();
 
@@ -21,6 +21,7 @@
         vm.editThisProfile = editThisProfile;
         vm.deleteThisProfile = deleteThisProfile;
         vm.isThisMine = isThisMine;
+        vm.isLoggedIn = isLoggedIn;
         vm.openPost = openPost;
         vm.logout = logout;
         vm.goBack = goBack;
@@ -53,7 +54,6 @@
             if(count == 0)
                 vm.rating = new Array(1);
             else {
-                console.log("Sum ",sum,"Count ",count);
                 vm.rating = new Array(Math.floor(sum / count));
             }
             UserService.updateUser(vm.user)
@@ -63,6 +63,24 @@
 
             });
         };
+
+        function getRating() {
+            var sum = 0;
+            var count = 0;
+            for (var key in vm.user.rating) {
+                sum+= Number(vm.user.rating[key]);
+                count++;
+            }
+            if(count == 0)
+                vm.rating = new Array(1);
+            else {
+                vm.rating = new Array(Math.floor(sum / count));
+            }
+
+            return vm.rating;
+        }
+
+
         vm.toggleLeft = toggleLeft('left');
         function toggleLeft(navID) {
             return function() {
@@ -74,8 +92,13 @@
             }
         }
 
+        function isLoggedIn() {
+            return vm.loggedInUser !== '0';
+        }
+
         function isThisMine() {
             return vm.loggedInUser._id === vm.userId || vm.loggedInUser.role==="admin";
+
         }
 
         function logout() {
@@ -98,10 +121,18 @@
         }
 
         function init() {
+
+            UserService
+                .getLoggedInUser()
+                .success(function (user) {
+                    vm.loggedInUser = user;
+                });
+
             UserService
                 .findUserById(vm.userId)
                 .success(function (user) {
                     vm.user = user;
+                    // vm.slider.value = getRating();
                     var sum = 0;
                     var count = 0;
                     for (var key in user.rating) {
@@ -131,12 +162,6 @@
                 })
                 .error(function (err) {
                     console.log(err);
-                });
-
-            UserService
-                .getLoggedInUser()
-                .success(function (user) {
-                    vm.loggedInUser = user;
                 });
         }
 

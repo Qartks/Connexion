@@ -234,13 +234,15 @@
                 </div>
                 <div class="col-xs-12">
                     <!-- Here Here Here -->
-                    <div ng-show="!model.isThisMine()" layout="row" class="margin-bottom">
-                        <md-button class="md-raised login-button white-color" ng-click="model.imGoing()" flex> Going </md-button>
-                        <md-button class="md-raised md-primary" ng-click="model.imInterested()" flex> Interested </md-button>
-                    </div>
-                    <div ng-show="model.isThisMine()" layout="row" class="margin-bottom">
-                        <md-button ng-click="model.editThisPost()" class="md-default md-raised" flex>Edit Post</md-button>
-                        <md-button ng-click="model.deleteThisPost()" class="md-warn md-raised" flex>Delete</md-button>
+                    <div ng-show="model.isLoggedIn()">
+                        <div layout="row" class="margin-bottom" ng-show="!model.isThisMine()">
+                            <md-button class="md-raised login-button white-color" ng-click="model.imGoing()" flex> Going </md-button>
+                            <md-button class="md-raised md-primary" ng-click="model.imInterested()" flex> Interested </md-button>
+                        </div>
+                        <div layout="row" class="margin-bottom" ng-show="model.isThisMine()">
+                            <md-button ng-click="model.editThisPost()" class="md-default md-raised" flex>Edit Post</md-button>
+                            <md-button ng-click="model.deleteThisPost()" class="md-warn md-raised" flex>Delete</md-button>
+                        </div>
                     </div>
                     <div class="panel">
                         <table class="table table-striped m-b-none">

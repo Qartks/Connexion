@@ -11,7 +11,7 @@
         vm.posts = [];
         vm.user = {};
         vm.loggedInUser= {};
-        vm.map = { center: { latitude: 42.3601, longitude: -71.0589 }, zoom: 4 };
+        vm.map = { center: { latitude: 42.3601, longitude: -71.0589 }, zoom: 20 };
         vm.toggleLeft = toggleLeft('left');
         vm.comments = [];
 
@@ -135,9 +135,7 @@
         }
 
         function isThisMine() {
-            if(isLoggedIn()) {
-                return vm.post.creatorId === vm.loggedInUser._id || vm.loggedInUser.role==="admin";
-            }
+            return vm.post.creatorId === vm.loggedInUser._id || vm.loggedInUser.role==="admin";
         }
 
         function goToSearch() {
@@ -177,6 +175,7 @@
                 .getPostById(vm.postId)
                 .success(function (p) {
                     vm.post = p;
+                    vm.map = { center: { latitude: vm.post.latitude, longitude: vm.post.longitude}, zoom: 15 };
                     UserService
                         .findUserById(vm.post.creatorId)
                         .success(function (user) {

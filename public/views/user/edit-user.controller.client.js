@@ -70,8 +70,8 @@
             UserService
                 .updateUser(user)
                 .success(function (u) {
+                    $location.url("/user/profile/"+ vm.userId);
                     showSimpleToast();
-                    $location.url("/user/profile/"+ userId);
                 })
                 .error(function (err) {
                     console.log(err);
