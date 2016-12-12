@@ -14,7 +14,7 @@
                 <strong>Users</strong>
                 <hr style="border-color: #434343">
                 <div ng-repeat="d in model.users | filter:{username:model.searchText} track by $index " class="col-sm-4 col-md-4 col-lg-4">
-                    <div ng-click="model.goToThisProfile(d)" class="thumbnail padding-15 md-whiteframe-2dp">x
+                    <div ng-click="model.goToThisProfile(d)" class="thumbnail padding-15 md-whiteframe-2dp">
                         <a href="">
                             <img class=" img-circle card-image" ng-if="d.profilePicture" ng-src="{{d.profilePicture}}" alt="..." height="100" width="100"/>
                             <img class=" img-circle card-image" ng-if="!d.profilePicture" ng-src="../../img/person.png" alt="..." height="100" width="100"/>
