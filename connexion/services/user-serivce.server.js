@@ -82,7 +82,7 @@ module.exports = function (app, model) {
     //1. Login
     var twitterConfig = {
         consumerKey: process.env.TWITTER_CONSUMER_KEY,
-        consumerSecret: proces.env.TWITTER_CONSUMER_SECRET,
+        consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
         callbackURL: process.env.TWITTER_CALL_BACK_URL
     };
     var TwitterStrategy = require('passport-twitter').Strategy;
