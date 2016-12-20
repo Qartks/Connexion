@@ -11,7 +11,9 @@ app.use(express.static(__dirname + '/public'));
 
 require('./connexion/app')(app);
 
-app.listen(port,function(){
-    console.log("Running Server on port 3000");
-});
+
+app.listen(process.env.PORT || 3000);
+// app.listen(port,function(){
+//     console.log("Running Server on port 3000");
+// });
 
