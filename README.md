@@ -1,4 +1,4 @@
 # Connexion
 A social web app to connect like minded people
 
-Currently hosted on : connexion.herokuapp.com
+Currently hosted on : http://connexion.herokuapp.com
